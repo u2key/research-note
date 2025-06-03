@@ -4,7 +4,7 @@
 1. [Create Ubuntu Image](create-ubuntu-image.md)
 2. [Configure HPS](configure-hps.md)
 3. [HPS Communication with FPGA](hps-communication-with-fpga.md)
-4. [Generate RBF File](generate-rbf,md)
+4. [Generate RBF File](generate-rbf.md)
 
 ## 2. I/O Configuration
 1. [On-Chip Termination](onchip-termination.md)
