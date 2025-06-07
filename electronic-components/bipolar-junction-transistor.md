@@ -1,4 +1,6 @@
 # Bipolar Junction Transistor (BJT)
 
-<img src="imgs/bipolar-junction-transistor.jpg" style="width: 50vw">
+<div align="center">
+  <img src="imgs/bipolar-junction-transistor.jpg" style="width: 300px;">
+</div>
 
