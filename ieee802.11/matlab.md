@@ -11,14 +11,13 @@ openExample('whdl/WLANHDLTransmitterExample', 'workDir', '~/WLANHDLTransmitter')
 openExample('whdl/WLANHDLReceiverExample', 'workDir', '~/WLANHDLReceiver')
 ```
 
-## 2. Generate HDL Files
-### 2.1. Firstly, Run the Project on MATLAB 
+## 2. Parameters
+
+## 3. Generate HDL Files
+### 3.1. Firstly, Run the Project on MATLAB 
 ![](imgs/matlab-run-the-project.png)
 
-### 2.2. Open Simulink Top-level File
+### 3.2. Open Simulink Top-level File
 ![](imgs/matlab-open-simulink-top-level-file.png)
 
-### 2.3. Click `Generate HDL Code`
-
-
-
+### 3.3. Click `Generate HDL Code`
