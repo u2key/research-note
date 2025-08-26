@@ -14,7 +14,21 @@ cd /opt/riscv-tests
 git submodule update --init --recursive
 ```
 
-## 2. Build RISC-V Tests
+## 2. To Bypass Atomic Operation, Pseudo Operation Must Be Inserted
+```
+vim benchmarks/common/syscalls.c
+```
+```
+// Software Pseudo Atomic Operation for Single Thread Processor
+unsigned int __sync_fetch_and_add_4(volatile void *ptr, unsigned int val) {
+  unsigned int *uint_ptr = (unsigned int *)ptr;
+  unsigned int old = *uint_ptr;
+  *uint_ptr += val;
+  return old;
+}
+```
+
+## 3. Build RISC-V Tests
 ```
 cd /opt/riscv-tests
 ```
