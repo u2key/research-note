@@ -410,6 +410,7 @@ int main(int args, char *argv[]){
 
 ## 3. Configure On-Chip Termination
 <div align="center"><img src="imgs/on-chip-termination.png" width="500"></div>
+
 - By using Assignment Editor, giving constraints of Input Termination to specific input.
 
 ## 4. PLL Generation Using Shell Script
