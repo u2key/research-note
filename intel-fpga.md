@@ -1,7 +1,188 @@
-# HPS Communication with FPGA
+# Use Intel FPGA with Quartus and ModelSim
 
-## Sample C Code
+## 1. Initial Configuration
+### 1.1. Configure udev for USB Blaster
+```
+sudo vim /etc/udev/rules.d/51-usbblaster.rules
+```
+```
+SUBSYSTEM=="usb", ATTR{idVendor}=="09fb", ATTR{idProduct}=="6001", MODE="0666"
+SUBSYSTEM=="usb", ATTR{idVendor}=="09fb", ATTR{idProduct}=="6002", MODE="0666"
+SUBSYSTEM=="usb", ATTR{idVendor}=="09fb", ATTR{idProduct}=="6003", MODE="0666"
+SUBSYSTEM=="usb", ATTR{idVendor}=="09fb", ATTR{idProduct}=="6010", MODE="0666"
+SUBSYSTEM=="usb", ATTR{idVendor}=="09fb", ATTR{idProduct}=="6810", MODE="0666"
+```
+> ### References
+> - https://www.intel.co.jp/content/www/jp/ja/support/programmable/support-resources/download/dri-usb-b-lnx.html
 
+### 1.2. Install Packages for ModelSim
+```
+sudo dpkg --add-architecture i386
+```
+```
+sudo apt update
+```
+```
+sudo apt install libxft2:i386 libxtst6:i386
+```
+
+---
+## 2. HPS and FPGA Co-Design
+### 2.1. Get Ubuntu Image for Intel DE1-SoC FPGA
+- https://www.terasic.com.tw/cgi-bin/page/archive.pl?Language=English&No=836&PartNo=4
+
+### 2.2. Burn the Image to microSD card
+#### 2.2.1. Prepare microSD card
+- Prerequisite: You need at least a 8GB microSD card.
+
+#### 2.2.2. Search the microSD card device
+```
+sudo fdisk -l
+```
+```
+Disk /dev/sdb: 3.64 GiB, 3904897024 bytes, 7626752 sectors
+Disk model: Storage Device
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Disklabel type: dos
+Disk identifier: 0x000e90f2
+```
+
+#### 2.2.3. Format the microSD card
+```
+sudo parted /dev/sdb
+```
+```
+(parted) mklabel gpt
+```
+
+#### 2.2.4. Burn the disk image to the microSD card
+```
+ff if=<Downloaded Disk Image Path> of=/dev/sdb status=progress && sync
+```
+
+### 2.3. Run Linux
+#### 2.3.1. Prepare FPGA
+- Insert the microSD card to FPGA
+- Set MSEL on your DE1-SoC to 000000.
+
+#### 2.3.2. (Optional) Specify MAC Address
+```
+setenv ethaddr <Addr>
+saveenv
+reset
+```
+
+#### 2.3.3. (Optional) Resize root partition
+```
+parted
+print all
+resizepart 2
+exit
+df -H
+resize2fs /dev/mmcblk0p2
+```
+
+### 2.4. Create HPS Configurations
+#### 2.4.1. Open `Qsys` or `Platform Designer`
+<div align="center"><img src="imgs/hard-processor-systems.jpg" width="500"></div>
+
+#### 2.4.2. Add `Hard Processor Systems` > `Cyclone V`
+<div align="center"><img src="imgs/configure-hard-processor-systems.jpg" width="500"></div>
+
+- Select `Disable MPU standby and event signals`.
+- Delete `FPGA-HPS SDRAM Interface`
+
+#### 2.4.3. Configure the Bridge by Clicking the Junction
+<div align="center"><img src="imgs/configure-hard-processor-systems-bridge.jpg" width="500"></div>
+
+- Export `h2f_reset` of `hps_0`
+
+#### 2.4.4. Create HPS and FPGA Connection
+<div align="center"><img src="imgs/create-parallel-io.jpg" width="500"></div>
+
+- Add `PIO (Parallel I/O)`
+- Configure Parameters on Peripheral Pins
+  - Ethernet Media Access Controller
+    - EMAC1 pin: HPS I/O Set 0
+    - EMAC1 mode: RGMII
+  - SD/MMC Controller
+    - SDIO pin: HPS I/O Set 0
+    - SDIO mode: 4-bit Data
+  - USB Controllers
+    - USB1 pin: HPS I/O Set 0
+    - USB1 PHY interface mode: SDR with PHY clock output mode
+  - UART Controllers
+    - UART0 pin: HPS I/O Set 0
+    - UART0 mode: No Flow Control
+- Configure Parameters on SDRAM
+  - PHY Settings
+    - Clocks
+      - Memory clock frequency: 400 MHz
+      - PLL reference clock frequency: 25 MHz
+  - Memory Parameters
+    - Memory device speed grade: 800.0 MHz
+    - Total interface width: 32
+    - Row adress width: 15
+    - Column address width: 10
+    - Memory Initialization Options
+      - Memory CAS latency setting: 11
+      - Output drive strength setting; RZQ/7
+      - ODT Rit normal value: RZQ/4
+      - Memory write CAS latency setting: 8
+  - Memory Timing
+    - tIS (base): 180 ps
+    - tIH (base): 140 ps
+    - tDS (base): 30 ps
+    - tDH (base): 65 ps
+    - tDQSQ: 125 ps
+    - tQH: 0.38 cycles
+    - tDQSCK: 255 ps
+    - tDQSS: 0.25 cycles
+    - tDQSH: 0.4 cycles
+    - tDSH: 0.2 cycles
+    - tDSS: 0.2 cycles
+    - tINIT: 500 us
+    - tMRD: 4 cycles
+    - tRAS: 35.0 ns
+    - tRCD: 13.75 ns
+    - tRP: 13.75 ns
+    - tREFI: 7.8 us
+    - tRFC: 260 ns
+    - tWR: 15.0 ns
+    - tWTR: 4 cycles
+    - tFAW: 30.0 ns
+    - tRRD: 7.5 ns
+    - tRTP: 7.5 ns
+  - Board Settings
+    - Board Skews
+      - Maximum CK delay to DIMM/device: 0.03 ns
+      - Maximum DQS delay to DIMM/device: 0.02 ns
+      - Minimum delay difference between CK and DQS: 0.09 ns
+      - Maximum delay difference between CK and DQS: 0.16 ns
+      - Maximum skew within DQS group: 0.01 ns
+      - Maximum skew between DQS group: 0.08 ns
+      - Maximum skew within address and command bus: 0.03 ns
+
+#### 2.4.5. Import HPS Configurations into Quartus Project and Compile the Project
+1. Open `qsys` or `Platform Designer`
+1. Click `Generate VHDL`
+1. Add `.qip` files to the quartus project.
+1. Run `Processing` > `Start` > `Start Analysis & Synthesis`.
+1. Run TCL Scripts: `Tools` > `TCL Scripts` > `hps_sdram_p0_parameters.tcl`
+1. Run TCL Scripts: `Tools` > `TCL Scripts` > `hps_sdram_p0_pin_assignments.tcl`
+1. Compile the project
+1. `File` > `Convert Programming Files`
+1. Set `Programming File Type` to `Raw Binary File (.rbf)`
+1. Set `File Name` to `soc_system.rbd`
+1. `Input files to convert` > `SoF Data` > `Add File`
+1. Copy RBF to U-BOOT partition
+
+> ### References
+> - https://www.youtube.com/watch?v=2WUkEt4-Q7Q
+
+### 2.6. HPS Communication with FPGA
 ```
 #include <stdio.h>
 #include <stdint.h>
@@ -225,4 +406,27 @@ int main(int args, char *argv[]){
   freeVAddr(V_BASE, fdsc);
   return 0;
 }
+```
+
+## 3. Configure On-Chip Termination
+<div align="center"><img src="imgs/on-chip-termination.png" width="500"></div>
+- By using Assignment Editor, giving constraints of Input Termination to specific input.
+
+## 4. PLL Generation Using Shell Script
+```
+CLOCK_FREQUENCY="10MHz"
+
+ip-generate \
+  --component-name="altera_pll" \
+  --system-info=DEVICE_FAMILY="Cyclone V" \
+  --system-info=DEVICE="5CSEMA5F31C6" \
+  --output-directory="${PWD}" \
+  --file-set="QUARTUS_SYNTH" \
+  --output-name="GeneratedPLL" \
+  --component-param=gui_reference_clock_frequency="50MHz" \
+  --component-param=gui_output_clock_frequency0="${CLOCK_FREQUENCY}" \
+  --component-param=gui_duty_cycle0="50%" \
+  --component-param=gui_phase_shift0="0" \
+  --allow-mixed-language-simulation \
+  --language="vhdl" 
 ```
