@@ -7,7 +7,7 @@
 A Phase-Locked Loop (PLL) is a feedback control system that automatically adjusts the phase of a local oscillator to match the phase of an input signal.
 It locks the phase of an output signal to a reference signal.
 
-<div align="center"><img src="imgs/block-diagram.jpg" width="500"></div>
+<div align="center"><img src="imgs/pll-block-diagram.jpg" width="500"></div>
 
 ### 2.1. Phase Detector (PD)
 Compare the phase of the input and the VCO output.
@@ -21,7 +21,7 @@ Generates an output whose frequency is controlled by the voltage from the LPF.
 ### 2.4. Frequency Divider
 Implemented in feedback path to allow frequency multiplication or division.
 
-## 3. Capacitance 
+## 3. Capacitance
 ```math
 {\Large
 \begin{aligned}
@@ -33,3 +33,22 @@ C &: \rm{Capacitance\ [F]} \\
 \end{aligned}
 } 
 ```
+
+## 4. Inductance
+```math
+{\Large
+\begin{align}
+Z_L &= j \cdot 2\pi \cdot f \cdot L \\
+Z_L &: \rm{Impedance} \\
+j &: \rm{Imaginary\ Unit} \\
+f &: \rm{Input\ Frequency} \\
+L &: \rm{Inductance\ [H]} \\
+\end{align}
+}
+```
+
+## 5. Low-Pass RC-Circuit
+> ### References
+> [1] https://www.mathforengineers.com/transients-in-electrical-circuits/low-pass-RC-response-to-square-wave.html
+
+<div align="center"><img src="imgs/low-pass-rc-circuit-diagram.jpg" width="500"></div>
