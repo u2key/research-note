@@ -3,6 +3,8 @@
 ## 1. Bipolar Junction Transistor (BJT)
 <div align="center"><img src="imgs/bipolar-junction-transistor.jpg" width="300"></div>
 
+---
+---
 ## 2. Phase-Locked Loop (PLL)
 A Phase-Locked Loop (PLL) is a feedback control system that automatically adjusts the phase of a local oscillator to match the phase of an input signal.
 It locks the phase of an output signal to a reference signal.
@@ -21,6 +23,8 @@ Generates an output whose frequency is controlled by the voltage from the LPF.
 ### 2.4. Frequency Divider
 Implemented in feedback path to allow frequency multiplication or division.
 
+---
+---
 ## 3. Capacitance
 ```math
 {\Large
@@ -34,6 +38,8 @@ C &: \rm{Capacitance\ [F]} \\
 } 
 ```
 
+---
+---
 ## 4. Inductance
 ```math
 {\Large
@@ -47,6 +53,8 @@ L &: \rm{Inductance\ [H]} \\
 }
 ```
 
+---
+---
 ## 5. Low-Pass RC-Circuit
 > ### References
 > [1] https://www.mathforengineers.com/transients-in-electrical-circuits/low-pass-RC-response-to-square-wave.html
@@ -117,7 +125,15 @@ V1(t) - R1 \cdot C1 \cdot \dfrac{dV_{C1}(t)}{dt} - V_{C1}(t) = 0 \cdots (7)
 &=& \left [ e^{-st} \cdot V_{C1}(t) \right ] ^{\infty} _{0} + s \int ^{\infty} _{0} e^{-st} \cdot V_{C1}(t) dt \\
 &=& \left [ e^{-st} \cdot V_{C1}(t) \right ] ^{\infty} _{0} + s \cdot \mathcal{L} \left \{ V_{C1}(t) \right \} \\
 &=& \left \{ e^{- s \cdot \infty} \cdot V_{C1}(\infty) - e^{0} \cdot V_{C1}(0) \right \} + s \cdot \mathcal{L} \left \{ V_{C1}(t) \right \} \\
-&=& s \cdot \mathcal{L} \left \{ V_{C1}(t) \right \} \left ( s \gt 0, \ 0 \le V_{C1}(\infty) \le 2.5, \ V_{C1}(0) = 0 \right ) \\
+&=& s \cdot \mathcal{L} \left \{ V_{C1}(t) \right \} \ \ \left ( s \gt 0, \ 0 \le V_{C1}(\infty) \le 2.5, \ V_{C1}(0) = 0 \right ) \\
+\mathcal{L} \left \{ V1(t) \right \} &=& \int ^{\infty}_{0} 2.5 \cdot e^{-st} dt \ \ \left ( V1(t) =
+\begin{cases}
+0.0 & | & t \lt 0 \\[2mm]
+2.5 & | & t \ge 0
+\end{cases} \right ) \\
+&=& 2.5 \int ^{\infty}_{0} e^{-st} dt \\
+&=& 2.5 \left [ - \dfrac{1}{s} e^{-st}\right ] ^{\infty}_{0} \\
+&=& \dfrac{2.5}{s} \ \ \left ( s \gt 0 \right ) \\
 \end{align}
 }
 ```
