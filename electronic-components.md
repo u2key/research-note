@@ -58,7 +58,7 @@ L &: \rm{Inductance\ [H]} \\
 ```math
 {\Large
 \begin{align}
-V1(t) - V_{R1}(t) - V_{C1}(t) = 0 \cdots (1)
+V1(t) - V_{R1}(t) - V_{C1}(t) = 0 \cdots (1) \\
 \end{align}
 }
 ```
@@ -77,36 +77,47 @@ V_{C1}(t) = \dfrac{1}{C1} \int I(t) dt \cdots (3) \\
 ```math
 {\Large
 \begin{align}
-\dfrac{dV_{C1}(t)}{dt} &=& \dfrac{I(t)}{C1} \\
-I(t) &=& C1 \cdot \dfrac{dV_{C1}(t)}{dt} \cdots (4) \\
+\dfrac{dV_{C1}(t)}{dt} &=& \dfrac{I(t)}{C1} \cdots (4)\\
+I(t) &=& C1 \cdot \dfrac{dV_{C1}(t)}{dt} \cdots (5) \\
 \end{align}
 }
 ```
 
-#### 5.1.4. Substitude Eq.(4) into Eq.(2)
+#### 5.1.4. Substitude Eq.(5) into Eq.(2)
 ```math
 {\Large
 \begin{align}
-V_{R1}(t) = R1 \cdot C1 \cdot \dfrac{dV_{C1}(t)}{dt} \cdots (5) \\
+V_{R1}(t) = R1 \cdot C1 \cdot \dfrac{dV_{C1}(t)}{dt} \cdots (6) \\
 \end{align}
 }
 ```
 
-#### 5.1.5. Substitude Eq.(5) into Eq.(1)
+#### 5.1.5. Substitude Eq.(6) into Eq.(1)
 ```math
 {\Large
 \begin{align}
-V1(t) - R1 \cdot C1 \cdot \dfrac{dV_{C1}(t)}{dt} - V_{C1}(t) = 0 \cdots (6)
+V1(t) - R1 \cdot C1 \cdot \dfrac{dV_{C1}(t)}{dt} - V_{C1}(t) = 0 \cdots (7)
 \end{align}
 }
 ```
 
-#### 5.1.6. Take the Laplace Transform of Eq.(6)
+#### 5.1.6. Take the Laplace Transform of Eq.(7)
 ```math
 {\Large
 \begin{align}
 \mathcal{L} \left \{ V1(t) - R1 \cdot C1 \cdot \dfrac{dV_{C1}(t)}{dt} - V_{C1}(t) \right \} &=& \mathcal{L} \left ( 0 \right ) \\
 \mathcal{L} \left \{ V1(t) \right \} - R1 \cdot C1 \cdot \mathcal{L} \left \{ \dfrac{dV_{C1}(t)}{dt} \right \} - \mathcal{L} \left \{ V_{C1}(t) \right \} &=& 0 \\
+\end{align}
+}
+```
+```math
+{\Large
+\begin{align}
+\mathcal{L} \left \{ \dfrac{dV_{C1}(t)}{dt} \right \} &=& \int ^{\infty} _{0} e^{-st} \cdot \dfrac{dV_{C1}(t)}{dt} dt \\
+&=& \left [ e^{-st} \cdot V_{C1}(t) \right ] ^{\infty} _{0} + s \int ^{\infty} _{0} e^{-st} \cdot V_{C1}(t) dt \\
+&=& \left [ e^{-st} \cdot V_{C1}(t) \right ] ^{\infty} _{0} + s \cdot \mathcal{L} \left \{ V_{C1}(t) \right \} \\
+&=& \left \{ e^{- s \cdot \infty} \cdot V_{C1}(\infty) - e^{0} \cdot V_{C1}(0) \right \} + s \cdot \mathcal{L} \left \{ V_{C1}(t) \right \} \\
+&=& s \cdot \mathcal{L} \left \{ V_{C1}(t) \right \} \left ( s \gt 0, \ 0 \le V_{C1}(\infty) \le 2.5, \ V_{C1}(0) = 0 \right ) \\
 \end{align}
 }
 ```
