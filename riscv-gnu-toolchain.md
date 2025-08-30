@@ -49,3 +49,6 @@ cd /opt/riscv-gnu-toolchain/
 ```
 make -j 8 newlib
 ```
+```
+echo 'export PATH="{$PATH}:/opt/riscv/bin"' >> ~/.bashrc
+```
