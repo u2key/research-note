@@ -14,7 +14,18 @@ cd /opt/riscv-tests
 git submodule update --init --recursive
 ```
 
-## 2. To Bypass Atomic Operation, Pseudo Operation Must Be Inserted
+## 2. Modify the Source File
+```
+diff /opt/riscv-tests/env/p/link.ld /opt/riscv-tests/env/p/link.ld.original
+```
+```
+6c6
+<   . = 0x00000000;
+---
+>   . = 0x80000000;
+```
+
+## 3. To Bypass Atomic Operation, Pseudo Operation Must Be Inserted
 ```
 vim benchmarks/common/syscalls.c
 ```
@@ -28,7 +39,7 @@ unsigned int __sync_fetch_and_add_4(volatile void *ptr, unsigned int val) {
 }
 ```
 
-## 3. Build RISC-V Tests
+## 4. Build RISC-V Tests
 ```
 cd /opt/riscv-tests
 ```
