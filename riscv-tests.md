@@ -70,19 +70,18 @@ os.system(f"riscv32-unknown-elf-objcopy -O binary {elf_path} {elf_path}.bin")
 with open(f"{elf_path}.bin", "rb") as f:
   instruction_hex = [f"{hex:02x}" for hex in f.read()]
 instruction_hex += ["00"] * (instruction_bytes - int(len(instruction_hex) % instruction_bytes))
-instruction_nop = "".join(["0" for _ in range(instruction_bytes)])
+instruction_nop = "".join(["00" for _ in range(instruction_bytes)])
 
 with open(f"{elf_path}_imem.vhdl", "w") as f:
   f.write(f"LIBRARY IEEE;\n")
   f.write(f"USE IEEE.STD_LOGIC_1164.ALL;\n")
   f.write(f"PACKAGE IMEM IS\n")
-  f.write(f"  TYPE IMEM_TYPE IS ARRAY (0 TO 1023) of STD_LOGIC_VECTOR({instruction_bits-1} DOWNTO 0);\n")
+  f.write(f"  TYPE IMEM_TYPE IS ARRAY (0 TO 4095) of STD_LOGIC_VECTOR({instruction_bits-1} DOWNTO 0);\n")
   f.write(f"  CONSTANT DATA : IMEM_TYPE := (\n")
   for n, a in enumerate(range(0, len(instruction_hex), instruction_bytes)):
     instruction = "".join([instruction_hex[a + instruction_bytes - b] for b in range(1, instruction_bytes+1, 1)])
-    f.write(f"    ({n:%3d} => X\"{instruction}\"),\n")
+    f.write(f"    ({n:5d} => X\"{instruction}\"),\n")
   f.write(f"    (OTHERS => X\"{instruction_nop}\")\n")
   f.write(f"  );\n")
   f.write(f"END PACKAGE;\n")
-    
 ```
