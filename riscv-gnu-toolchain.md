@@ -44,7 +44,7 @@ mkdir /opt/riscv
 cd /opt/riscv-gnu-toolchain/
 ```
 ```
-./configure --prefix=/opt/riscv --with-arch=rv32imd --with-abi=ilp32 --enable-multilib
+./configure --prefix=/opt/riscv --with-arch=rv32ima --with-abi=ilp32 --enable-multilib
 ```
 ```
 make -j 8 newlib
