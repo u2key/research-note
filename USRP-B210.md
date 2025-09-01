@@ -46,10 +46,14 @@ sed -i -e 's/archive.ubuntu.com\/ubuntu/old-releases.ubuntu.com\/ubuntu/g' /etc/
 sed -i -e 's/security.ubuntu.com\/ubuntu/old-releases.ubuntu.com\/ubuntu/g' /etc/apt/sources.list
 ```
 ```
-apt install libfontconfig1 libfreetype6 libglib2.0-0 libncurses5 libsm6 libx11-6 libxi6 libxrandr2 libxrender1 vim wget
+apt install bash-completion gcc gdb libfontconfig1 libfreetype6 libglib2.0-0 libncurses5 libsm6 libuhd-dev libx11-6 libxi6 libxrandr2 libxrender1 make uhd-host usbutils vim wget
 ```
 
 ### 2.1. Install ISE 14.7
-- From: https://www.xilinx.com/support/download/index.html/content/xilinx/en/downloadNav/vivado-design-tools/archive-ise.html
+- Download sources from: https://www.xilinx.com/support/download/index.html/content/xilinx/en/downloadNav/vivado-design-tools/archive-ise.html
+  - Extract `Xilinx_ISE_DS_14.7_1015_1-1.tar` on `/opt/ise`
+  - Save `Xilinx_ISE_DS_14.7_1015_1-{2,3,4}.zip.xz` to `/opt/Xilinx`
 
-### 2.2. 
+```
+sudo /opt/ise/xsetup
+```
