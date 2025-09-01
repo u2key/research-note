@@ -49,7 +49,7 @@ sed -i -e 's/archive.ubuntu.com\/ubuntu/old-releases.ubuntu.com\/ubuntu/g' /etc/
 sed -i -e 's/security.ubuntu.com\/ubuntu/old-releases.ubuntu.com\/ubuntu/g' /etc/apt/sources.list
 ```
 ```
-apt install bash-completion gcc gdb libfontconfig1 libfreetype6 libglib2.0-0 libncurses5 libsm6 libuhd-dev libx11-6 libxi6 libxrandr2 libxrender1 make uhd-host usbutils vim wget
+apt install bash-completion gcc gdb libfontconfig1 libfreetype6 libglib2.0-0 libncurses5 libsm6 libuhd-dev libx11-6 libxi6 libxrandr2 libxrender1 make sudo uhd-host usbutils vim wget
 ```
 
 ### 2.1. Install ISE 14.7
