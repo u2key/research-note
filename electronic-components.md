@@ -29,11 +29,16 @@ Implemented in feedback path to allow frequency multiplication or division.
 ```math
 {\Large
 \begin{aligned}
-Z_c &= \dfrac{1}{j \cdot 2\pi \cdot f \cdot C} \\
-Z_c &: \rm{Impedance} \\
-j &: \rm{Imaginary\ Unit} \\
-f &: \rm{Input\ Frequency} \\
-C &: \rm{Capacitance\ [F]} \\
+Z_{C} = \dfrac{1}{j \cdot 2\pi \cdot f \cdot C} \\
+Z_{C} : \rm{Impedance} , \ \ j : \rm{Imaginary\ Unit} , \ \ f : \rm{Input\ Frequency} , \ \ C : \rm{Capacitance\ [F]} \\
+\end{aligned}
+} 
+```
+```math
+{\Large
+\begin{aligned}
+V_{C}(t)= \dfrac{1}{C} \int I(t) dt \\
+t : Time, \ \ V_{C}(t) : Voltage, \ \ C : Capacitance, \ \ I(t) : \ \ Current \\
 \end{aligned}
 } 
 ```
@@ -44,11 +49,8 @@ C &: \rm{Capacitance\ [F]} \\
 ```math
 {\Large
 \begin{align}
-Z_L &= j \cdot 2\pi \cdot f \cdot L \\
-Z_L &: \rm{Impedance} \\
-j &: \rm{Imaginary\ Unit} \\
-f &: \rm{Input\ Frequency} \\
-L &: \rm{Inductance\ [H]} \\
+Z_L = j \cdot 2\pi \cdot f \cdot L \\
+Z_L : \rm{Impedance} , \ \ j : \rm{Imaginary\ Unit} , \ \ f : \rm{Input\ Frequency} , \ \ L : \rm{Inductance\ [H]} \\
 \end{align}
 }
 ```
