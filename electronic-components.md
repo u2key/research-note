@@ -1,7 +1,7 @@
 # Electric Components
 
 ## 1. Bipolar Junction Transistor (BJT)
-<div align="center"><img src="imgs/bipolar-junction-transistor.jpg" width="300"></div>
+<div align="center"><img src="imgs/bipolar-junction-transistor.png" width="300"></div>
 
 ---
 ---
