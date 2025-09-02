@@ -6,7 +6,7 @@ import numpy as np
 import matplotlib
 matplotlib.interactive(False)
 import matplotlib.pyplot as plt
-import csv 
+import csv
 
 if len(sys.argv) < 3:
   exit(1)
@@ -33,8 +33,10 @@ for a in range(1, len(signal[0])):
   reshaped = signal[:n_samples, a].reshape((n_windows, samples_per_window))
   print(f"reshaped: {reshaped.shape}")
   plt.figure()
+  axes = plt.axes()
+  axes.set_facecolor('black')
   for y in reshaped:
-    plt.plot(x, y, color="blue", alpha=1.0)
+    plt.plot(x, y, color="blue", alpha=0.2)
   plt.gca().yaxis.set_major_formatter(plt.FormatStrFormatter('%.1f'))
   plt.ylim(-1.0, 4.0)
   plt.yticks([0.0, 3.3])
@@ -44,6 +46,8 @@ for a in range(1, len(signal[0])):
   plt.savefig(f"{name}_ch{a}.jpg")
 
 plt.figure()
+axes = plt.axes()
+axes.set_facecolor('black')
 colors = [None, 'orange', 'blue', 'green']
 for a in range(1, len(signal[0])):
   reshaped = signal[:n_samples, a].reshape((n_windows, samples_per_window))
@@ -58,6 +62,4 @@ plt.title("Eye Diagram")
 plt.xlabel("Samples")
 plt.ylabel("Voltage [V]")
 plt.savefig(f"{name}.jpg")
-
-
 ```
