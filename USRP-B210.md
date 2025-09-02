@@ -20,7 +20,7 @@
 ## 2. Compiler Setup
 ### 2.1. Prepare Ubuntu:21.04
 ```
-docker run --name "Xilinx_ISE_14.7" -it --net host -e DISPLAY=$DISPLAY -v /lib/modules:/lib/modules -v /tmp/.X11-unix:/tmp/.X11-unix -v $HOME:/home/$USER ubuntu:21.04
+docker run --name "Xilinx_ISE_14.7" -it --net host -e DISPLAY=$DISPLAY -v /lib/modules:/lib/modules -v /usr/src:/usr/src -v /tmp/.X11-unix:/tmp/.X11-unix -v $HOME:/home/$USER ubuntu:21.04
 ```
 ```
 docker exec -it --privileged Xilinx_ISE_14.7 "/bin/bash"
