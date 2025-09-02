@@ -128,9 +128,7 @@ V1(t) - R1 \cdot C1 \cdot \dfrac{dV_{C1}(t)}{dt} - V_{C1}(t) = 0 \cdots (7)
 0.0 & | & t \lt 0 \\[2mm]
 2.5 & | & t \ge 0
 \end{cases} \right ) \\
-&=& 2.5 \int ^{\infty}_{0} e^{-st} dt \\
-&=& 2.5 \left [ - \dfrac{1}{s} e^{-st}\right ] ^{\infty}_{0} \\
-&=& \dfrac{2.5}{s} \ \ \left ( s \gt 0 \right ) \cdots (10) \\
+&=& 2.5 \int ^{\infty}_{0} e^{-st} dt \ =\  2.5 \left [ - \dfrac{1}{s} e^{-st}\right ] ^{\infty}_{0} \ =\  \dfrac{2.5}{s} \ \ \left ( s \gt 0 \right ) \cdots (10) \\
 \mathcal{L} \left \{ \dfrac{dV_{C1}(t)}{dt} \right \} &=& \int ^{\infty} _{0} e^{-st} \cdot \dfrac{dV_{C1}(t)}{dt} dt \\
 &=& \left [ e^{-st} \cdot V_{C1}(t) \right ] ^{\infty} _{0} + s \int ^{\infty} _{0} e^{-st} \cdot V_{C1}(t) dt \\
 &=& \left [ e^{-st} \cdot V_{C1}(t) \right ] ^{\infty} _{0} + s \cdot \mathcal{L} \left \{ V_{C1}(t) \right \} \\
@@ -171,19 +169,17 @@ V_{C1} &=& \mathcal{L} ^{-1} \left \{ \dfrac{2.5}{s} \right \} - \mathcal{L} ^{-
 {\Large
 \begin{align}
 \mathcal{L} ^{-1} \left \{ \dfrac{2.5}{s} \right \} &=& V1(t) \cdots (16) \\
-\mathcal{L} \left \{ e^{-at} \right \} &=& \int ^{\infty}_{0} e^{-at} e^{-st} dt \\
-&=& \int ^{\infty}_{0} e^{-(s+a)t} dt \\
-&=& -\dfrac{1}{s + a} [ e^{-(s+a)t} ]^{\infty}_{0} \\
+\mathcal{L} \left \{ e^{-at} \right \} &=& \int ^{\infty}_{0} e^{-at} e^{-st} dt = \int ^{\infty}_{0} e^{-(s+a)t} dt = -\dfrac{1}{s + a} [ e^{-(s+a)t} ]^{\infty}_{0} \\
 &=& \dfrac{1}{s + a} \ \ (s + a \gt 0) \cdots (17) \\
-\mathcal{L} ^{-1} \left \{ \dfrac{2.5}{s + \dfrac{1}{R1 \cdot C1}} \right \} &=& V1(t) \cdot e^{-\dfrac{1}{R1 \cdot C1}} \cdots (18) \\
+\mathcal{L} ^{-1} \left \{ \dfrac{2.5}{s + \dfrac{1}{R1 \cdot C1}} \right \} &=& V1(t) \cdot e^{-\dfrac{t}{R1 \cdot C1}} \cdots (18) \\
 \end{align}
 }
 ```
 ```math
 {\Large
 \begin{align}
-V_{C1} &=& V1(t) - V1(t) \cdot e^{-\dfrac{1}{R1 \cdot C1}} \\
-&=& V1(t) \left ( 1 - e^{- \dfrac{1}{R1 \cdot C1}} \right ) \\
+V_{C1} &=& V1(t) - V1(t) \cdot e^{-\dfrac{t}{R1 \cdot C1}} \ = \ V1(t) \left ( 1 - e^{- \dfrac{t}{R1 \cdot C1}} \right ) \\
+V_{R1} &=& V1(t) - V1(t) \left (1 - e^{-\dfrac{t}{R1 \cdot C1}} \right ) \ = \ V1(t)e^{-\dfrac{t}{R1 \cdot C1}} \\
 \end{align}
 }
 ```
