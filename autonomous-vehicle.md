@@ -1,5 +1,5 @@
 # Autonomous Vehicle
-## 1. Prepare ubuntu14.04 Docker 
+## 1. Prepare Docker Container of ubuntu24.04:arm64 
 
 > ### References
 > - https://tah5.com/guides/ubuntu/docker/arm64/
@@ -34,3 +34,26 @@ docker run --privileged --rm tonistiigi/binfmt --install arm64
 docker run --name "AutonomousVehicle" -it --platform linux/arm64 --net host -e DISPLAY=$DISPLAY -v /lib/modules:/lib/modules -v /usr/src:/usr/src -v /tmp/.X11-unix:/tmp/.X11-unix -v /home:/mnt/home ubuntu:24.04
 ```
 
+## 2. Preparation for Development 
+```
+sudo apt update && sudo apt upgrade
+```
+```
+sudo apt install curl
+```
+```
+curl -sSL https://raw.githubusercontent.com/ros/rosdistro/master/ros.key -o /usr/share/keyrings/ros-archive-keyring.gpg
+```
+```
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/ros-archive-keyring.gpg] http://packages.ros.org/ros2/ubuntu $(. /etc/os-release && echo $UBUNTU_CODENAME) main" | sudo tee /etc/apt/sources.list.d/ros2.list
+```
+```
+sudo apt update && sudo apt upgrade
+```
+```
+sudo apt install 
+```
+
+> ### References
+> - https://hellobreak.net/arduino-auto-robot-car/
+> - https://hellobreak.net/raspberry-pi-pico-auto-robot-car/
