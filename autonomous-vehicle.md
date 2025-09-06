@@ -1,5 +1,9 @@
 # Autonomous Vehicle
 ## 1. Prepare ubuntu14.04 Docker 
+
+> ### References
+> - https://tah5.com/guides/ubuntu/docker/arm64/
+
 ### 1.1. Host Environment
 ```
 cat /etc/os-release
