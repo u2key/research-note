@@ -35,11 +35,19 @@ docker run --name "AutonomousVehicle" -it --platform linux/arm64 --net host -e D
 ```
 
 ## 2. Preparation for Development 
+
+> ### References
+> - https://hellobreak.net/arduino-auto-robot-car/
+> - https://hellobreak.net/raspberry-pi-pico-auto-robot-car/
+> - https://qiita.com/ASAKA-219/items/ec17eaf4a7f4cc104dc6
+> - https://note.com/kan_hatakeyama/n/n2aa17f80c369
+> - https://note.com/npaka/n/nb8f38d4db221
+
 ```
 sudo apt update && sudo apt upgrade
 ```
 ```
-sudo apt install curl
+sudo apt install apt-utils bash-completion curl vim
 ```
 ```
 curl -sSL https://raw.githubusercontent.com/ros/rosdistro/master/ros.key -o /usr/share/keyrings/ros-archive-keyring.gpg
@@ -51,9 +59,22 @@ echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/ros-a
 sudo apt update && sudo apt upgrade
 ```
 ```
-sudo apt install 
+apt install ros-dev-tools ros-jazzy-desktop
 ```
-
-> ### References
-> - https://hellobreak.net/arduino-auto-robot-car/
-> - https://hellobreak.net/raspberry-pi-pico-auto-robot-car/
+```
+echo ". /opt/ros/jazzy/setup.bash" >> ~/.bashrc
+```
+```
+sudo rosdep init
+```
+```
+rosdep update
+```
+```
+ros2 run demo_nodes_cpp talker 1> /dev/null 2> /dev/null &
+```
+```
+ros2 run demo_nodes_cpp listener
+```
+```
+```
