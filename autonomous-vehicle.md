@@ -47,7 +47,23 @@ docker run --name "AutonomousVehicle" -it --platform linux/arm64 --net host -e D
 sudo apt update && sudo apt upgrade
 ```
 ```
-sudo apt install apt-utils bash-completion curl vim
+sudo apt install apt-utils bash-completion curl parted vim
+```
+```
+sudo parted
+```
+```
+(parted) resizepart 2
+End?  [3758MB]? 100%
+```
+```
+sudo resize2fs /dev/mmcblk0p2
+```
+```
+resize2fs 1.46.5 (30-Dec-2021)
+Filesystem at /dev/mmcblk0p2 is mounted on /; on-line resizing required
+old_desc_blocks = 1, new_desc_blocks = 8
+The filesystem on /dev/mmcblk0p2 is now 15166464 (4k) blocks long.
 ```
 ```
 curl -sSL https://raw.githubusercontent.com/ros/rosdistro/master/ros.key -o /usr/share/keyrings/ros-archive-keyring.gpg
@@ -59,7 +75,7 @@ echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/ros-a
 sudo apt update && sudo apt upgrade
 ```
 ```
-apt install ros-dev-tools ros-jazzy-desktop
+sudo apt install ros-dev-tools ros-jazzy-desktop
 ```
 ```
 echo ". /opt/ros/jazzy/setup.bash" >> ~/.bashrc
@@ -77,4 +93,9 @@ ros2 run demo_nodes_cpp talker 1> /dev/null 2> /dev/null &
 ros2 run demo_nodes_cpp listener
 ```
 ```
+[INFO] [1757211577.145358506] [listener]: I heard: [Hello World: 4]
+[INFO] [1757211578.145332395] [listener]: I heard: [Hello World: 5]
+[INFO] [1757211579.145333803] [listener]: I heard: [Hello World: 6]
+[INFO] [1757211580.145241443] [listener]: I heard: [Hello World: 7]
+^C[INFO] [1757211580.911429188] [rclcpp]: signal_handler(signum=2)
 ```
