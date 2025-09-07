@@ -42,6 +42,8 @@ docker run --name "AutonomousVehicle" -it --platform linux/arm64 --net host -e D
 > - https://qiita.com/ASAKA-219/items/ec17eaf4a7f4cc104dc6
 > - https://note.com/kan_hatakeyama/n/n2aa17f80c369
 > - https://note.com/npaka/n/nb8f38d4db221
+> - https://docs.ros.org/en/humble/Installation/Alternatives/Ubuntu-Development-Setup.html
+> - https://qiita.com/seshimaru/items/ed344530ead80ab1733f
 
 ### 2.1. Install Required Packages
 ```
