@@ -1,4 +1,4 @@
-# USRP B210
+# USRP (Universal Software Radio Peripheral) B210
 
 > ## References
 > [1] https://www.ettus.com/all-products/ub210-kit/
