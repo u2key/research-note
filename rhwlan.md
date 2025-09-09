@@ -15,8 +15,11 @@ openExample('whdl/WLANHDLReceiverExample', 'workDir', '~/WLANHDLReceiver')
 
 <div align="center">
   <table>
-    <tr><td>Parameter Name</td><td>Value</td></tr>
-    <tr><td></td><td></td></tr>
+    <tr><td>Parameter Description</td><td>Parameter Name</td><td>Value</td></tr>
+    <tr><td>Channel Bandwidth</td><td>cfgHT.ChannelBandwidth</td><td>"CBW20" / "CBW40" (20 MHz / 40 MHz)</td></tr>
+    <tr><td>MCS (Modulation and Coding Scheme)</td><td>cfgHT.MCS</td><td>MCS0–MCS31</td></tr>
+    <tr><td>Number of Transmit Antennas</td><td>cfgHT.NumTransmitAntennas</td><td>1</td></tr>
+    <tr><td>Spatial Streams (MIMO)</td><td>cfgHT.NumSpaceTimeStreams</td><td>"1" - "4"</td></tr>
   </table>
 </div>
 
