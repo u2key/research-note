@@ -53,27 +53,6 @@ sed -i -e 's/security.ubuntu.com\/ubuntu/old-releases.ubuntu.com\/ubuntu/g' /etc
 ```
 sudo apt install bash-completion bison build-essential cpio dwarves flex gcc gdb libelf-dev libfontconfig1 libfreetype6 libglib2.0-0 libncurses5 libsm6 libssl-dev libuhd-dev libx11-6 libxi6 libxrandr2 libxrender1 make qemu-utils sudo uhd-host usbutils vim wget
 ```
-```
-sudo mkdir -p /usr/lib/modules_overlay/work/$(uname -r)
-```
-```
-sudo mkdir -p /usr/lib/modules_overlay/upper/$(uname -r)
-```
-```
-sudo mount -t overlay overlay -o lowerdir=/usr/lib/modules/$(uname -r),upperdir=/usr/lib/modules_overlay/upper/$(uname -r),workdir=/usr/lib/modules_overlay/work/$(uname -r) /usr/lib/modules/$(uname -r)
-```
-```
-sudo vim /etc/wsl.conf
-```
-```
-[boot]
-systemd=true
-command=mount -t overlay overlay -o lowerdir=/usr/lib/modules/$(uname -r),upperdir=/usr/lib/modules_overlay/upper/$(uname -r),workdir=/usr/lib/modules_overlay/work/$(uname -r) /usr/lib/modules/$(uname -r); modprobe zfs, modprobe scsi_transport_iscsi; modprobe usb-storage; modprobe kheaders; modprobe act_gact; modprobe act_profile; modprobe sch_sfq;
-
-[interop]
-enabled=true
-appendWindowsPath=true
-```
 
 ### 2.1. Install ISE 14.7
 - Download sources from: https://www.xilinx.com/support/download/index.html/content/xilinx/en/downloadNav/vivado-design-tools/archive-ise.html
