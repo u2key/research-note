@@ -2,8 +2,6 @@
 
 > ## References
 > [1] https://www.ettus.com/all-products/ub210-kit/
->
-> [2] https://qiita.com/qawsed477/items/11e4248861fdf8c6a585
 
 ## 1. Specifications
 - Dual Channel Transceiver (70 MHz - 6GHz)
