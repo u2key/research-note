@@ -43,10 +43,10 @@ VERSION_CODENAME=hirsute
 UBUNTU_CODENAME=hirsute
 ```
 ```
-sed -i -e 's/archive.ubuntu.com\/ubuntu/old-releases.ubuntu.com\/ubuntu/g' /etc/apt/sources.list
+sed -i -e -E 's/(jp.)?archive.ubuntu.com\/ubuntu/old-releases.ubuntu.com\/ubuntu/g' /etc/apt/sources.list
 ```
 ```
-sed -i -e 's/security.ubuntu.com\/ubuntu/old-releases.ubuntu.com\/ubuntu/g' /etc/apt/sources.list
+sed -i -e -E 's/(jp.)?security.ubuntu.com\/ubuntu/old-releases.ubuntu.com\/ubuntu/g' /etc/apt/sources.list
 ```
 ```
 sudo apt install bash-completion bison build-essential cpio dwarves flex gcc gdb libelf-dev libfontconfig1 libfreetype6 libglib2.0-0 libncurses5 libsm6 libssl-dev libuhd-dev libx11-6 libxi6 libxrandr2 libxrender1 make qemu-utils sudo uhd-host usbutils vim wget
