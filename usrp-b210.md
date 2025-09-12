@@ -2,6 +2,8 @@
 
 > ## References
 > [1] https://www.ettus.com/all-products/ub210-kit/
+>
+> [2] https://www.ettus.com/wp-content/uploads/2019/01/b200-b210_spec_sheet.pdf
 
 ## 1. Specifications
 - Dual Channel Transceiver (70 MHz - 6GHz)
