@@ -139,3 +139,7 @@ sudo ln -s /usr/src/linux-source-5.11.0 /usr/src/linux
 ```
 sudo ln -s /lib/modules/$(uname -r)/build/include/generated/utsrelease.h /lib/modules/$(uname -r)/build/include/linux
 ```
+
+## 3. MATLAB Setup
+## 3.1. Install MATLAB 2012a
+
