@@ -51,14 +51,91 @@ sed -i -e -E 's/(jp.)?archive.ubuntu.com\/ubuntu/old-releases.ubuntu.com\/ubuntu
 sed -i -e -E 's/(jp.)?security.ubuntu.com\/ubuntu/old-releases.ubuntu.com\/ubuntu/g' /etc/apt/sources.list
 ```
 ```
-sudo apt install bash-completion bison build-essential cpio dwarves flex gcc gdb libelf-dev libfontconfig1 libfreetype6 libglib2.0-0 libncurses5 libsm6 libssl-dev libuhd-dev libx11-6 libxi6 libxrandr2 libxrender1 make qemu-utils sudo uhd-host usbutils vim wget
+sudo apt install bash-completion bison build-essential cpio dwarves flex gcc gdb libelf-dev libfontconfig1 libfreetype6 libglib2.0-0 libncurses5 libsm6 libssl-dev libuhd-dev libx11-6 libxi6 libxrandr2 libxrender1 linux-source-5.11.0 make qemu-utils ssh sudo uhd-host usbutils vim wget
+```
+```
+sudo systemctl enable --now ssh
+```
+```
+ssh -g -R 20022:127.0.0.1:22 momiji
+```
+```
+sudo vim  
 ```
 
 ### 2.1. Install ISE 14.7
-- Download sources from: https://www.xilinx.com/support/download/index.html/content/xilinx/en/downloadNav/vivado-design-tools/archive-ise.html
-  - Extract `Xilinx_ISE_DS_14.7_1015_1-1.tar` on `/opt/ise`
-  - Save `Xilinx_ISE_DS_14.7_1015_1-{2,3,4}.zip.xz` to `/opt/Xilinx`
+- Download Ubuntu ISO
+  - https://releases.ubuntu.com/14.04/ubuntu-14.04.6-desktop-amd64.iso
+- Download ISE Sources to `~/xilinx`
+  - https://www.xilinx.com/support/download/index.html/content/xilinx/en/downloadNav/vivado-design-tools/archive-ise.html
 
 ```
-sudo /opt/ise/xsetup
+cd ~/xilinx/
+```
+```
+tar -xvf Xilinx_ISE_DS_14.7_1015_1-1.tar
+```
+```
+sudo ~/xilinx/xsetup
+```
+```
+...
+Execute: /opt/Xilinx/14.7/ISE_DS/PlanAhead/data/webtalk/webtalk_install.sh on
+Execute: /bin/sh -c "/opt/Xilinx/14.7/ISE_DS/common/bin/lin64/install_script/install_drivers/install_drivers >>/opt/Xilinx/14.7/ISE_DS/.xinstall/install.log /opt/Xilinx/14.7/ISE_DS/ISE"
+Driver installation failed. Please check the /.xinstall/install.log file for more information on the cause of the installation failure
+Execute: Version Equalizer
+Execute: /opt/Xilinx/14.7/ISE_DS/common/bin/lin64/xlcm
+Xilinx Installer/Updater exited with return status "0".
+################################################################
+```
+```
+sudo vim /opt/Xilinx/14.7/ISE_DS/PlanAhead/data/webtalk/webtalk_install.sh
+```
+```bash
+...
+if [ $# != 1 ]; then
+  echo "Specify on or off"
+elif [ "$1" = "on" ]; then
+...
+elif [ "$1" = "off" ]; then
+...
+else
+  echo "Valid options are on and off"
+fi
+```
+```
+sudo /opt/Xilinx/14.7/ISE_DS/PlanAhead/data/webtalk/webtalk_install.sh on
+```
+```
+sudo vim /opt/Xilinx/14.7/ISE_DS/common/bin/lin64/install_script/install_drivers/linux_drivers/windriver64/windrvr/configure
+```
+```bash
+...
+if test $VER_BASE = "2.6" -a $VER_SUBMINOR -ge 33; then
+  echo "#include <generated/autoconf.h>" >> hello.c
+else if test $VER_BASE = "2.6" -a $VER_SUBMINOR -ge 17; then
+  echo "#include <linux/autoconf.h>" >> hello.c
+# else
+#   echo "#include <linux/config.h>" >> hello.c
+fi
+...
+```
+```
+sudo vim /opt/Xilinx/14.7/ISE_DS/common/bin/lin64/install_script/install_drivers/linux_drivers/windriver64/windrvr/configure.wd
+```
+```
+...
+INCLUDEDIRS="$INCLUDEDIRS -I$ROOT_DIR/include -I$ROOT_DIR"
+
+CFLAGS="$CFLAGS -fno-pie"
+
+EXTRA_CFLAGS="$EXTRA_CFLAGS $INCLUDEDIRS"
+EXTRA_CFLAGS="$EXTRA_CFLAGS "
+,,,
+```
+```
+sudo ln -s /usr/src/linux-source-5.11.0 /usr/src/linux
+```
+```
+sudo ln -s /lib/modules/$(uname -r)/build/include/generated/utsrelease.h /lib/modules/$(uname -r)/build/include/linux
 ```
