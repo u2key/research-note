@@ -22,103 +22,20 @@
   - Real time throughput benchmarked at 61.44MS/s quadrature
   - Streaming up to 56 MHz of real-time RF bandwidth
 
-## 2. Prepare Ubuntu 21.04 VM
-### 2.1. Setup Virtual Machine
-<div align="center">
-  <table>
-    <tr><td>Item</td><td>Value</td></tr>
-    <tr><td>Virtual Box Version</td><td>7.1.10 r169112 (Qt6.5.3)</td></tr>
-    <tr><td>Memory</td><td>8192 MB</td></tr>
-    <tr><td>Storage</td><td>100.00 GB</td></tr>
-  </table>
-</div>
+## 2. Prepare Xilinx ISE 14.7 VM Edition
+### 2.1. Install Virtual Box 7.0.10
+- https://www.virtualbox.org/wiki/Download_Old_Builds_7_0
 
-### 2.2. Guest OS Information
-```
-cat /etc/os-release
-```
-```
-NAME="Ubuntu"
-VERSION="21.04 (Hirsute Hippo)"
-ID=ubuntu
-ID_LIKE=debian
-PRETTY_NAME="Ubuntu 21.04"
-VERSION_ID="21.04"
-HOME_URL="https://www.ubuntu.com/"
-SUPPORT_URL="https://help.ubuntu.com/"
-BUG_REPORT_URL="https://bugs.launchpad.net/ubuntu/"
-PRIVACY_POLICY_URL="https://www.ubuntu.com/legal/terms-and-policies/privacy-policy"
-VERSION_CODENAME=hirsute
-UBUNTU_CODENAME=hirsute
-```
+### 2.2. Download Xilinx ISE 14.7 
+- https://xilinx.com/downloadNav/vivado-design-tools/archive-ise.html
 
-### 2.2. Update `/etc/apt/sources.list`
+### 2.3. Disable Virtualization Check
 ```
-sudo sed -i -E 's/(jp.)?archive.ubuntu.com\/ubuntu/old-releases.ubuntu.com\/ubuntu/g' /etc/apt/sources.list
-```
-```
-sudo sed -i -E 's/(jp.)?security.ubuntu.com\/ubuntu/old-releases.ubuntu.com\/ubuntu/g' /etc/apt/sources.list
-```
-
-### 2.3. Install Required Packages
-```
-sudo apt install apt-utils bash-completion bison build-essential cpio dwarves flex fxload gcc gdb git libc6-dev libelf-dev libfontconfig1 libfreetype6 libftdi-dev libglib2.0-0 libncurses5 libsm6 libssl-dev libuhd-dev libusb-dev libx11-6 libxi6 libxrandr2 libxrender1 make qemu-utils ssh sudo uhd-host usbutils vim wget
-```
-
-## 3. Install Xilinx ISE 14.7 
-
-### 3.1. Download ISE Sources to `~/xilinx`
-- https://www.xilinx.com/support/download/index.html/content/xilinx/en/downloadNav/vivado-design-tools/archive-ise.html
-
-### 3.2. Extract Installer
-```
-cd ~/xilinx/
+notepad.exe C:\Users\admin\Downloads\Xilinx_ISE_14.7_Win10_14.7_VM_0213_1\bin\validate_virtualization_enabled.bat
 ```
 ```
-tar -xvf Xilinx_ISE_DS_14.7_1015_1-1.tar
-```
-
-### 3.3. Install Xilinx ISE 14.7 and Get Cable Driver Installation Failed Message
-```
-sudo ~/xilinx/xsetup
-```
-```
-cat /opt/Xilinx/14.7/ISE_DS/.xinstall/install.log
-```
-```
-...
-Execute: /opt/Xilinx/14.7/ISE_DS/PlanAhead/data/webtalk/webtalk_install.sh on
-Execute: /bin/sh -c "/opt/Xilinx/14.7/ISE_DS/common/bin/lin64/install_script/install_drivers/install_drivers >>/opt/Xilinx/14.7/ISE_DS/.xinstall/install.log /opt/Xilinx/14.7/ISE_DS/ISE"
-Driver installation failed. Please check the /.xinstall/install.log file for more information on the cause of the installation failure
-Execute: Version Equalizer
-Execute: /opt/Xilinx/14.7/ISE_DS/common/bin/lin64/xlcm
-Xilinx Installer/Updater exited with return status "0".
-################################################################
-```
-
-### 3.4. Install Cable Driver
-```
-cd /opt/Xilinx
-```
-```
-sudo git clone https://git.zerfleddert.de/git/usb-driver
-```
-```
-cd /opt/Xilinx/usb-driver
-```
-```
-sudo make
-```
-```
-sudo ./setup_pcusb /opt/Xilinx/14.7/ISE_DS/ISE/
-```
-
-### 3.5. When Run ISE 14.7
-```
-export LD_PRELOAD=/opt/Xilinx/usb-driver/libusb-driver.so
-```
-```
-. /opt/Xilinx/14.7/ISE_DS/settings64.sh
+@echo off
+rem %SYSTEMROOT%\system32\windowspowershell\v1.0\powershell.exe -ExecutionPolicy Bypass -NoProfile -Command "& '%~dnp0.ps1'"
 ```
 
 ## 4. MATLAB Setup
