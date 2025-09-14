@@ -47,7 +47,7 @@ sed -i -E 's/(jp.)?archive.ubuntu.com\/ubuntu/old-releases.ubuntu.com\/ubuntu/g'
 sed -i -E 's/(jp.)?security.ubuntu.com\/ubuntu/old-releases.ubuntu.com\/ubuntu/g' /etc/apt/sources.list
 ```
 ```
-apt install bash-completion bison build-essential cpio dwarves flex gcc gdb libelf-dev libfontconfig1 libfreetype6 libglib2.0-0 libncurses5 libsm6 libssl-dev libuhd-dev libx11-6 libxi6 libxrandr2 libxrender1 linux-source make qemu-utils ssh sudo uhd-host usbutils vim wget
+apt install apt-utils bash-completion bison build-essential cpio dwarves flex gcc gdb libelf-dev libfontconfig1 libfreetype6 libglib2.0-0 libncurses5 libsm6 libssl-dev libuhd-dev libx11-6 libxi6 libxrandr2 libxrender1 linux-source make qemu-utils ssh sudo uhd-host usbutils vim wget
 ```
 
 ## 3. Install Xilinx ISE 14.7 
