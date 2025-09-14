@@ -1,11 +1,13 @@
 # USRP (Universal Software Radio Peripheral) B210
 
-## 1. Specifications
-
-> ### References
+> ## References
 > [1] https://www.ettus.com/all-products/ub210-kit/
 >
 > [2] https://www.ettus.com/wp-content/uploads/2019/01/b200-b210_spec_sheet.pdf
+>
+> [3] http://haljion.net/index.php?option=com_content&view=article&id=519:wsl-ise-webpack&catid=120:2019-11-18-02-29-10
+
+## 1. Specifications
 
 - Dual Channel Transceiver (70 MHz - 6GHz)
 - AD9361 RFIC direct conversion transceiver
@@ -65,9 +67,6 @@ sudo apt install apt-utils bash-completion bison build-essential cpio dwarves fl
 
 ## 3. Install Xilinx ISE 14.7 
 
-> ### References
-> [3] http://haljion.net/index.php?option=com_content&view=article&id=519:wsl-ise-webpack&catid=120:2019-11-18-02-29-10
-
 ### 3.1. Download ISE Sources to `~/xilinx`
 - https://www.xilinx.com/support/download/index.html/content/xilinx/en/downloadNav/vivado-design-tools/archive-ise.html
 
@@ -113,8 +112,10 @@ sudo make
 ```
 sudo ./setup_pcusb /opt/Xilinx/14.7/ISE_DS/ISE/
 ```
+
+### 3.5. When Run ISE 14.7
 ```
-echo "LD_PRELOAD=/opt/Xilinx/usb-driver/libusb-driver.so" >> ~/.bashrc
+LD_PRELOAD=/opt/Xilinx/usb-driver/libusb-driver.so
 ```
 
 ## 4. MATLAB Setup
