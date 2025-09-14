@@ -115,7 +115,10 @@ sudo ./setup_pcusb /opt/Xilinx/14.7/ISE_DS/ISE/
 
 ### 3.5. When Run ISE 14.7
 ```
-LD_PRELOAD=/opt/Xilinx/usb-driver/libusb-driver.so
+export LD_PRELOAD=/opt/Xilinx/usb-driver/libusb-driver.so
+```
+```
+. /opt/Xilinx/14.7/ISE_DS/settings64.sh
 ```
 
 ## 4. MATLAB Setup
