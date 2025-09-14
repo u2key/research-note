@@ -19,10 +19,7 @@
   - Real time throughput benchmarked at 61.44MS/s quadrature
   - Streaming up to 56 MHz of real-time RF bandwidth
 
-## 2. Prepare Ubuntu 21.04 with Docker
-```
-docker run --name "USRP-B210" -it --net host -e DISPLAY=$DISPLAY -v /lib/modules:/lib/modules -v /usr/src:/usr/src -v /tmp/.X11-unix:/tmp/.X11-unix -v /home:/mnt/home ubuntu:21.04
-```
+## 2. Prepare Ubuntu 21.04
 ```
 cat /etc/os-release
 ```
@@ -41,13 +38,13 @@ VERSION_CODENAME=hirsute
 UBUNTU_CODENAME=hirsute
 ```
 ```
-sed -i -E 's/(jp.)?archive.ubuntu.com\/ubuntu/old-releases.ubuntu.com\/ubuntu/g' /etc/apt/sources.list
+sudo sed -i -E 's/(jp.)?archive.ubuntu.com\/ubuntu/old-releases.ubuntu.com\/ubuntu/g' /etc/apt/sources.list
 ```
 ```
-sed -i -E 's/(jp.)?security.ubuntu.com\/ubuntu/old-releases.ubuntu.com\/ubuntu/g' /etc/apt/sources.list
+sudo sed -i -E 's/(jp.)?security.ubuntu.com\/ubuntu/old-releases.ubuntu.com\/ubuntu/g' /etc/apt/sources.list
 ```
 ```
-apt install apt-utils bash-completion bison build-essential cpio dwarves flex gcc gdb libelf-dev libfontconfig1 libfreetype6 libglib2.0-0 libncurses5 libsm6 libssl-dev libuhd-dev libx11-6 libxi6 libxrandr2 libxrender1 linux-source make qemu-utils ssh sudo uhd-host usbutils vim wget
+sudo apt install apt-utils bash-completion bison build-essential cpio dwarves flex gcc gdb libelf-dev libfontconfig1 libfreetype6 libglib2.0-0 libncurses5 libsm6 libssl-dev libuhd-dev libx11-6 libxi6 libxrandr2 libxrender1 linux-source make qemu-utils ssh sudo uhd-host usbutils vim wget
 ```
 
 ## 3. Install Xilinx ISE 14.7 
