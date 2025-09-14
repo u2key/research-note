@@ -1,11 +1,12 @@
 # USRP (Universal Software Radio Peripheral) B210
 
-> ## References
+## 1. Specifications
+
+> ### References
 > [1] https://www.ettus.com/all-products/ub210-kit/
 >
 > [2] https://www.ettus.com/wp-content/uploads/2019/01/b200-b210_spec_sheet.pdf
 
-## 1. Specifications
 - Dual Channel Transceiver (70 MHz - 6GHz)
 - AD9361 RFIC direct conversion transceiver
   - Providing up to 56MHz of real-time bandwidth
@@ -19,7 +20,18 @@
   - Real time throughput benchmarked at 61.44MS/s quadrature
   - Streaming up to 56 MHz of real-time RF bandwidth
 
-## 2. Prepare Ubuntu 21.04
+## 2. Prepare Ubuntu 21.04 VM
+### 2.1. Setup Virtual Machine
+<div align="center">
+  <table>
+    <tr><td>Item</td><td>Value</td></tr>
+    <tr><td>Virtual Box Version</td><td>7.1.10 r169112 (Qt6.5.3)</td></tr>
+    <tr><td>Memory</td><td>8192 MB</td></tr>
+    <tr><td>Storage</td><td>100.00 GB</td></tr>
+  </table>
+</div>
+
+### 2.2. Guest OS Information
 ```
 cat /etc/os-release
 ```
@@ -37,28 +49,42 @@ PRIVACY_POLICY_URL="https://www.ubuntu.com/legal/terms-and-policies/privacy-poli
 VERSION_CODENAME=hirsute
 UBUNTU_CODENAME=hirsute
 ```
+
+### 2.2. Update `/etc/apt/sources.list`
 ```
 sudo sed -i -E 's/(jp.)?archive.ubuntu.com\/ubuntu/old-releases.ubuntu.com\/ubuntu/g' /etc/apt/sources.list
 ```
 ```
 sudo sed -i -E 's/(jp.)?security.ubuntu.com\/ubuntu/old-releases.ubuntu.com\/ubuntu/g' /etc/apt/sources.list
 ```
+
+### 2.3. Install Required Packages
 ```
-sudo apt install apt-utils bash-completion bison build-essential cpio dwarves flex gcc gdb libelf-dev libfontconfig1 libfreetype6 libglib2.0-0 libncurses5 libsm6 libssl-dev libuhd-dev libx11-6 libxi6 libxrandr2 libxrender1 linux-source make qemu-utils ssh sudo uhd-host usbutils vim wget
+sudo apt install apt-utils bash-completion bison build-essential cpio dwarves flex fxload gcc gdb git libc6-dev libelf-dev libfontconfig1 libfreetype6 libftdi-dev libglib2.0-0 libncurses5 libsm6 libssl-dev libuhd-dev libusb-dev libx11-6 libxi6 libxrandr2 libxrender1 make qemu-utils ssh sudo uhd-host usbutils vim wget
 ```
 
 ## 3. Install Xilinx ISE 14.7 
-- Download ISE Sources to `~/xilinx`
-  - https://www.xilinx.com/support/download/index.html/content/xilinx/en/downloadNav/vivado-design-tools/archive-ise.html
 
+> ### References
+> [3] http://haljion.net/index.php?option=com_content&view=article&id=519:wsl-ise-webpack&catid=120:2019-11-18-02-29-10
+
+### 3.1. Download ISE Sources to `~/xilinx`
+- https://www.xilinx.com/support/download/index.html/content/xilinx/en/downloadNav/vivado-design-tools/archive-ise.html
+
+### 3.2. Extract Installer
 ```
 cd ~/xilinx/
 ```
 ```
 tar -xvf Xilinx_ISE_DS_14.7_1015_1-1.tar
 ```
+
+### 3.3. Install Xilinx ISE 14.7 and Get Cable Driver Installation Failed Message
 ```
 sudo ~/xilinx/xsetup
+```
+```
+cat /opt/Xilinx/14.7/ISE_DS/.xinstall/install.log
 ```
 ```
 ...
@@ -70,58 +96,27 @@ Execute: /opt/Xilinx/14.7/ISE_DS/common/bin/lin64/xlcm
 Xilinx Installer/Updater exited with return status "0".
 ################################################################
 ```
-```
-sudo vim /opt/Xilinx/14.7/ISE_DS/PlanAhead/data/webtalk/webtalk_install.sh
-```
-```bash
-...
-if [ $# != 1 ]; then
-  echo "Specify on or off"
-elif [ "$1" = "on" ]; then
-...
-elif [ "$1" = "off" ]; then
-...
-else
-  echo "Valid options are on and off"
-fi
-```
-```
-sudo /opt/Xilinx/14.7/ISE_DS/PlanAhead/data/webtalk/webtalk_install.sh on
-```
-```
-sudo vim /opt/Xilinx/14.7/ISE_DS/common/bin/lin64/install_script/install_drivers/linux_drivers/windriver64/windrvr/configure
-```
-```bash
-...
-if test $VER_BASE = "2.6" -a $VER_SUBMINOR -ge 33; then
-  echo "#include <generated/autoconf.h>" >> hello.c
-else if test $VER_BASE = "2.6" -a $VER_SUBMINOR -ge 17; then
-  echo "#include <linux/autoconf.h>" >> hello.c
-# else
-#   echo "#include <linux/config.h>" >> hello.c
-fi
-...
-```
-```
-sudo vim /opt/Xilinx/14.7/ISE_DS/common/bin/lin64/install_script/install_drivers/linux_drivers/windriver64/windrvr/configure.wd
-```
-```
-...
-INCLUDEDIRS="$INCLUDEDIRS -I$ROOT_DIR/include -I$ROOT_DIR"
 
-CFLAGS="$CFLAGS -fno-pie"
-
-EXTRA_CFLAGS="$EXTRA_CFLAGS $INCLUDEDIRS"
-EXTRA_CFLAGS="$EXTRA_CFLAGS "
-,,,
+### 3.4. Install Cable Driver
+```
+cd /opt/Xilinx
 ```
 ```
-sudo ln -s /usr/src/linux-source-5.11.0 /usr/src/linux
+sudo git clone https://git.zerfleddert.de/git/usb-driver
 ```
 ```
-sudo ln -s /lib/modules/$(uname -r)/build/include/generated/utsrelease.h /lib/modules/$(uname -r)/build/include/linux
+cd /opt/Xilinx/usb-driver
+```
+```
+sudo make
+```
+```
+sudo ./setup_pcusb /opt/Xilinx/14.7/ISE_DS/ISE/
+```
+```
+echo "LD_PRELOAD=/opt/Xilinx/usb-driver/libusb-driver.so" >> ~/.bashrc
 ```
 
-## 3. MATLAB Setup
-## 3.1. Install MATLAB 2012a
+## 4. MATLAB Setup
+## 4.1. Install MATLAB 2012a
 
