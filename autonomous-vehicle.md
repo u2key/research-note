@@ -217,3 +217,11 @@ ros2 run demo_nodes_cpp listener
 [INFO] [1757211580.145241443] [listener]: I heard: [Hello World: 7]
 ^C[INFO] [1757211580.911429188] [rclcpp]: signal_handler(signum=2)
 ```
+
+## 3. Zybo Z7 FPGA Machine Learning Development
+
+> ### References
+> - https://fumimaker.net/entry/2020/02/06/002934
+> - https://phys-higashi.com/73/#toc8
+
+### 3.1. Install Xilinx Vivado
