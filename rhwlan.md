@@ -23,11 +23,56 @@ openExample('whdl/WLANHDLReceiverExample', 'workDir', '~/WLANHDLReceiver')
   </table>
 </div>
 
+```
+% The |runWLANTransmitter| script demonstrates the |wlanhdlTransmitter| Simulink(R) model by
+%  performing these steps:
+%  1. Set WLAN transmitter parameter configuration.
+%  2. Generate input for the model.
+%  3. Compare Simulink output with MATLAB |wlanWaveformGenerator| function output.
+
+%   Copyright 2024 The MathWorks, Inc.
+
+%% WLAN HDL Transmitter Input Data Generation
+numOfPackets = 1; % number of packets 
+frameFormatIndex = 1; % 0 --> 'Non-HT', 1 --> 'HT-MF', 2 --> 'VHT'
+MCS = 7; % 0 to 7
+...
+```
+
 ## 3. Generate Hardware Description Language (HDL)
 ### 3.1. Run the Project on MATLAB
 
 ### 3.2. Click `Generate HDL Code` on Simulink Top-Level
 <div align="center"><img src="imgs/matlab-open-simulink-top-level-file.png" width="500"></div>
+
+### 3.3. Generated Top-Level Entity
+```
+ENTITY wlanHDLTx IS
+  PORT( clk                               :   IN    std_logic;
+        reset                             :   IN    std_logic;
+        clk_enable                        :   IN    std_logic;
+        MCS                               :   IN    std_logic_vector(2 DOWNTO 0);  -- ufix3
+        frameFormat                       :   IN    std_logic_vector(1 DOWNTO 0);  -- ufix2
+        bitIn                             :   IN    std_logic;
+        validIn                           :   IN    std_logic;
+        start                             :   IN    std_logic;
+        ce_out_0                          :   OUT   std_logic;
+        ce_out_1                          :   OUT   std_logic;
+        txData_re                         :   OUT   std_logic_vector(31 DOWNTO 0);  -- sfix32_En24
+        txData_im                         :   OUT   std_logic_vector(31 DOWNTO 0);  -- sfix32_En24
+        txValid                           :   OUT   std_logic;
+        ready                             :   OUT   std_logic
+        );
+END wlanHDLTx;
+```
+
+<div align="center">
+  <table>
+    <tr><td>Port Name</td>td>Description</td><td>Value</td></tr>
+    <tr><td>MCS</td><tr>Modulation and Coding Scheme</td><td>"111"</td></tr>
+    <tr><td>frameFormat</td><td>Frame Format: "00" --> 'Non-HT', "01" --> 'HT-MF', "10" --> 'VHT'</td><td>"01"</td></tr>
+  </table>
+</div>
 
 ## 4. The Generated HDL are Implemented into RF-SoC
 ### 4.1. IEEE 802.11n Specifications
