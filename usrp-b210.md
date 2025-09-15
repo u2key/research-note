@@ -26,7 +26,7 @@
 ### 2.1. Install Virtual Box 7.1.10
 - https://download.virtualbox.org/virtualbox/7.1.10/VirtualBox-7.1.10-169112-Win.exe
 
-### 2.2. Download Xilinx ISE 14.7 
+### 2.2. Download Xilinx ISE Design Suite for Windows 10 and Windows 11 - 14.7 
 - https://xilinx.com/downloadNav/vivado-design-tools/archive-ise.html
 
 ### 2.3. Disable Virtualization Check
