@@ -23,8 +23,8 @@
   - Streaming up to 56 MHz of real-time RF bandwidth
 
 ## 2. Prepare Xilinx ISE 14.7 VM Edition
-### 2.1. Install Virtual Box 7.0.10
-- https://www.virtualbox.org/wiki/Download_Old_Builds_7_0
+### 2.1. Install Virtual Box 7.1.10
+- https://download.virtualbox.org/virtualbox/7.1.10/VirtualBox-7.1.10-169112-Win.exe
 
 ### 2.2. Download Xilinx ISE 14.7 
 - https://xilinx.com/downloadNav/vivado-design-tools/archive-ise.html
