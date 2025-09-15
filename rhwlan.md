@@ -46,7 +46,7 @@ MCS = 7; % 0 to 7
 <div align="center"><img src="imgs/matlab-open-simulink-top-level-file.png" width="500"></div>
 
 ### 3.3. Generated Top-Level Entity
-```
+```VHDL
 ENTITY wlanHDLTx IS
   PORT( clk                               :   IN    std_logic;
         reset                             :   IN    std_logic;
