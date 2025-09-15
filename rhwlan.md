@@ -68,9 +68,9 @@ END wlanHDLTx;
 
 <div align="center">
   <table>
-    <tr><td>Port Name</td>td>Description</td><td>Value</td></tr>
-    <tr><td>MCS</td><tr>Modulation and Coding Scheme</td><td>"111"</td></tr>
-    <tr><td>frameFormat</td><td>Frame Format: "00" --> 'Non-HT', "01" --> 'HT-MF', "10" --> 'VHT'</td><td>"01"</td></tr>
+    <tr><td>Port Name</td><td>Description</td><td>Value</td></tr>
+    <tr><td>MCS</td><td>Modulation and Coding Scheme</td><td>"111"</td></tr>
+    <tr><td>frameFormat</td><td>Non-HT ["00"], HT-MF ["01"], VHT ["10"]</td><td>"01"</td></tr>
   </table>
 </div>
 
