@@ -1,13 +1,14 @@
 # Build Petalinux for Zybo Z7
 
 ## 1. Download Petalinux Installer
-
 Download Petalinux Installer from https://www.xilinx.com/support/download/index.html/content/xilinx/en/downloadNav/embedded-design-tools.html
 
 ## 2. Prepare Docker of Ubuntu 20.04 
-
 ```
 docker run --name "Petalinux" -it --net host -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix -v $HOME:/home/$USER ubuntu:20.04
+```
+```
+apt update && apt upgrade && apt install sudo vim
 ```
 
 ## 3. Build Petalinux
