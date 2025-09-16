@@ -57,7 +57,7 @@ sudo ln -s /usr/bin/bash /usr/bin/sh
 sudo unlink /bin/sh
 ```
 ```
-sudo ln -s /bin/bash /bin/sh`
+sudo ln -s /bin/bash /bin/sh
 ```
 ```
 ls -l /usr/bin/sh /bin/sh
