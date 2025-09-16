@@ -9,7 +9,7 @@
 
 ## 1. Specifications
 
-- Dual Channel Transceiver (70 MHz - 6GHz)
+- Dual Channel Transceiver (70 MHz - 6 GHz)
 - AD9361 RFIC direct conversion transceiver
   - Providing up to 56MHz of real-time bandwidth
 - Spartan6 XC6SLX150 FPGA
