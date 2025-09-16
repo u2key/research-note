@@ -72,7 +72,7 @@ lrwxrwxrwx 1 root root 13 Jan 30 20:07 /usr/bin/sh -> /usr/bin/bash
 sudo apt update
 ```
 ```
-sudo apt install tofrodos gawk xvfb git libncurses5-dev tftp-hpa zlib1g-dev zlib1g-dev:i386 libssl-dev flex bison chrpath socat autoconf libtool texinfo gcc-multilib libsdl1.2-dev libglib2.0-dev screen pax xterm build-essential libtinfo5 xzip locales-all bind9-dnsutils
+sudo apt install autoconf bc bind9-dnsutils bison build-essential chrpath flex gawk gcc-multilib git libglib2.0-dev libsdl1.2-dev libssl-dev libtinfo5 libncurses5-dev libtool locales-all lsb-release pax rsync screen socat texinfo tftp-hpa tofrodos xterm xvfb xzip zlib1g-dev zlib1g-dev:i386
 ```
 
 9. Restart Ubuntu
