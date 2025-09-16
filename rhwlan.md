@@ -69,7 +69,7 @@ END wlanHDLTx;
 <div align="center">
   <table>
     <tr><td>Port Name</td><td>Description</td><td>Value</td></tr>
-    <tr><td>clk</td><td>Clock</td><td></td></tr>
+    <tr><td>clk</td><td>Clock</td><td>320 MHz</td></tr>
     <tr><td>reset</td><td>Reset</td><td></td></tr>
     <tr><td>clk_enable</td><td>Clock Enable</td><td></td></tr>
     <tr><td>MCS</td><td>Modulation and Coding Scheme</td><td>"111"</td></tr>
