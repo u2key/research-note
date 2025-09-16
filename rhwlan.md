@@ -69,8 +69,20 @@ END wlanHDLTx;
 <div align="center">
   <table>
     <tr><td>Port Name</td><td>Description</td><td>Value</td></tr>
+    <tr><td>clk</td><td>Clock</td><td></td></tr>
+    <tr><td>reset</td><td>Reset</td><td></td></tr>
+    <tr><td>clk_enable</td><td>Clock Enable</td><td></td></tr>
     <tr><td>MCS</td><td>Modulation and Coding Scheme</td><td>"111"</td></tr>
     <tr><td>frameFormat</td><td>Non-HT ["00"], HT-MF ["01"], VHT ["10"]</td><td>"01"</td></tr>
+    <tr><td>bitIn</td><td></td><td></td></tr>
+    <tr><td>validIn</td><td></td><td></td></tr>
+    <tr><td>start</td><td></td><td></td></tr>
+    <tr><td>ce_out_0</td><td></td><td></td></tr>
+    <tr><td>ce_out_1</td><td></td><td></td></tr>
+    <tr><td>txData_re</td><td>Real part of DAC input</td><td></td></tr>
+    <tr><td>txData_im</td><td>Imaginary part of DAC input</td><td></td></tr>
+    <tr><td>txValid</td><td></td><td></td></tr>
+    <tr><td>ready</td><td></td><td></td></tr>
   </table>
 </div>
 
