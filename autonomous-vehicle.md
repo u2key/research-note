@@ -4,7 +4,40 @@
 ### 1.1. Install Vivado Design Suite - HLx Editions Update 3 - 2019.1
 - https://www.xilinx.com/support/download/index.html/content/xilinx/en/downloadNav/vivado-design-tools/archive.html
 
-## 2. Zybo Z7 FPGA Image Recognition Development
+## 2. Prepare for OpenCR Development
+
+> ### References
+> - https://qiita.com/basalte/items/e28d60ce0681c69ccee7
+
+### 2.1. Import UDEV Rule
+```
+wget https://raw.githubusercontent.com/ROBOTIS-GIT/OpenCR/master/99-opencr-cdc.rules
+```
+```
+sudo cp ./99-opencr-cdc.rules /etc/udev/rules.d/
+```
+```
+sudo udevadm control --reload-rules
+```
+```
+sudo udevadm trigger
+```
+
+### 2.2. Install Arduino IDE
+```
+wget https://downloads.arduino.cc/arduino-ide/arduino-ide_2.3.6_Linux_64bit.zip
+```
+```
+unzip arduino-ide_2.3.6_Linux_64bit.zip
+```
+```
+sudo dpkg --add-architecture i386
+```
+```
+sudo apt update && sudo apt install libncurses5-dev libncurses5-dev:i386
+```
+
+## 3. Zybo Z7 FPGA Image Recognition Development
 
 > ### References
 > - https://fumimaker.net/entry/2020/02/06/002934
