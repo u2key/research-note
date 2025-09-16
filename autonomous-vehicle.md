@@ -50,7 +50,8 @@ sudo apt update && sudo apt install libasound2t64 libncurses5-dev libncurses5-de
 ```
 
 - Open `File` > `Preferences`
-  - Edit `Additional boards manager URLs`: `https://raw.githubusercontent.com/ROBOTIS-GIT/OpenCR/master/arduino/opencr_release/package_opencr_index.json`
+- Edit `Additional boards manager URLs`:
+  - `https://raw.githubusercontent.com/ROBOTIS-GIT/OpenCR/master/arduino/opencr_release/package_opencr_index.json`
 
 ## 3. Zybo Z7 FPGA Image Recognition Development
 
