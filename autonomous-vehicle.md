@@ -25,6 +25,15 @@ sudo udevadm trigger
 
 ### 2.2. Install Arduino IDE
 ```
+sudo chmod 777 /opt
+```
+```
+mkdir /opt/arduino-ide
+```
+```
+cd /opt/arduino-ide
+```
+```
 wget https://downloads.arduino.cc/arduino-ide/arduino-ide_2.3.6_Linux_64bit.zip
 ```
 ```
@@ -34,8 +43,14 @@ unzip arduino-ide_2.3.6_Linux_64bit.zip
 sudo dpkg --add-architecture i386
 ```
 ```
-sudo apt update && sudo apt install libncurses5-dev libncurses5-dev:i386
+sudo apt update && sudo apt install libasound2t64 libncurses5-dev libncurses5-dev:i386 libnss3-dev
 ```
+```
+/opt/arduino-ide/arduino-ide_2.3.6_Linux_64bit/arduino-ide
+```
+
+- Open `File` > `Preferences`
+  - Edit `Additional boards manager URLs`: `https://raw.githubusercontent.com/ROBOTIS-GIT/OpenCR/master/arduino/opencr_release/package_opencr_index.json`
 
 ## 3. Zybo Z7 FPGA Image Recognition Development
 
