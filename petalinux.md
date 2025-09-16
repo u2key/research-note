@@ -4,86 +4,85 @@
 
 Download Petalinux Installer from https://www.xilinx.com/support/download/index.html/content/xilinx/en/downloadNav/embedded-design-tools.html
 
-## 2. Install Ubuntu 20.04 on WSL2 
+## 2. Prepare Docker of Ubuntu 20.04 
 
 ```
-> wsl --install Ubuntu-20.04
+docker run --name "Petalinux" -it --net host -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix -v $HOME:/home/$USER ubuntu:20.04
 ```
 
 ## 3. Build Petalinux
 
 1. Create directories: `/opt/petalinux` and `/opt/petalinux/build`.
-
 ```
-$ sudo mkdir -p /opt/petalinux/build
+sudo mkdir -p /opt/petalinux/build
 ```
 
 2. Make `/opt/petalinux` and its below accessible from anyone
-
 ```
-$ sudo chmod 777 /opt/petalinux -R
+sudo chmod 777 /opt/petalinux -R
 ```
 
 3. Change current directory to `/opt/petalinux`
-
 ```
-$ cd /opt/petalinux
+cd /opt/petalinux
 ```
 
 4. Copy Petalinux Installer
-
 ```
-$ cp ~/petalinux-v2024.2-11062026-installer.run /opt/petalinux/
+cp ~/petalinux-v2024.2-11062026-installer.run /opt/petalinux/
 ```
 
 5. Make Petalinux Installer executable
-
 ```
-$ chmod +x petalinux-v2024.2-11062026-installer.run
+chmod +x petalinux-v2024.2-11062026-installer.run
 ```
 
 6. Add i386 architecture support
-
 ```
-$ sudo dpkg --add-architecture i386
+sudo dpkg --add-architecture i386
 ```
 
 7. Change symbolic links: `/usr/bin/sh` and `/bin/sh`
-
 ```
-$ sudo unlink /usr/bin/sh
-$ sudo ln -s /usr/bin/bash /usr/bin/sh
-$ sudo unlink /bin/sh
-$ sudo ln -s /bin/bash /bin/sh
-$ ls -l /usr/bin/sh /bin/sh
+sudo unlink /usr/bin/sh
+```
+```
+sudo ln -s /usr/bin/bash /usr/bin/sh
+```
+```
+sudo unlink /bin/sh
+```
+```
+sudo ln -s /bin/bash /bin/sh`
+```
+```
+ls -l /usr/bin/sh /bin/sh
+```
+```
 lrwxrwxrwx 1 root root 13 Jan 30 20:07 /bin/sh -> /usr/bin/bash
 lrwxrwxrwx 1 root root 13 Jan 30 20:07 /usr/bin/sh -> /usr/bin/bash
 ```
 
 8. Install required packages
+```
+sudo apt update
+```
+```
+sudo apt install tofrodos gawk xvfb git libncurses5-dev tftp-hpa zlib1g-dev zlib1g-dev:i386 libssl-dev flex bison chrpath socat autoconf libtool texinfo gcc-multilib libsdl1.2-dev libglib2.0-dev screen pax xterm build-essential libtinfo5 xzip locales-all bind9-dnsutils
+```
 
-```
-$ sudo apt update
-$ sudo apt install tofrodos gawk xvfb git libncurses5-dev tftp-hpa zlib1g-dev zlib1g-dev:i386 libssl-dev flex bison chrpath socat autoconf libtool texinfo gcc-multilib libsdl1.2-dev libglib2.0-dev screen pax xterm build-essential libtinfo5 xzip locales-all bind9-dnsutils
-```
-
-9. Restart WSL2
-
-```
-> wsl --shutdown
-> wsl
-```
+9. Restart Ubuntu
 
 10. Change current directory to `/opt/petalinux`
-
 ```
 cd /opt/petalinux
 ```
 
 11. Run Petalinux Installer
-
 ```
-$ ./petalinux-v2024.2-11062026-installer.run /opt/petalinux/build/
+./petalinux-v2024.2-11062026-installer.run /opt/petalinux/build/
+```
+```
 PetaLinux CMD tools installer version 2024.2
 ============================================
 [WARNING] This is not a supported OS
@@ -114,9 +113,10 @@ Enter target directory for SDK (default: /opt/petalinux): /opt/petalinux/build
 ```
 
 12. Import settings
-
 ```
-$ source build/settings.sh
+source build/settings.sh
+```
+```
 *************************************************************************************************************************************************
 The PetaLinux source code and images provided/generated are for demonstration purposes only.
 Please refer to https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/2741928025/Moving+from+PetaLinux+to+Production+Deployment
@@ -131,9 +131,10 @@ PetaLinux environment set to '/opt/petalinux/build'
 ```
 
 13. Create Petalinux project
-
 ```
-$ petalinux-create --type project --template zynq --name SampleProject
+petalinux-create --type project --template zynq --name SampleProject
+```
+```
 [NOTE] Argument: "--type project" has been deprecated. It is recommended to start using new python command line Argument.
 [NOTE] Use: petalinux-create project [OPTIONS]
 [INFO] Create project: SampleProject
@@ -141,21 +142,20 @@ $ petalinux-create --type project --template zynq --name SampleProject
 ```
 
 14. Change current directory to the created project directory
-
 ```
-$ cd /opt/petalinux/SampleProject
+cd /opt/petalinux/SampleProject
 ```
 
 15. Copy hardware design file
-
 ```
-$ cp ~/design_1.xsa /opt/petalinux/
+cp ~/design_1.xsa /opt/petalinux/
 ```
 
 16. Configure the Petalinux project
-
 ```
-$ petalinux-config --get-hw-description=../design_1.xsa
+petalinux-config --get-hw-description=../design_1.xsa
+```
+```
 [INFO] Getting hardware description
 [INFO] Renaming design_1.xsa to system.xsa
 [INFO] Extracting yocto SDK to components/yocto. This may take time!
@@ -181,9 +181,10 @@ INFO: Enabling workspace layer in bblayers.conf
 ```
 
 17. Configure Kernel
-
 ```
-$ petalinux-config -c kernel
+petalinux-config -c kernel
+```
+```
 [INFO] Bitbake is not available, some functionality may be reduced.
 [INFO] Using HW file: /opt/petalinux/SampleProject/project-spec/hw-description/system.xsa
 [INFO] Getting Platform info from HW file
@@ -343,9 +344,10 @@ Summary: There was 1 WARNING message.
 ```
 
 18. Configure USB-PHY
-
 ```
-$ vim project-spec/meta-user/recipes-bsp/device-tree/files/system-user.dtsi
+vim project-spec/meta-user/recipes-bsp/device-tree/files/system-user.dtsi
+```
+```
 /include/ "system-conf.dtsi"
 
 /{
@@ -371,9 +373,10 @@ $ vim project-spec/meta-user/recipes-bsp/device-tree/files/system-user.dtsi
 ```
 
 19. Build the Petalinux project
-
 ```
-$ petalinux-build
+petalinux-build
+```
+```
 [INFO] Building project
 [INFO] Bitbake is not available, some functionality may be reduced.
 [INFO] Using HW file: /opt/petalinux/SampleProject/project-spec/hw-description/system.xsa
@@ -404,9 +407,10 @@ Summary: There was 1 WARNING message.
 ```
 
 20. Generate boot image
-
 ```
-$ petalinux-package boot --force --fsbl images/linux/zynq_fsbl.elf --fpga images/linux/system.bit --u-boot
+petalinux-package boot --force --fsbl images/linux/zynq_fsbl.elf --fpga images/linux/system.bit --u-boot
+```
+```
 [INFO] File in BOOT BIN: "/opt/petalinux/SampleProject/images/linux/zynq_fsbl.elf"
 [INFO] File in BOOT BIN: "/opt/petalinux/SampleProject/images/linux/system.bit"
 [INFO] File in BOOT BIN: "/opt/petalinux/SampleProject/images/linux/u-boot.elf"
@@ -428,36 +432,37 @@ $ petalinux-package boot --force --fsbl images/linux/zynq_fsbl.elf --fpga images
 ```
 
 ## 4. Create bootable microSD
-
 Write the boot image and root filesystem (rootfs) to the microSD.
-However, it is not easy for WSL2 to directly create partitions on the microSD.
-Create a disk image with a boot partition and a rootfs partition on WSL2.
+However, it is not easy for VM to directly create partitions on the microSD.
+Create a disk image with a boot partition and a rootfs partition on VM.
 The created disk image is written to a microSD using Rufus on the host computer (Windows 11).
 
 1. Change current directory to the created project directory
-
 ```
-$ cd /opt/petalinux/SampleProject
+cd /opt/petalinux/SampleProject
 ```
 
 2. Create 3.5 GB disk image
-
 ```
-$ sudo truncate -s 3584M image.img
+sudo truncate -s 3584M image.img
 ```
 
 3. Assign the disk image as loopback device
-
 ```
-$ sudo losetup -f
+sudo losetup -f
+```
+```
 /dev/loop0
-$ sudo losetup /dev/loop0 image.img
+```
+```
+sudo losetup /dev/loop0 image.img
 ```
 
 4. Create a boot partition and a rootfs partition
-
 ```
-$ sudo parted /dev/loop0
+sudo parted /dev/loop0
+```
+```
 (parted) unit MiB
 
 (parted) mklabel msdos
@@ -494,27 +499,35 @@ Number  Start    End      Size     Type     File system  Flags
 ```
 
 5. Unassign the disk image
-
 ```
-$ sudo losetup -d /dev/loop0
+sudo losetup -d /dev/loop0
 ```
 
 6. Re-assign the disk image
-
 ```
-$ sudo losetup -P -f --show image.img
+sudo losetup -P -f --show image.img
+```
+```
 /dev/loop0
-$ ls /dev/loop0*
+```
+```
+ls /dev/loop0*
+```
+```
 /dev/loop0  /dev/loop0p1  /dev/loop0p2
 ```
 
 7. Format the filesystems
-
 ```
-$ sudo mkfs.vfat -F 32 /dev/loop0p1
+sudo mkfs.vfat -F 32 /dev/loop0p1
+```
+```
 mkfs.fat 4.1 (2017-01-24)
-
-$ sudo mkfs.ext4 /dev/loop0p2
+```
+```
+sudo mkfs.ext4 /dev/loop0p2
+```
+```
 mke2fs 1.45.5 (07-Jan-2020)
 Discarding device blocks: done
 Creating filesystem with 891904 4k blocks and 223104 inodes
@@ -529,25 +542,32 @@ Writing superblocks and filesystem accounting information: done
 ```
 
 8. Mount the filesystems
-
 ```
-$ sudo mkdir /mnt/loop0p1 /mnt/loop0p2
-$ sudo mount -t vfat /dev/loop0p1 /mnt/loop0p1
-$ sudo mount -t ext4 /dev/loop0p2 /mnt/loop0p2
+sudo mkdir /mnt/loop0p1 /mnt/loop0p2
+```
+```
+sudo mount -t vfat /dev/loop0p1 /mnt/loop0p1
+```
+```
+sudo mount -t ext4 /dev/loop0p2 /mnt/loop0p2
 ```
 
 9. Copy boot image
-
 ```
-$ cd /opt/petalinux/SampleProject/images/linux
-$ sudo cp BOOT.BIN boot.scr image.ub /mnt/loop0p1
+cd /opt/petalinux/SampleProject/images/linux
+```
+```
+sudo cp BOOT.BIN boot.scr image.ub /mnt/loop0p1
 ```
 
 10. Create Ubuntu Jammy rootfs
-
 ```
-$ sudo apt install debootstrap binfmt-support qemu qemu-user-static
-$ sudo debootstrap --arch=armhf --foreign jammy /mnt/loop0p2
+sudo apt install debootstrap binfmt-support qemu qemu-user-static
+```
+```
+sudo debootstrap --arch=armhf --foreign jammy /mnt/loop0p2
+```
+```
 I: Retrieving InRelease
 I: Checking Release signature
 I: Valid Release signature (key id F6ECB3762474EDA9D21B7022871920D1991BC93C)
@@ -572,11 +592,16 @@ I: Extracting zlib1g...
 ```
 
 11. Setup the Ubuntu Jammy base system
-
 ```
-$ sudo cp /usr/bin/qemu-arm-static /mnt/loop0p2/usr/bin
-$ sudo update-binfmts --import qemu-arm
-$ sudo chroot /mnt/loop0p2
+sudo cp /usr/bin/qemu-arm-static /mnt/loop0p2/usr/bin
+```
+```
+sudo update-binfmts --import qemu-arm
+```
+```
+sudo chroot /mnt/loop0p2
+```
+```
 # export LANG=C
 # /debootstrap/debootstrap --second-stage
 I: Installing core packages...
@@ -600,27 +625,36 @@ I: Base system installed successfully.
 ```
 
 12. Setup user and exit
-
 ```
-# su
-# passwd
-# adduser ubuntu
-# apt update
-# apt install bash-completion bind9-dnsutils chrony gnupg network-manager
-# exit
+su
+```
+```
+passwd
+```
+```
+adduser ubuntu
+```
+```
+apt update
+```
+```
+apt install bash-completion bind9-dnsutils chrony gnupg network-manager
+```
+```
+exit
 ```
 
 13. Unmount the filesystems
-
 ```
-$ sudo umount /mnt/loop0p1
-$ sudo umount /mnt/loop0p2 
+sudo umount /mnt/loop0p1
+```
+```
+sudo umount /mnt/loop0p2 
 ```
 
 14. Unassign the disk image
-
 ```
-$ sudo losetup -d /dev/loop0
+sudo losetup -d /dev/loop0
 ```
 
 15. Write the disk image to microSD by using Rufus (https://rufus.ie/en/)
