@@ -7,6 +7,7 @@
 ## 2. Prepare for OpenCR Development
 
 > ### References
+> - https://emanual.robotis.com/docs/en/parts/controller/opencr10_jp/
 > - https://qiita.com/basalte/items/e28d60ce0681c69ccee7
 
 ### 2.1. Import UDEV Rule
