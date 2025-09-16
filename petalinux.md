@@ -8,6 +8,9 @@ Download Petalinux Installer from https://www.xilinx.com/support/download/index.
 docker run --name "Petalinux" -it --net host -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix -v $HOME:/home/$USER ubuntu:20.04
 ```
 ```
+docker exec -it --privileged Petalinux "/bin/bash"
+```
+```
 apt update && apt upgrade && apt install sudo vim
 ```
 
