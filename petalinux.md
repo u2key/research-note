@@ -33,12 +33,12 @@ cd /opt/petalinux
 
 4. Copy Petalinux Installer
 ```
-cp ~/petalinux-v2024.2-11062026-installer.run /opt/petalinux/
+sudo cp /home/ubuntu/petalinux-v2024.2-11062026-installer.run /opt/petalinux/
 ```
 
 5. Make Petalinux Installer executable
 ```
-chmod +x petalinux-v2024.2-11062026-installer.run
+sudo chmod 755 petalinux-v2024.2-11062026-installer.run
 ```
 
 6. Add i386 architecture support
