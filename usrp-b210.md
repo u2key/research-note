@@ -40,3 +40,30 @@ rem %SYSTEMROOT%\system32\windowspowershell\v1.0\powershell.exe -ExecutionPolicy
 ```
 sudo apt install autoconf automake build-essential ccache cmake cpufrequtils doxygen ethtool g++ gcc git inetutils-tools libboost-all-dev libncurses5-dev libusb-1.0-0 libusb-1.0-0-dev libusb-dev python3-dev python3-mako python3-numpy python3-requests python3-scipy python3-setuptools python3-ruamel.yaml
 ```
+```
+cd
+```
+```
+git clone https://github.com/EttusResearch/uhd.git
+```
+```
+mkdir /home/ubuntu/uhd/host/build
+```
+```
+cd /home/ubuntu/uhd/host/build
+```
+```
+cmake -DCMAKE INSTALL PREFIX=/opt/uhd ../
+```
+```
+make
+```
+```
+make test
+```
+```
+sudo make install
+```
+```
+sudo ldconfig
+```
