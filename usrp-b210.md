@@ -53,7 +53,7 @@ mkdir /home/ubuntu/uhd/host/build
 cd /home/ubuntu/uhd/host/build
 ```
 ```
-cmake -DCMAKE INSTALL PREFIX=/opt/uhd ../
+cmake -DCMAKE_INSTALL_PREFIX=/opt/uhd ../
 ```
 ```
 make
