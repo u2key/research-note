@@ -1,11 +1,9 @@
 # USRP (Universal Software Radio Peripheral) B210
 
 > ## References
-> [1] https://www.ettus.com/all-products/ub210-kit/
->
-> [2] https://www.ettus.com/wp-content/uploads/2019/01/b200-b210_spec_sheet.pdf
->
-> [3] http://haljion.net/index.php?option=com_content&view=article&id=519:wsl-ise-webpack&catid=120:2019-11-18-02-29-10
+> - https://www.ettus.com/all-products/ub210-kit/
+> - https://www.ettus.com/wp-content/uploads/2019/01/b200-b210_spec_sheet.pdf
+> - http://haljion.net/index.php?option=com_content&view=article&id=519:wsl-ise-webpack&catid=120:2019-11-18-02-29-10
 
 ## 1. Specifications
 
@@ -22,7 +20,7 @@
   - Real time throughput benchmarked at 61.44MS/s quadrature
   - Streaming up to 56 MHz of real-time RF bandwidth
 
-## 2. Prepare Xilinx ISE 14.7 VM Edition
+## 2. Install Xilinx ISE 14.7 VM Edition
 ### 2.1. Install Virtual Box 7.1.10
 - https://download.virtualbox.org/virtualbox/7.1.10/VirtualBox-7.1.10-169112-Win.exe
 
@@ -38,3 +36,7 @@ notepad.exe C:\Users\admin\Downloads\Xilinx_ISE_14.7_Win10_14.7_VM_0213_1\bin\va
 rem %SYSTEMROOT%\system32\windowspowershell\v1.0\powershell.exe -ExecutionPolicy Bypass -NoProfile -Command "& '%~dnp0.ps1'"
 ```
 
+## 3. Install USRP Hardware Driver (UHD)
+```
+sudo apt install autoconf automake build-essential ccache cmake cpufrequtils doxygen ethtool g++ gcc git inetutils-tools libboost-all-dev libncurses5-dev libusb-1.0-0 libusb-1.0-0-dev libusb-dev python3-dev python3-mako python3-numpy python3-requests python3-scipy python3-setuptools python3-ruamel.yaml
+```
