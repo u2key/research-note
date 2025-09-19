@@ -13,6 +13,12 @@ sudo docker exec -it --privileged Petalinux "/bin/bash"
 ```
 apt update && apt upgrade && apt install sudo vim
 ```
+```
+useradd -G sudo -s /bin/bash ubuntu
+```
+```
+su ubuntu
+```
 
 ## 3. Build Petalinux
 
@@ -75,7 +81,13 @@ sudo apt update
 sudo apt install autoconf bc bind9-dnsutils bison build-essential chrpath flex gawk gcc-multilib git libglib2.0-dev libsdl1.2-dev libssl-dev libtinfo5 libncurses5-dev libtool locales-all lsb-release pax rsync screen socat texinfo tftp-hpa tofrodos xterm xvfb xzip zlib1g-dev zlib1g-dev:i386
 ```
 
-9. Restart the Docker Container
+9. Re-Login to the user account
+```
+exit
+```
+```
+su ubuntu
+```
 
 10. Change current directory to `/opt/petalinux`
 ```
