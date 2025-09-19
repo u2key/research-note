@@ -442,22 +442,22 @@ petalinux-package boot --force --fsbl images/linux/zynq_fsbl.elf --fpga images/l
 ```
 
 ## 3. Create bootable microSD
-Write the boot image and root filesystem (rootfs) to the microSD.
-However, it is not easy for VM to directly create partitions on the microSD.
-Create a disk image with a boot partition and a rootfs partition on VM.
-The created disk image is written to a microSD using Rufus on the host computer (Windows 11).
+### 3.1. Install Required Packages
+```
+sudo apt install binfmt-support debootstrap dosfstools parted qemu-user-static usbutils
+```
 
-1. Change current directory to the created project directory
+### 3.2. Change current directory to the created project directory
 ```
 cd /opt/petalinux/SampleProject
 ```
 
-2. Create 3.5 GB disk image
+### 3.3. Create 4.0 GB disk image
 ```
-sudo truncate -s 3584M image.img
+sudo truncate -s 4096M image.img
 ```
 
-3. Assign the disk image as loopback device
+### 3.4. Assign the disk image as loopback device
 ```
 sudo losetup -f
 ```
@@ -468,52 +468,42 @@ sudo losetup -f
 sudo losetup /dev/loop0 image.img
 ```
 
-4. Create a boot partition and a rootfs partition
+### 3.5. Create a boot partition and a rootfs partition
 ```
 sudo parted /dev/loop0
 ```
 ```
+GNU Parted 3.6
+Using /dev/loop0
+Welcome to GNU Parted! Type 'help' to view a list of commands.
 (parted) unit MiB
-
 (parted) mklabel msdos
-
 (parted) mkpart primary 0MiB 100MiB
 Warning: You requested a partition from 0.00MiB to 100MiB (sectors 0..204799).
 The closest location we can manage is 0.00MiB to 100MiB (sectors 1..204799).
 Is this still acceptable to you?
-Yes/No? Y
-Warning: The resulting partition is not properly aligned for best performance: 1s % 2048s !=
-0s
-Ignore/Cancel? I
-Error: Partition(s) 1 on /dev/loop0 have been written, but we have been unable to inform the
-kernel of the change, probably because it/they are in use.  As a result, the old
-partition(s) will remain in use.  You should reboot now before making further changes.
-Ignore/Cancel? I
-
+Yes/No? Yes
+Warning: The resulting partition is not properly aligned for best performance: 1s % 2048s != 0s
+Ignore/Cancel? Ignore
 (parted) mkpart primary 100MiB 100%
-Error: Partition(s) 1, 2 on /dev/loop0 have been written, but we have been unable to inform
-the kernel of the change, probably because it/they are in use.  As a result, the old
-partition(s) will remain in use.  You should reboot now before making further changes.
-Ignore/Cancel? I
-
 (parted) p
 Model: Loopback device (loopback)
-Disk /dev/loop0: 3584MiB
+Disk /dev/loop0: 4096MiB
 Sector size (logical/physical): 512B/512B
 Partition Table: msdos
 Disk Flags:
 
 Number  Start    End      Size     Type     File system  Flags
- 1      0.00MiB  100MiB   100MiB   primary               lba
- 2      100MiB   3584MiB  3484MiB  primary               lba
+ 1      0.00MiB  100MiB   100MiB   primary
+ 2      100MiB   4096MiB  3996MiB  primary
 ```
 
-5. Unassign the disk image
+### 3.6. Unassign the disk image
 ```
 sudo losetup -d /dev/loop0
 ```
 
-6. Re-assign the disk image
+### 3.7. Re-assign the disk image
 ```
 sudo losetup -P -f --show image.img
 ```
@@ -527,21 +517,21 @@ ls /dev/loop0*
 /dev/loop0  /dev/loop0p1  /dev/loop0p2
 ```
 
-7. Format the filesystems
+### 3.8. Format the filesystems
 ```
 sudo mkfs.vfat -F 32 /dev/loop0p1
 ```
 ```
-mkfs.fat 4.1 (2017-01-24)
+mkfs.fat 4.2 (2021-01-31)
 ```
 ```
 sudo mkfs.ext4 /dev/loop0p2
 ```
 ```
-mke2fs 1.45.5 (07-Jan-2020)
+mke2fs 1.47.0 (5-Feb-2023)
 Discarding device blocks: done
-Creating filesystem with 891904 4k blocks and 223104 inodes
-Filesystem UUID: bcabb87b-528a-4301-a5a1-0820db25a848
+Creating filesystem with 1022976 4k blocks and 256000 inodes
+Filesystem UUID: 4ab171eb-7476-4860-a84f-1fc07b41ff7a
 Superblock backups stored on blocks:
         32768, 98304, 163840, 229376, 294912, 819200, 884736
 
@@ -551,7 +541,7 @@ Creating journal (16384 blocks): done
 Writing superblocks and filesystem accounting information: done
 ```
 
-8. Mount the filesystems
+### 3.9. Mount the filesystems
 ```
 sudo mkdir /mnt/loop0p1 /mnt/loop0p2
 ```
@@ -562,7 +552,7 @@ sudo mount -t vfat /dev/loop0p1 /mnt/loop0p1
 sudo mount -t ext4 /dev/loop0p2 /mnt/loop0p2
 ```
 
-9. Copy boot image
+### 3.10. Copy boot image
 ```
 cd /opt/petalinux/SampleProject/images/linux
 ```
@@ -570,10 +560,7 @@ cd /opt/petalinux/SampleProject/images/linux
 sudo cp BOOT.BIN boot.scr image.ub /mnt/loop0p1
 ```
 
-10. Create Ubuntu Jammy rootfs
-```
-sudo apt install debootstrap binfmt-support qemu qemu-user-static
-```
+### 3.11. Create Ubuntu Jammy rootfs
 ```
 sudo debootstrap --arch=armhf --foreign jammy /mnt/loop0p2
 ```
@@ -601,7 +588,7 @@ I: Extracting util-linux...
 I: Extracting zlib1g...
 ```
 
-11. Setup the Ubuntu Jammy base system
+### 3.12. Setup the Ubuntu Jammy base system
 ```
 sudo cp /usr/bin/qemu-arm-static /mnt/loop0p2/usr/bin
 ```
@@ -634,7 +621,7 @@ I: Configuring ca-certificates...
 I: Base system installed successfully.
 ```
 
-12. Setup user and exit
+### 3.13. Setup user and exit
 ```
 su
 ```
@@ -654,7 +641,7 @@ apt install bash-completion bind9-dnsutils chrony gnupg network-manager
 exit
 ```
 
-13. Unmount the filesystems
+### 3.14. Unmount the filesystems
 ```
 sudo umount /mnt/loop0p1
 ```
@@ -662,12 +649,12 @@ sudo umount /mnt/loop0p1
 sudo umount /mnt/loop0p2 
 ```
 
-14. Unassign the disk image
+### 3.15. Unassign the disk image
 ```
 sudo losetup -d /dev/loop0
 ```
 
-15. Write the disk image to microSD by using Rufus (https://rufus.ie/en/)
+### 3.16. Write the Disk Image
 
 ## References
 
