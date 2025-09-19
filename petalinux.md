@@ -444,7 +444,7 @@ petalinux-package boot --force --fsbl images/linux/zynq_fsbl.elf --fpga images/l
 ## 3. Create bootable microSD
 ### 3.1. Install Required Packages
 ```
-sudo apt install binfmt-support debootstrap dosfstools parted qemu-user-static usbutils
+sudo apt update && sudo apt upgrade && sudo apt install binfmt-support debootstrap dosfstools parted qemu-system qemu-user qemu-user-static usbutils
 ```
 
 ### 3.2. Change current directory to the created project directory
@@ -596,6 +596,11 @@ sudo cp /usr/bin/qemu-arm-static /mnt/loop0p2/usr/bin
 sudo update-binfmts --import qemu-arm
 ```
 ```
+update-binfmts: warning: unable to open /usr/share/binfmts/qemu-arm: No such file or directory
+update-binfmts: warning: couldn't find information about 'qemu-arm' to import
+update-binfmts: exiting due to previous errors
+```
+```
 sudo chroot /mnt/loop0p2
 ```
 ```
@@ -609,19 +614,6 @@ I: Installing core packages...
 I: Unpacking required packages...
 I: Unpacking base-files...
 ...
-I: Unpacking zlib1g:armhf...
-I: Configuring required packages...
-I: Configuring lsb-base...
-...
-I: Configuring libc-bin...
-I: Unpacking the base system...
-I: Unpacking apt...
-...
-I: Unpacking xxd...
-I: Configuring the base system...
-I: Configuring media-types...
-...
-I: Configuring ca-certificates...
 I: Base system installed successfully.
 ```
 
@@ -633,13 +625,15 @@ su
 passwd
 ```
 ```
-adduser ubuntu
+New password:
+Retype new password:
+passwd: password updated successfully
 ```
 ```
-apt update
+apt update && apt upgrade && apt install bash-completion bind9-dnsutils chrony gnupg network-manager vim 
 ```
 ```
-apt install bash-completion bind9-dnsutils chrony gnupg network-manager
+useradd -G sudo -s /bin/bash -p $(openssl passwd -6 ubuntu) ubuntu
 ```
 ```
 exit
@@ -659,6 +653,12 @@ sudo losetup -d /dev/loop0
 ```
 
 ### 3.16. Write the Disk Image
+```
+cd /opt/petalinux/SampleProject/
+```
+```
+sudo dd if=image.img of=/dev/sde status=progress
+```
 
 ## References
 
