@@ -5,10 +5,10 @@
 
 ## 2. Prepare Docker of Ubuntu 20.04 
 ```
-docker run --name "Petalinux" -it --net host -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix -v $HOME:/home/$USER ubuntu:20.04
+sudo docker run --name "Petalinux" -it --net host -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix -v $HOME:/home/$USER ubuntu:20.04
 ```
 ```
-docker exec -it --privileged Petalinux "/bin/bash"
+sudo docker exec -it --privileged Petalinux "/bin/bash"
 ```
 ```
 apt update && apt upgrade && apt install sudo vim
