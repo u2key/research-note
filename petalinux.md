@@ -152,7 +152,7 @@ cd /opt/petalinux/SampleProject
 
 15. Copy hardware design file
 ```
-cp ~/system.xsa /opt/petalinux/
+cp /home/ubuntu/system.xsa /opt/petalinux/
 ```
 
 16. Configure the Petalinux project
