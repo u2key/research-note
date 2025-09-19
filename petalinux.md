@@ -599,8 +599,12 @@ sudo update-binfmts --import qemu-arm
 sudo chroot /mnt/loop0p2
 ```
 ```
-# export LANG=C
-# /debootstrap/debootstrap --second-stage
+export LANG=C
+```
+```
+/debootstrap/debootstrap --second-stage
+```
+```
 I: Installing core packages...
 I: Unpacking required packages...
 I: Unpacking base-files...
