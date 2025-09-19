@@ -420,10 +420,45 @@ fatal: no tag exactly matches '07a7a92ad6e09cc7e84aae5990aff563a4546e83'
 make
 ```
 ```
+[  0%] Building CXX object lib/deps/rpclib/CMakeFiles/uhd_rpclib.dir/lib/rpc/dispatcher.cc.o
+[  0%] Building CXX object lib/deps/rpclib/CMakeFiles/uhd_rpclib.dir/lib/rpc/server.cc.o
+[  0%] Building CXX object lib/deps/rpclib/CMakeFiles/uhd_rpclib.dir/lib/rpc/client.cc.o
+...
+[100%] Built target pyuhd
+[100%] Generating build/timestamp
+[100%] Built target usrp_mpm
+[100%] Built target copy_mpm_packages
+[100%] Generating build/timestamp
+Including packages in pyuhd: ['usrp_mpm', 'uhd', 'usrp_mpm.xports', 'usrp_mpm.simulator', 'usrp_mpm.dboard_manager', 'usrp_mpm.sys_utils', 'usrp_mpm.periph_manager', 'uhd.usrp', 'uhd.usrp_clock', 'uhd.usrpctl', 'uhd.rfnoc_utils', 'uhd.dsp', 'uhd.utils', 'uhd.usrp.chips', 'uhd.usrp.cal', 'uhd.usrpctl.commands', 'uhd.rfnoc_utils.templates', 'uhd.rfnoc_utils.templates.modules', 'uhd.rfnoc_utils.modtool_commands']
+[100%] Built target pyuhd_library
+```
+```
 make test
 ```
 ```
+Running tests...
+Test project /home/ubuntu/uhd/host/build
+      Start  1: actions_test
+ 1/98 Test  #1: actions_test .....................   Passed    0.15 sec
+...
+      Start 98: custom_reg_test
+98/98 Test #98: custom_reg_test ..................   Passed    0.02 sec
+
+100% tests passed, 0 tests failed out of 98
+
+Total Test time (real) =  20.36 sec
+```
+```
 sudo make install
+```
+```
+[  1%] Built target uhd_rpclib
+...
+[100%] Built target pyuhd_library
+Install the project...
+-- Install configuration: "Release"
+...
+-- Installing: /opt/uhd/bin/usrp_hwd.py
 ```
 ```
 sudo ldconfig
