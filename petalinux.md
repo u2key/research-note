@@ -157,7 +157,7 @@ cp /home/ubuntu/system.xsa /opt/petalinux/
 
 16. Configure the Petalinux project
 ```
-petalinux-config --get-hw-description=../design_1.xsa
+petalinux-config --get-hw-description=../system.xsa
 ```
 ```
 [INFO] Getting hardware description
