@@ -75,7 +75,7 @@ sudo apt update
 sudo apt install autoconf bc bind9-dnsutils bison build-essential chrpath flex gawk gcc-multilib git libglib2.0-dev libsdl1.2-dev libssl-dev libtinfo5 libncurses5-dev libtool locales-all lsb-release pax rsync screen socat texinfo tftp-hpa tofrodos xterm xvfb xzip zlib1g-dev zlib1g-dev:i386
 ```
 
-9. Restart Ubuntu
+9. Restart the Docker Container
 
 10. Change current directory to `/opt/petalinux`
 ```
@@ -152,7 +152,7 @@ cd /opt/petalinux/SampleProject
 
 15. Copy hardware design file
 ```
-cp ~/design_1.xsa /opt/petalinux/
+cp ~/system.xsa /opt/petalinux/
 ```
 
 16. Configure the Petalinux project
