@@ -676,6 +676,24 @@ mount none -t devpts /dev/pts
 ```
 mount proc -t proc /proc
 ```
+```
+vim /root/sudo.c
+```
+```
+#include <stdio.h>
+
+int main(int argc, char *argv[]) {
+  printf("[sudo] ");
+  for (int a = 0; a < argc; a++) {
+    printf("%s ", argv[a]);
+  }
+  printf("\n");
+  return 0;
+}
+```
+```
+gcc /root/sudo.c -o /usr/local/bin/sudo
+```
 
 ## 4. Console Access to Petalinux System
 ```
