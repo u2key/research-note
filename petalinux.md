@@ -633,7 +633,7 @@ Retype new password:
 passwd: password updated successfully
 ```
 ```
-apt update && apt upgrade && apt install bash-completion bind9-dnsutils chrony g++ gcc gdb gnupg network-manager sudo vim 
+apt update && apt upgrade && apt install bash-completion bind9-dnsutils chrony dkms g++ gcc gdb gnupg network-manager sudo usbutils vim wireless-tools
 ```
 ```
 useradd -G sudo -s /bin/bash -p $(openssl passwd -6 ubuntu) ubuntu
@@ -677,11 +677,6 @@ sudo mount -o rw,remount /
 ```
 ```
 sudo mount /dev/mmblk0p1 /boot
-```
-
-## 6. Enable Ethernet
-```
-sudo ip link set eth0 up
 ```
 
 ## References
