@@ -181,6 +181,10 @@ petalinux-config --get-hw-description=../system.xsa
 [INFO] Menuconfig project
 ```
 
+- `Subsystem Hardware Settings` > `Ethernet Settings`
+  - Set `Ethernet MAC address` manually
+- `FPGA Manager`
+  - Select `FPGA Manager`
 - `Image Packaging Configuration` > `Root filesystem type`
   - Select `EXT4 (SD/eMMC/SATA/USB)`
 
@@ -255,7 +259,6 @@ NOTE: Executing Tasks
 - `.config` > `Device Drivers` > `Multimedia support` > `Media drivers` > `Media platform devices`
   - Select `Xilinx Video IP` > `Xilinx CSI-2 Rx Subsystem `
   - Select `Xilinx Video HLS Core`
-- Select `.config` > `Device Drivers` > `HID bus support`
 - `.config` > `Device Drivers` > `USB support`
   - Select `USB announce new devices`
   - Select `OTG support`
@@ -351,7 +354,7 @@ Summary: There was 1 WARNING message.
 [INFO] Successfully configured kernel
 ```
 
-18. Configure USB-PHY
+18. Configure Device Tree
 ```
 vim project-spec/meta-user/recipes-bsp/device-tree/files/system-user.dtsi
 ```
@@ -660,12 +663,17 @@ cd /opt/petalinux/SampleProject/
 sudo dd if=image.img of=/dev/sde status=progress
 ```
 
-## 4. Get  Console
+## 4. Console Access to Petalinux System
 ```
 sudo usermod -aG dialout ubuntu
 ```
 ```
 minicom -D /dev/ttyUSB1
+```
+
+## 5. Remount rootfs
+```
+sudo mount -o rw,remount /
 ```
 
 ## References
@@ -674,3 +682,4 @@ minicom -D /dev/ttyUSB1
 - https://qiita.com/iwatake2222/items/6e6915f7318689818368
 - https://zenn.dev/gnico/articles/2aef82b7adef44
 - https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/2046001302/Building+Linux+usb+device+drivers+with+2021.1
+- https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/18841645/Solution+Zynq+PL+Programming+With+FPGA+Manager?view=blog
