@@ -633,7 +633,7 @@ Retype new password:
 passwd: password updated successfully
 ```
 ```
-apt update && apt upgrade && apt install bash-completion bind9-dnsutils chrony gnupg network-manager sudo tree vim 
+apt update && apt upgrade && apt install bash-completion bind9-dnsutils chrony gnupg network-manager sudo vim 
 ```
 ```
 useradd -G sudo -s /bin/bash -p $(openssl passwd -6 ubuntu) ubuntu
