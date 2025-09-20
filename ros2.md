@@ -12,6 +12,15 @@
 
 ### 1.1. Install ROS 2 Package
 ```
+sudo apt update && sudo apt upgrade && sudo apt install software-properties-common
+```
+```
+sudo add-apt-repository universe
+```
+```
+sudo apt update && sudo apt upgrade && sudo apt install apt-utils bash-completion build-essential curl git libboost-system-dev parted pciutils python3-argcomplete python3-flake8-blind-except python3-flake8-builtins python3-flake8-class-newline python3-flake8-comprehensions python3-flake8-deprecated python3-flake8-docstrings python3-flake8-import-order python3-flake8-quotes python3-pip python3-pytest-repeat python3-pytest-rerunfailures python3-pip python3-pytest-cov software-properties-common ssh ufw usbutils vim
+```
+```
 curl -sSL https://raw.githubusercontent.com/ros/rosdistro/master/ros.key -o /usr/share/keyrings/ros-archive-keyring.gpg
 ```
 ```
