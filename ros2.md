@@ -10,44 +10,7 @@
 > - https://docs.ros.org/en/humble/Installation/Alternatives/Ubuntu-Development-Setup.html
 > - https://qiita.com/seshimaru/items/ed344530ead80ab1733f
 
-### 1.1. Mount `/dev/pts` and `/proc`
-```
-sudo mount none -t devpts /dev/pts
-```
-```
-sudo mount proc -t proc /proc
-```
-
-### 1.2. Install Required Packages
-```
-sudo apt update && sudo apt upgrade && sudo apt install software-properties-common
-```
-```
-sudo add-apt-repository universe
-```
-```
-sudo apt update && sudo apt upgrade && sudo apt install apt-utils bash-completion build-essential curl git libboost-system-dev parted pciutils python3-argcomplete python3-flake8-blind-except python3-flake8-builtins python3-flake8-class-newline python3-flake8-comprehensions python3-flake8-deprecated python3-flake8-docstrings python3-flake8-import-order python3-flake8-quotes python3-pip python3-pytest-repeat python3-pytest-rerunfailures python3-pip python3-pytest-cov software-properties-common ssh ufw usbutils vim
-```
-
-### 1.3. Resize rootfs partition
-```
-sudo parted
-```
-```
-(parted) resizepart 2
-End?  [3758MB]? 100%
-```
-```
-sudo resize2fs /dev/mmcblk0p2
-```
-```
-resize2fs 1.46.5 (30-Dec-2021)
-Filesystem at /dev/mmcblk0p2 is mounted on /; on-line resizing required
-old_desc_blocks = 1, new_desc_blocks = 8
-The filesystem on /dev/mmcblk0p2 is now 15166464 (4k) blocks long.
-```
-
-### 1.4. Install ROS 2 Package
+### 1.1. Install ROS 2 Package
 ```
 curl -sSL https://raw.githubusercontent.com/ros/rosdistro/master/ros.key -o /usr/share/keyrings/ros-archive-keyring.gpg
 ```
@@ -177,7 +140,7 @@ Summary: 0 packages finished [9.05s]
 echo ". /opt/ros/jazzy/setup.bash" >> ~/.bashrc
 ```
 
-### 1.5. ROS 2 Demo
+### 1.2. ROS 2 Demo
 ```
 ros2 run demo_nodes_cpp talker 1> /dev/null 2> /dev/null &
 ```
