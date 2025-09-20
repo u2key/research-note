@@ -639,6 +639,12 @@ apt update && apt upgrade && apt install bash-completion bind9-dnsutils chrony d
 useradd -G sudo -s /bin/bash -p $(openssl passwd -6 ubuntu) ubuntu
 ```
 ```
+mkdir /home/ubuntu
+```
+```
+chown ubuntu:ubuntu /home/ubuntu
+```
+```
 exit
 ```
 
