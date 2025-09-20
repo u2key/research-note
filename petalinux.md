@@ -633,7 +633,7 @@ Retype new password:
 passwd: password updated successfully
 ```
 ```
-apt update && apt upgrade && apt install bash-completion bind9-dnsutils chrony dkms g++ gcc gdb gnupg network-manager sudo usbutils vim wireless-tools
+apt update && apt upgrade && apt install bash-completion bind9-dnsutils chrony dkms g++ gcc gdb gnupg network-manager parted sudo usbutils vim wireless-tools
 ```
 ```
 useradd -G sudo -s /bin/bash -p $(openssl passwd -6 ubuntu) ubuntu
@@ -663,6 +663,20 @@ cd /opt/petalinux/SampleProject/
 sudo dd if=image.img of=/dev/sde status=progress
 ```
 
+### 3.17. (Optional) Chroot to SD Card
+```
+sudo mount /dev/sde2 /mnt/loop0p2
+```
+```
+sudo chroot /mnt/loop0p2
+```
+```
+sudo mount none -t devpts /dev/pts
+```
+```
+sudo mount proc -t proc /proc
+```
+
 ## 4. Console Access to Petalinux System
 ```
 sudo usermod -aG dialout ubuntu
@@ -671,7 +685,25 @@ sudo usermod -aG dialout ubuntu
 minicom -D /dev/ttyUSB1
 ```
 
-## 5. Change File Systems Mount Options
+## 5. Resize rootfs partition
+```
+sudo parted
+```
+```
+(parted) resizepart 2
+End?  [3758MB]? 100%
+```
+```
+sudo resize2fs /dev/mmcblk0p2
+```
+```
+resize2fs 1.46.5 (30-Dec-2021)
+Filesystem at /dev/mmcblk0p2 is mounted on /; on-line resizing required
+old_desc_blocks = 1, new_desc_blocks = 8
+The filesystem on /dev/mmcblk0p2 is now 15166464 (4k) blocks long.
+```
+
+## 5. Modify Filesystem
 ```
 sudo mount -o rw,remount /
 ```
