@@ -679,6 +679,11 @@ sudo mount -o rw,remount /
 sudo mount /dev/mmblk0p1 /boot
 ```
 
+## 6. Enable Ethernet
+```
+sudo ip link set eth0 up
+```
+
 ## References
 
 - https://qiita.com/iwatake2222/items/ece0cdf83e6e1908fad8
