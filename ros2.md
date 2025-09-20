@@ -10,9 +10,12 @@
 > - https://docs.ros.org/en/humble/Installation/Alternatives/Ubuntu-Development-Setup.html
 > - https://qiita.com/seshimaru/items/ed344530ead80ab1733f
 
-### 1.1. Mount `/dev/pts`
+### 1.1. Mount `/dev/pts` and `/proc`
 ```
-mount none -t devpts /dev/pts
+sudo mount none -t devpts /dev/pts
+```
+```
+sudo mount proc -t proc /proc
 ```
 
 ### 1.2. Install Required Packages
