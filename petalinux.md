@@ -660,6 +660,14 @@ cd /opt/petalinux/SampleProject/
 sudo dd if=image.img of=/dev/sde status=progress
 ```
 
+## 4. Get  Console
+```
+sudo usermod -aG dialout ubuntu
+```
+```
+minicom -D /dev/ttyUSB1
+```
+
 ## References
 
 - https://qiita.com/iwatake2222/items/ece0cdf83e6e1908fad8
