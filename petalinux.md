@@ -671,9 +671,12 @@ sudo usermod -aG dialout ubuntu
 minicom -D /dev/ttyUSB1
 ```
 
-## 5. Remount rootfs
+## 5. Change File Systems Mount Options
 ```
 sudo mount -o rw,remount /
+```
+```
+sudo mount /dev/mmblk0p1 /boot
 ```
 
 ## References
