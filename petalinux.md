@@ -671,10 +671,10 @@ sudo mount /dev/sde2 /mnt/loop0p2
 sudo chroot /mnt/loop0p2
 ```
 ```
-sudo mount none -t devpts /dev/pts
+mount none -t devpts /dev/pts
 ```
 ```
-sudo mount proc -t proc /proc
+mount proc -t proc /proc
 ```
 
 ## 4. Console Access to Petalinux System
