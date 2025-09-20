@@ -419,7 +419,7 @@ Summary: There was 1 WARNING message.
 
 20. Generate boot image
 ```
-petalinux-package boot --force --fsbl images/linux/zynq_fsbl.elf --fpga images/linux/system.bit --u-boot
+petalinux-package --boot --force --fsbl images/linux/zynq_fsbl.elf --fpga images/linux/system.bit --u-boot
 ```
 ```
 [INFO] File in BOOT BIN: "/opt/petalinux/SampleProject/images/linux/zynq_fsbl.elf"
@@ -546,7 +546,7 @@ Writing superblocks and filesystem accounting information: done
 
 ### 3.9. Mount the filesystems
 ```
-sudo mkdir /mnt/loop0p1 /mnt/loop0p2
+sudo mkdir -p /mnt/loop0p1 /mnt/loop0p2
 ```
 ```
 sudo mount -t vfat /dev/loop0p1 /mnt/loop0p1
@@ -560,7 +560,7 @@ sudo mount -t ext4 /dev/loop0p2 /mnt/loop0p2
 cd /opt/petalinux/SampleProject/images/linux
 ```
 ```
-sudo cp BOOT.BIN boot.scr image.ub /mnt/loop0p1
+sudo cp BOOT.BIN boot.scr image.ub system.bit /mnt/loop0p1
 ```
 
 ### 3.11. Create Ubuntu Jammy rootfs
@@ -633,7 +633,7 @@ Retype new password:
 passwd: password updated successfully
 ```
 ```
-apt update && apt upgrade && apt install bash-completion bind9-dnsutils chrony gnupg network-manager vim 
+apt update && apt upgrade && apt install bash-completion bind9-dnsutils chrony gnupg network-manager sudo tree vim 
 ```
 ```
 useradd -G sudo -s /bin/bash -p $(openssl passwd -6 ubuntu) ubuntu
