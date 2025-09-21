@@ -465,6 +465,9 @@ Install the project...
 sudo ldconfig
 ```
 ```
+/opt/uhd/lib/uhd/utils/uhd_images_downloader.py
+```
+```
 echo 'export LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:/opt/uhd/lib"' >> ${HOME}/.bashrc
 ```
 ```
