@@ -40,7 +40,7 @@ rem %SYSTEMROOT%\system32\windowspowershell\v1.0\powershell.exe -ExecutionPolicy
 ## 3. USRP Hardware Driver (UHD)
 ### 3.1. Install Required Packages
 ```
-sudo apt install autoconf automake build-essential ccache cmake cpufrequtils doxygen ethtool g++ gcc git inetutils-tools libboost-all-dev libncurses5-dev libusb-1.0-0 libusb-1.0-0-dev libusb-dev python3-dev python3-mako python3-numpy python3-requests python3-scipy python3-setuptools python3-ruamel.yaml
+sudo apt install autoconf automake build-essential ccache cmake cpufrequtils doxygen ethtool g++ gcc git inetutils-tools libboost-all-dev libncurses5-dev libusb-1.0-0 libusb-1.0-0-dev libusb-dev python3-dev python3-mako python3-numpy python3-pip python3-requests python3-scipy python3-setuptools python3-ruamel.yaml
 ```
 
 ### 3.2. Build UHD from Source
@@ -57,7 +57,7 @@ mkdir /home/ubuntu/uhd/host/build
 cd /home/ubuntu/uhd/host/build
 ```
 ```
-cmake -DCMAKE_INSTALL_PREFIX=/opt/uhd ../
+cmake -DCMAKE_INSTALL_PREFIX=/opt/uhd -DENABLE_C_API=ON -DENABLE_PYTHON_API=ON ../
 ```
 ```
 -- Build type not specified: defaulting to release.
@@ -520,6 +520,14 @@ vim ${HOME}/.bashrc
 ```
 ```
 export PATH="${PATH}:/opt/uhd/bin/"
+```
+
+### Install `uhd` Python Package
+```
+cd ${HOME}/uhd/host/python/
+```
+```
+
 ```
 
 ### 3.6. Add UDEV Rule
