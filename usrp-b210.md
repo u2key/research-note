@@ -465,6 +465,9 @@ Install the project...
 sudo ldconfig
 ```
 ```
+echo 'export LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:/opt/uhd/lib"' >> ${HOME}/.bashrc
+```
+```
 echo 'export PATH="${PATH}:/opt/uhd/bin/"' >> ${HOME}/.bashrc
 ```
 
