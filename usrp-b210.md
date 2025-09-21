@@ -54,7 +54,7 @@ git clone https://github.com/EttusResearch/uhd.git
 mkdir ${HOME}/uhd/host/build
 ```
 ```
-cd ${HOME}uhd/host/build
+cd ${HOME}/uhd/host/build
 ```
 ```
 cmake -DCMAKE_INSTALL_PREFIX=/opt/uhd -DENABLE_C_API=ON -DENABLE_PYTHON_API=ON ../
