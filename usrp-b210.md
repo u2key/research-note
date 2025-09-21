@@ -45,7 +45,7 @@ sudo apt install autoconf automake build-essential ccache cmake cpufrequtils dox
 
 ### 3.2. Download the Images Package
 ```
-/lib/x86_64-linux-gnu/uhd/utils/uhd_images_downloader.py
+sudo /usr/libexec/uhd/utils/uhd_images_downloader.py
 ```
 
 ### 3.2. Add UDEV Rule
