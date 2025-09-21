@@ -455,9 +455,9 @@ sudo apt update && sudo apt upgrade && sudo apt install binfmt-support debootstr
 cd /opt/petalinux/SampleProject
 ```
 
-### 3.3. Create 4.0 GB disk image
+### 3.3. Create 8.0 GB disk image
 ```
-sudo truncate -s 4096M image.img
+sudo truncate -s 8192M image.img
 ```
 
 ### 3.4. Assign the disk image as loopback device
@@ -491,14 +491,14 @@ Ignore/Cancel? Ignore
 (parted) mkpart primary 100MiB 100%
 (parted) p
 Model: Loopback device (loopback)
-Disk /dev/loop0: 4096MiB
+Disk /dev/loop0: 8192MiB
 Sector size (logical/physical): 512B/512B
 Partition Table: msdos
 Disk Flags:
 
 Number  Start    End      Size     Type     File system  Flags
  1      0.00MiB  100MiB   100MiB   primary
- 2      100MiB   4096MiB  3996MiB  primary
+ 2      100MiB   8192MiB  8092MiB  primary
 ```
 
 ### 3.6. Unassign the disk image
@@ -618,6 +618,30 @@ I: Unpacking required packages...
 I: Unpacking base-files...
 ...
 I: Base system installed successfully.
+```
+```
+mount none -t devpts /dev/pts
+```
+```
+mount proc -t proc /proc
+```
+```
+vim /root/sudo.c
+```
+```
+#include <stdio.h>
+
+int main(int argc, char *argv[]) {
+  printf("[sudo] ");
+  for (int a = 0; a < argc; a++) {
+    printf("%s ", argv[a]);
+  }
+  printf("\n");
+  return 0;
+}
+```
+```
+gcc /root/sudo.c -o /usr/local/bin/sudo
 ```
 
 ### 3.13. Setup user and exit
