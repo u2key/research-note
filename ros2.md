@@ -130,19 +130,6 @@ Summary: 263 packages finished [6h 56min 50s]
 colcon build --symlink-install --parallel-workers 1 --packages-skip-build-finished
 ```
 ```
-Starting >>> rviz_default_plugins
-Starting >>> rqt_bag
-...
-Summary: 12 packages finished [1min 53s]
-  1 package failed: rviz_default_plugins
-  7 packages aborted: action_tutorials_py camera_info_manager_py common_interfaces rosidl_typesupport_introspection_tests test_launch_testing test_osrf_testing_tools_cpp test_rmw_implementation
-  6 packages had stderr output: iceoryx_introspection launch_pytest rqt_bag rviz_default_plugins test_launch_testing test_osrf_testing_tools_cpp
-  63 packages not processed
-```
-```
-colcon build --symlink-install --parallel-workers 1 --packages-skip-build-finished
-```
-```
 Summary: 0 packages finished [9.05s]
 ```
 ```
