@@ -468,9 +468,13 @@ sudo ldconfig
 echo 'export PATH="${PATH}:/opt/uhd/bin/"' >> ${HOME}/.bashrc
 ```
 
-## 4. Operating in Loopback Configuration
-### 4.1. Finding the Device
+## 4. Common Function of UHD
+### 4.1. Find Connected USRP Devices
+```
+uhd_find_devices
+```
+
+### 4.2. Display Detailed Information of Connected USRP Devices 
 ```
 uhd_usrp_probe
 ```
-
