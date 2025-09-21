@@ -464,6 +464,9 @@ Install the project...
 ```
 sudo ldconfig
 ```
+```
+echo 'PATH="${PATH}:/opt/uhd/bin/"' >> ${HOME}/.bashrc
+```
 
 ## 4. Operating in Loopback Configuration
 ### 4.1. Finding the Device
