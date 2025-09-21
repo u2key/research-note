@@ -469,6 +469,39 @@ Install the project...
 ```
 sudo /opt/uhd/lib/uhd/utils/uhd_images_downloader.py
 ```
+```
+[INFO] Using base URL: https://files.ettus.com/binaries/cache/
+[INFO] Images destination: /opt/uhd/share/uhd/images
+[INFO] No inventory file found at /opt/uhd/share/uhd/images/inventory.json. Creating an empty one.
+32108 kB / 32108 kB (100%) x4xx_x410_fpga_default-gccf87eb.zip
+54042 kB / 54042 kB (100%) x4xx_x440_fpga_default-gccf87eb.zip
+19776 kB / 19776 kB (100%) x3xx_x300_fpga_default-gccf87eb.zip
+21659 kB / 21659 kB (100%) x3xx_x310_fpga_default-gccf87eb.zip
+01129 kB / 01129 kB (100%) e3xx_e310_sg1_fpga_default-gccf87eb.zip
+01116 kB / 01116 kB (100%) e3xx_e310_sg3_fpga_default-gccf87eb.zip
+10216 kB / 10216 kB (100%) e3xx_e320_fpga_default-gccf87eb.zip
+14288 kB / 14288 kB (100%) n3xx_n300_fpga_default-gccf87eb.zip
+20918 kB / 20918 kB (100%) n3xx_n310_fpga_default-gccf87eb.zip
+27298 kB / 27298 kB (100%) n3xx_n320_fpga_default-gccf87eb.zip
+00479 kB / 00479 kB (100%) b2xx_b200_fpga_default-gc37b318.zip
+00870 kB / 00870 kB (100%) b2xx_b210_fpga_default-gc37b318.zip
+00485 kB / 00485 kB (100%) b2xx_b200mini_fpga_default-gc37b318.zip
+00507 kB / 00507 kB (100%) b2xx_b205mini_fpga_default-gc37b318.zip
+00507 kB / 00507 kB (100%) b2xx_b205mini_fpga_default-gc37b318.zip
+00167 kB / 00167 kB (100%) b2xx_common_fw_default-g7f7d016.zip
+00007 kB / 00007 kB (100%) usrp2_usrp2_fw_default-g6bea23d.zip
+00450 kB / 00450 kB (100%) usrp2_usrp2_fpga_default-g6bea23d.zip
+02415 kB / 02415 kB (100%) usrp2_n200_fpga_default-g6bea23d.zip
+00009 kB / 00009 kB (100%) usrp2_n200_fw_default-g6bea23d.zip
+02757 kB / 02757 kB (100%) usrp2_n210_fpga_default-g6bea23d.zip
+00009 kB / 00009 kB (100%) usrp2_n210_fw_default-g6bea23d.zip
+00319 kB / 00319 kB (100%) usrp1_usrp1_fpga_default-g6bea23d.zip
+00522 kB / 00522 kB (100%) usrp1_b100_fpga_default-g6bea23d.zip
+00006 kB / 00006 kB (100%) usrp1_b100_fw_default-g6bea23d.zip
+00017 kB / 00017 kB (100%) octoclock_octoclock_fw_default-g14000041.zip
+00025 kB / 00025 kB (100%) usb_common_windrv_default-gccf87eb.zip
+[INFO] Images download complete.
+```
 
 ### 3.4. Register Library Path
 ```
