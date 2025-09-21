@@ -47,6 +47,38 @@ sudo apt install autoconf automake build-essential ccache cmake cpufrequtils dox
 ```
 sudo /usr/libexec/uhd/utils/uhd_images_downloader.py
 ```
+```
+[INFO] Using base URL: https://files.ettus.com/binaries/cache/
+[INFO] Images destination: /usr/share/uhd/images
+[INFO] No inventory file found at /usr/share/uhd/images/inventory.json. Creating an empty one.
+32419 kB / 32419 kB (100%) x4xx_x410_fpga_default-ge547a6b.zip
+53458 kB / 53458 kB (100%) x4xx_x440_fpga_default-ge547a6b.zip
+21602 kB / 21602 kB (100%) x3xx_x310_fpga_default-g6a990d9.zip
+19738 kB / 19738 kB (100%) x3xx_x300_fpga_default-g6a990d9.zip
+01126 kB / 01126 kB (100%) e3xx_e310_sg1_fpga_default-g6a990d9.zip
+01118 kB / 01118 kB (100%) e3xx_e310_sg3_fpga_default-g6a990d9.zip
+10196 kB / 10196 kB (100%) e3xx_e320_fpga_default-g6a990d9.zip
+20842 kB / 20842 kB (100%) n3xx_n310_fpga_default-gd6608fc.zip
+14257 kB / 14257 kB (100%) n3xx_n300_fpga_default-gd6608fc.zip
+27244 kB / 27244 kB (100%) n3xx_n320_fpga_default-gd6608fc.zip
+00481 kB / 00481 kB (100%) b2xx_b200_fpga_default-g92c09f7.zip
+00464 kB / 00464 kB (100%) b2xx_b200mini_fpga_default-g92c09f7.zip
+00883 kB / 00883 kB (100%) b2xx_b210_fpga_default-g92c09f7.zip
+00511 kB / 00511 kB (100%) b2xx_b205mini_fpga_default-g92c09f7.zip
+00167 kB / 00167 kB (100%) b2xx_common_fw_default-g7f7d016.zip
+00007 kB / 00007 kB (100%) usrp2_usrp2_fw_default-g6bea23d.zip
+00450 kB / 00450 kB (100%) usrp2_usrp2_fpga_default-g6bea23d.zip
+02415 kB / 02415 kB (100%) usrp2_n200_fpga_default-g6bea23d.zip
+00009 kB / 00009 kB (100%) usrp2_n200_fw_default-g6bea23d.zip
+02757 kB / 02757 kB (100%) usrp2_n210_fpga_default-g6bea23d.zip
+00009 kB / 00009 kB (100%) usrp2_n210_fw_default-g6bea23d.zip
+00319 kB / 00319 kB (100%) usrp1_usrp1_fpga_default-g6bea23d.zip
+00522 kB / 00522 kB (100%) usrp1_b100_fpga_default-g6bea23d.zip
+00006 kB / 00006 kB (100%) usrp1_b100_fw_default-g6bea23d.zip
+00017 kB / 00017 kB (100%) octoclock_octoclock_fw_default-g14000041.zip
+04839 kB / 04839 kB (100%) usb_common_windrv_default-g14000041.zip
+[INFO] Images download complete.
+```
 
 ### 3.2. Add UDEV Rule
 ```
