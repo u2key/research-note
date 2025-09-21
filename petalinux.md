@@ -533,10 +533,11 @@ sudo mkfs.ext4 /dev/loop0p2
 ```
 mke2fs 1.47.0 (5-Feb-2023)
 Discarding device blocks: done
-Creating filesystem with 1022976 4k blocks and 256000 inodes
-Filesystem UUID: 4ab171eb-7476-4860-a84f-1fc07b41ff7a
+Creating filesystem with 4168704 4k blocks and 1042432 inodes
+Filesystem UUID: db53e130-4b6e-41c7-9dea-93e138cb7be6
 Superblock backups stored on blocks:
-        32768, 98304, 163840, 229376, 294912, 819200, 884736
+        32768, 98304, 163840, 229376, 294912, 819200, 884736, 1605632, 2654208,
+        4096000
 
 Allocating group tables: done
 Writing inode tables: done
