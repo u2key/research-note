@@ -498,7 +498,7 @@ Disk Flags:
 
 Number  Start    End       Size      Type     File system  Flags
  1      0.00MiB  100MiB    100MiB    primary
- 2      100MiB   16384MiB  16384MiB  primary
+ 2      100MiB   16384MiB  16284MiB  primary
 ```
 
 ### 3.6. Unassign the disk image
