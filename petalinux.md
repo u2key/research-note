@@ -455,9 +455,9 @@ sudo apt update && sudo apt upgrade && sudo apt install binfmt-support debootstr
 cd /opt/petalinux/SampleProject
 ```
 
-### 3.3. Create 8.0 GB disk image
+### 3.3. Create 16.0 GB disk image
 ```
-sudo truncate -s 8192M image.img
+sudo truncate -s 16G image.img
 ```
 
 ### 3.4. Assign the disk image as loopback device
@@ -491,14 +491,14 @@ Ignore/Cancel? Ignore
 (parted) mkpart primary 100MiB 100%
 (parted) p
 Model: Loopback device (loopback)
-Disk /dev/loop0: 8192MiB
+Disk /dev/loop0: 16384MiB
 Sector size (logical/physical): 512B/512B
 Partition Table: msdos
 Disk Flags:
 
-Number  Start    End      Size     Type     File system  Flags
- 1      0.00MiB  100MiB   100MiB   primary
- 2      100MiB   8192MiB  8092MiB  primary
+Number  Start    End       Size      Type     File system  Flags
+ 1      0.00MiB  100MiB    100MiB    primary
+ 2      100MiB   16384MiB  16384MiB  primary
 ```
 
 ### 3.6. Unassign the disk image
