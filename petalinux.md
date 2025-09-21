@@ -625,24 +625,6 @@ mount none -t devpts /dev/pts
 ```
 mount proc -t proc /proc
 ```
-```
-vim /root/sudo.c
-```
-```
-#include <stdio.h>
-
-int main(int argc, char *argv[]) {
-  printf("[sudo] ");
-  for (int a = 0; a < argc; a++) {
-    printf("%s ", argv[a]);
-  }
-  printf("\n");
-  return 0;
-}
-```
-```
-gcc /root/sudo.c -o /usr/local/bin/sudo
-```
 
 ### 3.13. Setup user and exit
 ```
@@ -661,6 +643,24 @@ apt update && apt upgrade && apt install bash-completion bind9-dnsutils chrony d
 ```
 ```
 useradd -G sudo -s /bin/bash -p $(openssl passwd -6 ubuntu) ubuntu
+```
+```
+vim /root/sudo.c
+```
+```
+#include <stdio.h>
+
+int main(int argc, char *argv[]) {
+  printf("[sudo] ");
+  for (int a = 0; a < argc; a++) {
+    printf("%s ", argv[a]);
+  }
+  printf("\n");
+  return 0;
+}
+```
+```
+gcc /root/sudo.c -o /usr/local/bin/sudo
 ```
 ```
 mkdir /home/ubuntu
