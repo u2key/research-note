@@ -522,6 +522,14 @@ vim ${HOME}/.bashrc
 export PATH="${PATH}:/opt/uhd/bin/"
 ```
 
+### 3.6. Add UDEV Rule
+```
+sudo vim /etc/udev/rules.d/99-usrp.rules
+```
+```
+SUBSYSTEM=="usb",ATTR{idVendor}=="2500",ATTR{idProduct}=="0020",MODE="0666"
+```
+
 ## 4. Common Function of UHD
 ### 4.1. Find Connected USRP Devices
 ```
