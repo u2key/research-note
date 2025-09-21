@@ -465,7 +465,7 @@ Install the project...
 sudo ldconfig
 ```
 ```
-echo 'PATH="${PATH}:/opt/uhd/bin/"' >> ${HOME}/.bashrc
+echo 'export PATH="${PATH}:/opt/uhd/bin/"' >> ${HOME}/.bashrc
 ```
 
 ## 4. Operating in Loopback Configuration
