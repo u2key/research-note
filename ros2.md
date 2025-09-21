@@ -133,7 +133,14 @@ colcon build --symlink-install --parallel-workers 1 --packages-skip-build-finish
 Summary: 0 packages finished [9.05s]
 ```
 ```
-echo ". /opt/ros/jazzy/setup.bash" >> ~/.bashrc
+vim ${HOME}/.bashrc
+```
+```
+if [ -f /opt/ros/jazzy/setup.bash ]; then
+  . /opt/ros/jazzy/setup.bash
+else
+  echo "Not found: /opt/ros/jazzy/setup.bash"
+fi
 ```
 
 ### 1.2. ROS 2 Demo
