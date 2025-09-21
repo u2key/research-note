@@ -45,16 +45,16 @@ sudo apt install autoconf automake build-essential ccache cmake cpufrequtils dox
 
 ### 3.2. Build UHD from Source
 ```
-cd
+cd ${HOME}
 ```
 ```
 git clone https://github.com/EttusResearch/uhd.git
 ```
 ```
-mkdir /home/ubuntu/uhd/host/build
+mkdir ${HOME}/uhd/host/build
 ```
 ```
-cd /home/ubuntu/uhd/host/build
+cd ${HOME}uhd/host/build
 ```
 ```
 cmake -DCMAKE_INSTALL_PREFIX=/opt/uhd -DENABLE_C_API=ON -DENABLE_PYTHON_API=ON ../
