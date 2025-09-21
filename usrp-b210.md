@@ -37,10 +37,13 @@ notepad.exe C:\Users\admin\Downloads\Xilinx_ISE_14.7_Win10_14.7_VM_0213_1\bin\va
 rem %SYSTEMROOT%\system32\windowspowershell\v1.0\powershell.exe -ExecutionPolicy Bypass -NoProfile -Command "& '%~dnp0.ps1'"
 ```
 
-## 3. Install USRP Hardware Driver (UHD)
+## 3. USRP Hardware Driver (UHD)
+### 3.1. Install Required Packages
 ```
 sudo apt install autoconf automake build-essential ccache cmake cpufrequtils doxygen ethtool g++ gcc git inetutils-tools libboost-all-dev libncurses5-dev libusb-1.0-0 libusb-1.0-0-dev libusb-dev python3-dev python3-mako python3-numpy python3-requests python3-scipy python3-setuptools python3-ruamel.yaml
 ```
+
+### 3.2. Build UHD from Source
 ```
 cd
 ```
@@ -461,17 +464,29 @@ Install the project...
 ...
 -- Installing: /opt/uhd/bin/usrp_hwd.py
 ```
-```
-sudo ldconfig
-```
+
+### 3.3. Download the Images Package
 ```
 sudo /opt/uhd/lib/uhd/utils/uhd_images_downloader.py
 ```
+
+### 3.4. Register Library Path
 ```
-echo 'export LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:/opt/uhd/lib"' >> ${HOME}/.bashrc
+sudo vim /etc/ld.so.conf.d/uhd.conf
 ```
 ```
-echo 'export PATH="${PATH}:/opt/uhd/bin/"' >> ${HOME}/.bashrc
+/opt/uhd/lib
+```
+```
+sudo ldconfig
+```
+
+### 3.5. Add Executable Files Directory to PATH
+```
+vim ${HOME}/.bashrc
+```
+```
+export PATH="${PATH}:/opt/uhd/bin/"
 ```
 
 ## 4. Common Function of UHD
