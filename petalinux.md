@@ -664,7 +664,7 @@ int main(int argc, char *argv[]) {
 gcc /root/sudo.c -o /usr/local/bin/sudo
 ```
 ```
-mkdir /home/ubuntu
+mkhomedir_helper ubuntu
 ```
 ```
 chown ubuntu:ubuntu /home/ubuntu
