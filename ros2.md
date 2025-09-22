@@ -136,10 +136,10 @@ Summary: 0 packages finished [9.05s]
 vim ${HOME}/.bashrc
 ```
 ```
-if [ -f /opt/ros/jazzy/setup.bash ]; then
-  . /opt/ros/jazzy/setup.bash
+if [ -f /opt/ros2_humble/install/setup.bash ]; then
+  . /opt/ros2_humble/install/setup.bash
 else
-  echo "Not found: /opt/ros/jazzy/setup.bash"
+  echo "Not found: /opt/ros2_humble/install/setup.bash"
 fi
 ```
 
