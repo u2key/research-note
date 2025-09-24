@@ -640,7 +640,7 @@ Retype new password:
 passwd: password updated successfully
 ```
 ```
-apt update && apt upgrade && apt install bash-completion bind9-dnsutils chrony dkms g++ gcc gdb gnupg network-manager parted sudo usbutils vim wireless-tools
+apt update && apt upgrade && apt install bash-completion bind9-dnsutils chrony dkms ethtool g++ gcc gdb gnupg net-tools network-manager ntpdate parted sudo usbutils vim wireless-tools
 ```
 ```
 useradd -G sudo -s /bin/bash -p $(openssl passwd -6 ubuntu) ubuntu
@@ -760,9 +760,23 @@ sudo mount -o rw,remount /
 sudo mount /dev/mmblk0p1 /boot
 ```
 
-## 8. Network Settings
+## 8. Setup Time
+```
+sudo timedatectl set-timezone Asia/Tokyo
+```
+```
+sudo timedatectl set-ntp true
+```
+```
+sudo ntpdate pool.ntp.org
+```
+
+## 9. Network Settings
 ```
 sudo ip addr add 172.23.72.104/24 dev eth0
+```
+```
+sudo ip route add default via 172.23.72.1
 ```
 ```
 sudo ip link set eth0 up
