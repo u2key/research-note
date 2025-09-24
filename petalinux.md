@@ -640,7 +640,7 @@ Retype new password:
 passwd: password updated successfully
 ```
 ```
-apt update && apt upgrade && apt install bash-completion bind9-dnsutils chrony dkms ethtool g++ gcc gdb gnupg net-tools network-manager ntpdate parted sudo usbutils vim wireless-tools
+apt update && apt upgrade && apt install bash-completion bind9-dnsutils build-essential chrony dkms ethtool g++ gcc gdb gnupg net-tools network-manager ntpdate parted sudo usbutils vim wireless-tools
 ```
 ```
 useradd -G sudo -s /bin/bash -p $(openssl passwd -6 ubuntu) ubuntu
