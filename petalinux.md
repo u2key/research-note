@@ -80,7 +80,7 @@ lrwxrwxrwx 1 root root 13 Jan 30 20:07 /usr/bin/sh -> /usr/bin/bash
 sudo apt update
 ```
 ```
-sudo apt install autoconf bc bind9-dnsutils bison build-essential chrpath flex gawk gcc-multilib git libglib2.0-dev libsdl1.2-dev libssl-dev libtinfo5 libncurses5-dev libtool locales-all lsb-release pax rsync screen socat texinfo tftp-hpa tofrodos xterm xvfb xzip zlib1g-dev zlib1g-dev:i386
+sudo apt install autoconf bc bind9-dnsutils bison build-essential chrpath flex gawk gcc-multilib git libglib2.0-dev libsdl1.2-dev libssl-dev libtinfo5 libncurses5-dev libtool linux-headers-generic linux-image-generic locales-all lsb-release pax rsync screen socat texinfo tftp-hpa tofrodos xterm xvfb xzip zlib1g-dev zlib1g-dev:i386
 ```
 
 ### 3.9. Re-Login to the user account
@@ -643,6 +643,15 @@ passwd: password updated successfully
 apt update && apt upgrade && apt install bash-completion bind9-dnsutils build-essential chrony dkms ethtool g++ gcc gdb gnupg net-tools network-manager ntpdate parted sudo usbutils vim wireless-tools
 ```
 ```
+unlink /etc/resolv.conf
+```
+```
+vim /etc/resolv.conf
+```
+```
+nameserver 172.23.72.77
+```
+```
 useradd -G sudo -s /bin/bash -p $(openssl passwd -6 ubuntu) ubuntu
 ```
 ```
@@ -752,12 +761,15 @@ old_desc_blocks = 1, new_desc_blocks = 8
 The filesystem on /dev/mmcblk0p2 is now 15166464 (4k) blocks long.
 ```
 
-## 7. Modify Filesystem
+## 7. Filesystem Mounting Settings
 ```
-sudo mount -o rw,remount /
+sudo vim /etc/init.d/remount-root
 ```
 ```
-sudo mount /dev/mmblk0p1 /boot
+#! /bin/sh
+
+mount -o rw,remount /
+mount /dev/mmblk0p1 /boot
 ```
 
 ## 8. Setup Time
@@ -773,16 +785,15 @@ sudo ntpdate pool.ntp.org
 
 ## 9. Network Settings
 ```
-sudo ip addr add 172.23.72.104/24 dev eth0
+sudo vim /etc/init.d/assign-ip-address
 ```
 ```
-sudo ip link set eth0 up
-```
-```
-sudo ip route add default via 172.23.72.1
-```
-```
-sudo ip link set eth0 up
+#! /bin/sh
+
+ip addr add 172.23.72.104/24 dev eth0
+ip link set eth0 up
+ip route add default via 172.23.72.1
+ip link set eth0 up
 ```
 ```
 sudo vim /etc/sysctl.conf
