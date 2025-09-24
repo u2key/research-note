@@ -767,6 +767,16 @@ sudo ip addr add 172.23.72.104/24 dev eth0
 ```
 sudo ip link set eth0 up
 ```
+```
+sudo vim /etc/sysctl.conf
+```
+```
+net.ipv6.conf.all.disable_ipv6 = 1
+net.ipv6.conf.default.disable_ipv6 = 1
+```
+```
+sudo sysctl -p
+```
 
 ## References
 
