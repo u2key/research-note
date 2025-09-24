@@ -203,7 +203,7 @@ INFO: Enabling workspace layer in bblayers.conf
 [INFO] Successfully configured project
 ```
 
-17. Configure Kernel
+### 3.17. Configure Kernel
 ```
 petalinux-config -c kernel
 ```
@@ -354,7 +354,7 @@ Summary: There was 1 WARNING message.
 [INFO] Successfully configured kernel
 ```
 
-18. Configure Device Tree
+### 3.18. Configure Device Tree
 ```
 vim project-spec/meta-user/recipes-bsp/device-tree/files/system-user.dtsi
 ```
@@ -383,7 +383,7 @@ vim project-spec/meta-user/recipes-bsp/device-tree/files/system-user.dtsi
 };
 ```
 
-19. Build the Petalinux project
+### 3.19. Build the Petalinux project
 ```
 petalinux-build
 ```
@@ -417,7 +417,7 @@ Summary: There was 1 WARNING message.
 [INFO] Successfully built project
 ```
 
-20. Generate boot image
+### 3.20. Generate boot image
 ```
 petalinux-package --boot --force --fsbl images/linux/zynq_fsbl.elf --fpga images/linux/system.bit --u-boot
 ```
@@ -444,23 +444,23 @@ petalinux-package --boot --force --fsbl images/linux/zynq_fsbl.elf --fpga images
 [WARNING] Skip file copy to TFTPBOOT folder!!!
 ```
 
-## 3. Create bootable microSD
-### 3.1. Install Required Packages
+## 4. Create bootable microSD
+### 4.1. Install Required Packages
 ```
 sudo apt update && sudo apt upgrade && sudo apt install binfmt-support debootstrap dosfstools parted qemu-system qemu-user qemu-user-static usbutils
 ```
 
-### 3.2. Change current directory to the created project directory
+### 4.2. Change current directory to the created project directory
 ```
 cd /opt/petalinux/SampleProject
 ```
 
-### 3.3. Create 16.0 GB disk image
+### 4.3. Create 16.0 GB disk image
 ```
 sudo truncate -s 16G image.img
 ```
 
-### 3.4. Assign the disk image as loopback device
+### 4.4. Assign the disk image as loopback device
 ```
 sudo losetup -f
 ```
@@ -471,7 +471,7 @@ sudo losetup -f
 sudo losetup /dev/loop0 image.img
 ```
 
-### 3.5. Create a boot partition and a rootfs partition
+### 4.5. Create a boot partition and a rootfs partition
 ```
 sudo parted /dev/loop0
 ```
@@ -501,12 +501,12 @@ Number  Start    End       Size      Type     File system  Flags
  2      100MiB   16384MiB  16284MiB  primary
 ```
 
-### 3.6. Unassign the disk image
+### 4.6. Unassign the disk image
 ```
 sudo losetup -d /dev/loop0
 ```
 
-### 3.7. Re-assign the disk image
+### 4.7. Re-assign the disk image
 ```
 sudo losetup -P -f --show image.img
 ```
@@ -520,7 +520,7 @@ ls /dev/loop0*
 /dev/loop0  /dev/loop0p1  /dev/loop0p2
 ```
 
-### 3.8. Format the filesystems
+### 4.8. Format the filesystems
 ```
 sudo mkfs.vfat -F 32 /dev/loop0p1
 ```
@@ -545,7 +545,7 @@ Creating journal (16384 blocks): done
 Writing superblocks and filesystem accounting information: done
 ```
 
-### 3.9. Mount the filesystems
+### 4.9. Mount the filesystems
 ```
 sudo mkdir -p /mnt/loop0p1 /mnt/loop0p2
 ```
@@ -556,7 +556,7 @@ sudo mount -t vfat /dev/loop0p1 /mnt/loop0p1
 sudo mount -t ext4 /dev/loop0p2 /mnt/loop0p2
 ```
 
-### 3.10. Copy boot image
+### 4.10. Copy boot image
 ```
 cd /opt/petalinux/SampleProject/images/linux
 ```
@@ -564,7 +564,7 @@ cd /opt/petalinux/SampleProject/images/linux
 sudo cp BOOT.BIN boot.scr image.ub system.bit /mnt/loop0p1
 ```
 
-### 3.11. Create Ubuntu Jammy rootfs
+### 4.11. Create Ubuntu Jammy rootfs
 ```
 sudo debootstrap --arch=armhf --foreign jammy /mnt/loop0p2
 ```
@@ -592,7 +592,7 @@ I: Extracting util-linux...
 I: Extracting zlib1g...
 ```
 
-### 3.12. Setup the Ubuntu Jammy base system
+### 4.12. Setup the Ubuntu Jammy base system
 ```
 sudo cp /usr/bin/qemu-arm-static /mnt/loop0p2/usr/bin
 ```
@@ -627,7 +627,7 @@ mount none -t devpts /dev/pts
 mount proc -t proc /proc
 ```
 
-### 3.13. Setup user and exit
+### 4.13. Setup user and exit
 ```
 su
 ```
@@ -673,7 +673,7 @@ chown ubuntu:ubuntu /home/ubuntu
 exit
 ```
 
-### 3.14. Unmount the filesystems
+### 4.14. Unmount the filesystems
 ```
 sudo umount /mnt/loop0p1
 ```
@@ -681,12 +681,12 @@ sudo umount /mnt/loop0p1
 sudo umount /mnt/loop0p2 
 ```
 
-### 3.15. Unassign the disk image
+### 4.15. Unassign the disk image
 ```
 sudo losetup -d /dev/loop0
 ```
 
-### 3.16. Write the Disk Image
+### 4.16. Write the Disk Image
 ```
 cd /opt/petalinux/SampleProject/
 ```
@@ -694,7 +694,7 @@ cd /opt/petalinux/SampleProject/
 sudo dd if=image.img of=/dev/sde status=progress
 ```
 
-### 3.17. (Optional) Chroot to SD Card
+### 4.17. (Optional) Chroot to SD Card
 ```
 sudo mount /dev/sde2 /mnt/loop0p2
 ```
@@ -726,7 +726,7 @@ int main(int argc, char *argv[]) {
 gcc /root/sudo.c -o /usr/local/bin/sudo
 ```
 
-## 4. Console Access to Petalinux System
+## 5. Console Access to Petalinux System
 ```
 sudo usermod -aG dialout ubuntu
 ```
@@ -734,7 +734,7 @@ sudo usermod -aG dialout ubuntu
 minicom -D /dev/ttyUSB1
 ```
 
-## 5. Resize rootfs partition
+## 6. Resize rootfs partition
 ```
 sudo parted
 ```
@@ -752,7 +752,7 @@ old_desc_blocks = 1, new_desc_blocks = 8
 The filesystem on /dev/mmcblk0p2 is now 15166464 (4k) blocks long.
 ```
 
-## 5. Modify Filesystem
+## 7. Modify Filesystem
 ```
 sudo mount -o rw,remount /
 ```
