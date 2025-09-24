@@ -776,6 +776,9 @@ sudo ntpdate pool.ntp.org
 sudo ip addr add 172.23.72.104/24 dev eth0
 ```
 ```
+sudo ip link set eth0 up
+```
+```
 sudo ip route add default via 172.23.72.1
 ```
 ```
