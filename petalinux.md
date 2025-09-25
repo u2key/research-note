@@ -813,3 +813,4 @@ sudo sysctl -p
 - https://zenn.dev/gnico/articles/2aef82b7adef44
 - https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/2046001302/Building+Linux+usb+device+drivers+with+2021.1
 - https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/18841645/Solution+Zynq+PL+Programming+With+FPGA+Manager?view=blog
+- https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/18842272/Zynq+Linux+USB+Device+Driver
