@@ -118,3 +118,35 @@ export PATH="${PATH}:/usr/libexec/uhd/examples/"
 ```
 benchmark_rate --rx_rate 10e6 --tx_rate 10e6
 ```
+
+## 5. Generate FPGA Configuration Bitstream
+```
+cd ${HOME}
+```
+```
+git clone https://github.com/EttusResearch/uhd.git
+```
+```
+cd ${HOME}/uhd/fpga/usrp3/top/b200/
+```
+```
+make B210
+```
+
+## 6. Configure FPGA
+```
+uhd_image_loader --args="type=b200,reset" --no-fw
+```
+```
+Unit: USRP B210 (340E957)
+[INFO] [UHD] linux; GNU C++ version 13.2.0; Boost_108300; UHD_4.6.0.0+ds1-5.1ubuntu0.24.04.1
+[INFO] [B200] Loading FPGA image: /usr/share/uhd/images/usrp_b210_fpga.bin...
+```
+```
+uhd_image_loader --args="type=b200" --fpga-path="${HOME}/uhd/fpga/usrp3/top/b200/build/usrp_b210_fpga.bin"
+```
+```
+Unit: USRP B210 (340E957)
+[INFO] [UHD] linux; GNU C++ version 13.2.0; Boost_108300; UHD_4.6.0.0+ds1-5.1ubuntu0.24.04.1
+[INFO] [B200] Loading FPGA image: /home/ubuntu/uhd/fpga/usrp3/top/b200/build/usrp_b210_fpga.bin...
+```
