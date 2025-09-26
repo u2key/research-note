@@ -39,6 +39,26 @@ notepad.exe C:\Users\admin\Downloads\Xilinx_ISE_14.7_Win10_14.7_VM_0213_1\bin\va
 rem %SYSTEMROOT%\system32\windowspowershell\v1.0\powershell.exe -ExecutionPolicy Bypass -NoProfile -Command "& '%~dnp0.ps1'"
 ```
 
+### 2.4. (After Installation) Install Required Packages
+```
+sudo yum update && sudo yum upgrade
+```
+```
+sudo yum clean metadata all
+```
+```
+sudo vim /etc/yum.repos.d/ettus.repo
+```
+```
+[ettus-uhd-stable-repo]
+name=Ettus Research - UHD Stable $releasever-$basearchthon serial timeout
+baseurl=http://files.ettus.com/binaries/uhd/repo/uhd/fedora/$releasever/$basearch
+gpgcheck=0
+```
+```
+sudo yum install --enablerepo='ettus-uhd-stable-repo' uhd uhd-devel
+```
+
 ## 3. USRP Hardware Driver (UHD)
 ### 3.1. Install Required Packages
 ```
