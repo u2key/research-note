@@ -41,7 +41,7 @@ rem %SYSTEMROOT%\system32\windowspowershell\v1.0\powershell.exe -ExecutionPolicy
 ## 3. USRP Hardware Driver (UHD)
 ### 3.1. Install Required Packages
 ```
-sudo apt install autoconf automake build-essential ccache cmake cpufrequtils doxygen ethtool g++ gcc git inetutils-tools libboost-all-dev libncurses5-dev libuhd-dev libusb-1.0-0 libusb-1.0-0-dev libusb-dev python3-dev python3-mako python3-numpy python3-pip python3-requests python3-scipy python3-setuptools python3-ruamel.yaml uhd-host
+sudo apt install autoconf automake build-essential ccache cmake cpufrequtils doxygen ethtool g++ gcc gir1.2-gtk-3.0 git gobject-introspection inetutils-tools libboost-all-dev libncurses5-dev libuhd-dev libusb-1.0-0 libusb-1.0-0-dev libusb-dev python3-dev python3-gi python3-mako python3-numpy python3-pip python3-requests python3-scipy python3-setuptools python3-ruamel.yaml uhd-host
 ```
 
 ### 3.2. Download the Images Package
