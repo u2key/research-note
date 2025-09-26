@@ -39,30 +39,11 @@ notepad.exe C:\Users\admin\Downloads\Xilinx_ISE_14.7_Win10_14.7_VM_0213_1\bin\va
 rem %SYSTEMROOT%\system32\windowspowershell\v1.0\powershell.exe -ExecutionPolicy Bypass -NoProfile -Command "& '%~dnp0.ps1'"
 ```
 
-### 2.4. (After Installation) Install Required Packages
-```
-sudo yum update && sudo yum upgrade
-```
-```
-sudo yum clean metadata all
-```
-```
-sudo vim /etc/yum.repos.d/ettus.repo
-```
-```
-[ettus-uhd-stable-repo]
-name=Ettus Research - UHD Stable $releasever-$basearchthon serial timeout
-baseurl=http://files.ettus.com/binaries/uhd/repo/uhd/fedora/$releasever/$basearch
-gpgcheck=0
-```
-```
-sudo yum install --enablerepo='ettus-uhd-stable-repo' uhd uhd-devel
-```
-
 ## 3. USRP Hardware Driver (UHD)
 ### 3.1. Install Required Packages
+#### Ubuntu
 ```
-sudo apt install autoconf automake build-essential ccache cmake cpufrequtils doxygen ethtool g++ gcc gir1.2-gtk-3.0 git gobject-introspection inetutils-tools libboost-all-dev libncurses5-dev libuhd-dev libusb-1.0-0 libusb-1.0-0-dev libusb-dev python3-dev python3-gi python3-mako python3-numpy python3-pip python3-requests python3-scipy python3-setuptools python3-ruamel.yaml uhd-host
+sudo apt update && sudo apt upgrade && sudo apt install autoconf automake build-essential ccache cmake cpufrequtils doxygen ethtool g++ gcc gir1.2-gtk-3.0 git gobject-introspection inetutils-tools libboost-all-dev libncurses5-dev libuhd-dev libusb-1.0-0 libusb-1.0-0-dev libusb-dev python3-dev python3-gi python3-mako python3-numpy python3-pip python3-requests python3-scipy python3-setuptools python3-ruamel.yaml uhd-host
 ```
 
 ### 3.2. Download the Images Package
