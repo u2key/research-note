@@ -105,3 +105,14 @@ uhd_find_devices
 ```
 uhd_usrp_probe
 ```
+
+### 4.3. Benchmarks
+```
+vim ${HOME}/.bashrc
+```
+```
+export PATH="${PATH}:/usr/libexec/uhd/examples/"
+```
+```
+benchmark_rate --rx_rate 10e6 --tx_rate 10e6
+```
