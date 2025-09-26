@@ -4,6 +4,7 @@
 > - https://kb.ettus.com/B200/B210/B200mini/B205mini/B206mini_Getting_Started_Guides
 > - https://www.ettus.com/all-products/ub210-kit/
 > - https://www.ettus.com/wp-content/uploads/2019/01/b200-b210_spec_sheet.pdf
+> - https://files.ettus.com/manual/md_fpga.html
 > - http://haljion.net/index.php?option=com_content&view=article&id=519:wsl-ise-webpack&catid=120:2019-11-18-02-29-10
 > - https://www.zep.co.jp/nbeppu/article/z-usrp-da1/
 
