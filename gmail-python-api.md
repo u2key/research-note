@@ -129,7 +129,7 @@ def main():
   credential = get_credential()
   service = build("gmail", "v1", credentials=credential, cache_discovery=False)
   unread_id = [label['id'] for label in get_labels(service, "me") if label['name'] == "UNREAD"]
-  get_mails(service, "me", query, unread_id, limit=10)
+  get_mails(service, "me", query, unread_id, limit=100)
 
 if __name__ == "__main__": main()
 ```
