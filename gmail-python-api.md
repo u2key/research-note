@@ -68,7 +68,7 @@ def get_credential():
     else:
       flow = InstalledAppFlow.from_client_secrets_file("client_id.json", scope)
       credential = flow.run_local_server(open_browser=False)
-    with open("token.pickle", "wb"):
+    with open("token.pickle", "wb") as token:
       pickle.dump(credential, token)
   return credential
 
