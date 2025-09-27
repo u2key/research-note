@@ -127,6 +127,9 @@ cd ${HOME}
 git clone https://github.com/EttusResearch/uhd.git
 ```
 ```
+git checkout UHD-4.9
+```
+```
 cd ${HOME}/uhd/fpga/usrp3/top/b200/
 ```
 ```
