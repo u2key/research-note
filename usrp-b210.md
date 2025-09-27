@@ -39,6 +39,10 @@ notepad.exe C:\Users\admin\Downloads\Xilinx_ISE_14.7_Win10_14.7_VM_0213_1\bin\va
 rem %SYSTEMROOT%\system32\windowspowershell\v1.0\powershell.exe -ExecutionPolicy Bypass -NoProfile -Command "& '%~dnp0.ps1'"
 ```
 
+### 2.4. Load License File
+- Get ISE Embedded Edition License 
+  - https://account.amd.com/en/forms/license/license-form.html
+
 ## 3. USRP Hardware Driver (UHD)
 ### 3.1. Install Required Packages
 #### Ubuntu
