@@ -49,6 +49,7 @@ import csv
 import io
 import os
 import pickle
+import shutil
 from apiclient import errors
 from email.mime.text import MIMEText
 from google_auth_oauthlib.flow import InstalledAppFlow
@@ -75,43 +76,60 @@ def get_credential():
 def get_labels(service, user_id):
   response = service.users().labels().list(userId=user_id).execute()
   labels = response['labels']
-  print(f"[get_labels] labels = {labels}")
+  for label in labels:
+    print(f"[get_labels] name: {label['name']}")
+    print(f"[get_labels]   id  : {label['id']}")
+    print(f"[get_labels]   type: {label['type']}")
   return labels
 
-def get_mails(service, user_id, query, label_id, limit):
+def set_read(service, user_id, message_ids, unread_id):
   try:
-    messages = service.users().messages().list(userId=user_id, q=query, labelIds=[label_id], maxResults=limit).execute()
+    service.users().messages().batchModify(userId=user_id, body={
+      'ids'           : message_ids,
+      'removeLabelIds': unread_id,
+      'addLabelIds'   : []
+    }).execute()
+  except errors.HttpError as error:
+    print(f"[get_mails] Network Error Occurred: {error}")
+
+def get_mails(service, user_id, query, unread_id, limit):
+  try:
+    messages = service.users().messages().list(userId=user_id, q=query, labelIds=unread_id, maxResults=limit).execute()
     if messages['resultSizeEstimate'] == 0:
       print(f"Search Results is None")
       return 0
-    for message in messages['messages']:
-      data = service.users().get(userId=user_id, id=message['id']).execute()
+    message_ids = [message['id'] for message in messages['messages']]
+    for message_id in message_ids:
+      data = service.users().messages().get(userId=user_id, id=message_id).execute()
       headers = data['payload']['headers']
       for header in headers:
-        print(f"[get_mails] header_name: {header['name']}, header_value: {header['value']}")
+        header_name_log = f"[get_mails] header_name: {header['name']}"
+        print(header_name_log[:shutil.get_terminal_size().columns])
+        header_value_log = f"[get_mails]   header_value: {header['value']}"
+        print(header_value_log[:shutil.get_terminal_size().columns])
       bodies = []
       if 'data' in data['payload']['body']:
-        body = [decode_base64url_data(data['payload']['body']['data'])]
+        body = [base64.urlsafe_b64decode(data['payload']['body']['data']).decode("UTF-8")]
         bodies.append(body)
-        print(f"[get_mails] body: {body}")
+        body_log = f"[get_mails] body: {body}"
+        print(body_log[:shutil.get_terminal_size().columns])
       else:
         for part in data['payload']['parts']:
           if part['mimeType'] == "text/plain":
-            body = decode_base64url_data(part['body']['data'])
+            body = base64.urlsafe_b64decode(part['body']['data']).decode("UTF-8")
             bodies.append(body)
-            print(f"[get_mails] body: {body}")
-    return [headers, bodies]
+            body_log = f"[get_mails] body: {body}"
+            print(body_log[:shutil.get_terminal_size().columns])
+    set_read(service, user_id, message_ids, unread_id)
   except errors.HttpError as error:
     print(f"[get_mails] Network Error Occurred: {error}")
-  return [None, None]
 
 def main():
   query = 'no-reply'
   credential = get_credential()
   service = build("gmail", "v1", credentials=credential, cache_discovery=False)
-  label_ids = [label['id'] for label in get_labels(service, "me")]
-  headers, bodies = get_mails(service, "me", query, label_ids, limit=10)
-  return False
+  unread_id = [label['id'] for label in get_labels(service, "me") if label['name'] == "UNREAD"]
+  get_mails(service, "me", query, unread_id, limit=10)
 
 if __name__ == "__main__": main()
 ```
