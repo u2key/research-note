@@ -108,7 +108,7 @@ def get_mails(service, user_id, query, label_id, limit):
 def main():
   query = 'no-reply'
   credential = get_credential()
-  service = build("gmail", "v1", credentials=[credential], cache_discovery=False)
+  service = build("gmail", "v1", credentials=credential, cache_discovery=False)
   label_ids = [label['id'] for label in get_labels(service, "me")]
   headers, bodies = get_mails(service, "me", query, label_ids, limit=10)
   return False
