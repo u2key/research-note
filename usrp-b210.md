@@ -39,10 +39,6 @@ notepad.exe C:\Users\admin\Downloads\Xilinx_ISE_14.7_Win10_14.7_VM_0213_1\bin\va
 rem %SYSTEMROOT%\system32\windowspowershell\v1.0\powershell.exe -ExecutionPolicy Bypass -NoProfile -Command "& '%~dnp0.ps1'"
 ```
 
-### 2.4. Load License File
-- Get ISE Embedded Edition License 
-  - https://account.amd.com/en/forms/license/license-form.html
-
 ## 3. USRP Hardware Driver (UHD)
 ### 3.1. Install Required Packages
 #### Ubuntu
@@ -124,6 +120,11 @@ benchmark_rate --rx_rate 10e6 --tx_rate 10e6
 ```
 
 ## 5. Generate FPGA Configuration Bitstream
+### 5.1. Load License File
+- Get ISE Embedded Edition License 
+  - https://account.amd.com/en/forms/license/license-form.html
+
+### 5.2. Get Sources from GitHub Repository
 ```
 cd ${HOME}
 ```
@@ -135,6 +136,11 @@ git checkout UHD-4.9
 ```
 ```
 cd ${HOME}/uhd/fpga/usrp3/top/b200/
+```
+
+### 5.3. Compile the Sources
+```
+sudo ln -s /usr/bin/python /usr/bin/python3
 ```
 ```
 make B210
