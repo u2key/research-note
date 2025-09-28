@@ -25,29 +25,20 @@ P_s (k) &=& \dfrac{\left ( Ns \right )^{k}}{k !} \cdot e^{- \left ( Ns \right )}
 }
 ```
 
-## 3. C Program
-```c
-#include <stdio.h>
-#include <math.h>
+## 3. Python Program
+```python
+#! /usr/bin/python3
 
-int main(int argc, char *argv[]) {
-  long double N, s, P;
-  int k;
+import numpy as np
 
-  printf("Average number of events per unit time: ");
-  scanf("%Lf", &N);
-  printf("Evaluation time divided by unit time: ");
-  scanf("%Lf", &s);
-  printf("Number of evaluation events: ");
-  scanf("%d", &k);
+N = np.float128(input("Average number of events per unit time: "))
+s = np.float128(input("Evaluation time divided by unit time: "))
+k = int(input("Number of evaluation events: "))
 
-  P = 1.0;
-  for (int a = 0; a < k; a++) {
-    P = P * ((N * s) / (double)(k - a));
-  }
-  P = P * exp((-1) * N * s);
+P = np.float128(1.0)
+for a in range(k):
+  P *= ((N * s) / np.float128(k - a))
+P *= np.exp((-1) * N * s)
 
-  printf("P = %1.20Le\n", P);
-  return 0;
-}
+print(f"P = {P:1.20e}")
 ```
