@@ -51,8 +51,8 @@ with open("poisson.csv", "w") as f:
 ```math
 {\Large
 \begin{align}
-Error Probability &=& \dfrac{Scrubbing Interval}{Average of Error Interval} \\
-Average of Error Interval &=& \dfrac{Scrubbing Interval}{Error Probability} \\
+Error \ Probability &=& \dfrac{Scrubbing \ Interval}{Average \ of \ Error \ Interval} \\
+Average \ of \ Error \ Interval &=& \dfrac{Scrubbing \ Interval}{Error \ Probability} \\
 \end{align}
 }
 ```
