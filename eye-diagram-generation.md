@@ -153,7 +153,6 @@ while True:
     for a in range(1, len(signal[0])):
       continuous[2][a-1].append(signal[samples_in_window_index_start:samples_in_window_index_end, a].flatten())
   else:
-    print(f"continuous: {same_num}")
     if bit_num * samples_per_window > len(signal):
       break
   bit_num_last = bit_num
