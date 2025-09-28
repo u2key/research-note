@@ -49,7 +49,8 @@ for a in range(1, len(signal[0])):
   axes.set_facecolor('black')
   window_num = 0
   while True:
-    samples_in_window_index_start = int(window_num * samples_per_window)    samples_in_window_index_end = samples_in_window_index_start + samples_per_window_int
+    samples_in_window_index_start = int(window_num * samples_per_window)
+    samples_in_window_index_end = samples_in_window_index_start + samples_per_window_int
     window_num = window_num + 1
     if samples_in_window_index_end >= len(signal):
       break
@@ -74,7 +75,8 @@ colors = [None, 'orange', 'blue', 'green', 'white']
 for a in range(1, len(signal[0])):
   window_num = 0
   while True:
-    samples_in_window_index_start = int(window_num * samples_per_window)    samples_in_window_index_end = samples_in_window_index_start + samples_per_window_int
+    samples_in_window_index_start = int(window_num * samples_per_window)
+    samples_in_window_index_end = samples_in_window_index_start + samples_per_window_int
     window_num = window_num + 1
     if samples_in_window_index_end >= len(signal):
       break
