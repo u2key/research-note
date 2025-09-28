@@ -46,3 +46,13 @@ with open("poisson.csv", "w") as f:
     f.write(f"{k:5d},{P:1.20e}\n")
     print(f"k: {k:5d}, P: {P:1.20e}\r", end="")
 ```
+
+## 4. Calculate Average of Soft-Error Interval
+```math
+{\Large
+\begin{align}
+Error Probability &=& \dfrac{Scrubbing Interval}{Average of Error Interval} \\
+Average of Error Interval &=& \dfrac{Scrubbing Interval}{Error Probability} \\
+\end{align}
+}
+```
