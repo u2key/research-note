@@ -33,12 +33,16 @@ import numpy as np
 
 N = np.float128(input("Average number of events per unit time: "))
 s = np.float128(input("Evaluation time divided by unit time: "))
-k = int(input("Number of evaluation events: "))
+k_min = int(input("Number of evaluation events minimum: "))
+k_max = int(input("Number of evaluation events maximum: "))
+k_step = int(input("Number of evaluation events step: "))
 
-P = np.float128(1.0)
-for a in range(k):
-  P *= ((N * s) / np.float128(k - a))
-P *= np.exp((-1) * N * s)
-
-print(f"P = {P:1.20e}")
+with open("poisson.csv", "w") as f:
+  for k in range(k_min, k_max+1, k_step): 
+    P = np.float128(1.0)
+    for a in range(k):
+      P *= ((N * s) / np.float128(k - a))
+    P *= np.exp((-1) * N * s)
+    f.write(f"{k:5d},{P:1.20e}\n")
+    print(f"k: {k:5d}, P: {P:1.20e}\r", end="")
 ```
