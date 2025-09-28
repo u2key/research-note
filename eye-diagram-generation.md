@@ -97,13 +97,13 @@ def transmit_bit(a):
   if bit_num == 0:
     return 0
   elif bit_num >= 1 and bit_num <= 8:
-    data_num = list(f"{int(a / 11 + 1) % 256:0>8b}")
-    return data_num[8-bit_num]
+    data = list(f"{int(a / 11 + 1) % 256:0>8b}")
+    return int(data[8-bit_num])
   elif bit_num == 9:
-    data_num = list(f"{int(a / 11 + 1) % 256:0>8b}")
+    data = list(f"{int(a / 11 + 1) % 256:0>8b}")
     parity = 0
     for a in range(8):
-      parity += int(data_num[7-a])
+      parity += int(data[7-a])
     return parity % 2
   elif bit_num >= 10:
     return 1
@@ -156,7 +156,7 @@ while True:
       break
   bit_num_last = bit_num
   bit_num += same_num
-  bit_pool = bit_pool[same_num+1:]
+  bit_pool = bit_pool[same_num:]
   for a in range(bit_num_last+15, bit_num+15):
     bit_pool.append(transmit_bit(a))
 continuous[0] = np.array(continuous[0], dtype=np.float64)
