@@ -31,14 +31,14 @@ P_s (k) &=& \dfrac{\left ( Ns \right )^{k}}{k !} \cdot e^{- \left ( Ns \right )}
 #include <math.h>
 
 int main(int argc, char *argv[]) {
-  double N, s, P;
+  long double N, s, P;
   int k;
 
   printf("Average number of events per unit time: ");
-  scanf("%lf", &N);
+  scanf("%Lf", &N);
   printf("Evaluation time divided by unit time: ");
-  scanf("%lf", &s);
-  printf("Number of evaluation events");
+  scanf("%Lf", &s);
+  printf("Number of evaluation events: ");
   scanf("%d", &k);
 
   P = 1.0;
@@ -47,7 +47,7 @@ int main(int argc, char *argv[]) {
   }
   P = P * exp((-1) * N * s);
 
-  printf("P = %f\n", P);
+  printf("P = %1.20Le\n", P);
   return 0;
 }
 ```
