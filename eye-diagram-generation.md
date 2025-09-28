@@ -180,6 +180,7 @@ for a in range(len(continuous)):
     exit(1)
   for b in range(len(continuous[a])):
     plt.figure()
+    axes = plt.axes()
     axes.set_facecolor('black')
     for c in range(len(continuous[a][b])):
       plt.plot(x, continuous[a][b][c], color="blue", alpha=alpha)
