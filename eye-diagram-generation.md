@@ -161,7 +161,7 @@ while True:
   bit_num_last = bit_num
   bit_num += same_num
   bit_pool = bit_pool[same_num:]
-  for a in range(bit_num_last+15, bit_num+15):
+  for a in range(bit_num_last+14, bit_num+14):
     bit_pool.append(transmit_bit(a))
 continuous[0] = np.array(continuous[0], dtype=np.float64)
 continuous[1] = np.array(continuous[1], dtype=np.float64)
