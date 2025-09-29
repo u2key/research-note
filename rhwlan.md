@@ -23,22 +23,6 @@ openExample('whdl/WLANHDLReceiverExample', 'workDir', '~/WLANHDLReceiver')
   </table>
 </div>
 
-```
-% The |runWLANTransmitter| script demonstrates the |wlanhdlTransmitter| Simulink(R) model by
-%  performing these steps:
-%  1. Set WLAN transmitter parameter configuration.
-%  2. Generate input for the model.
-%  3. Compare Simulink output with MATLAB |wlanWaveformGenerator| function output.
-
-%   Copyright 2024 The MathWorks, Inc.
-
-%% WLAN HDL Transmitter Input Data Generation
-numOfPackets = 1; % number of packets 
-frameFormatIndex = 1; % 0 --> 'Non-HT', 1 --> 'HT-MF', 2 --> 'VHT'
-MCS = 7; % 0 to 7
-...
-```
-
 ## 3. Generate Hardware Description Language (HDL)
 ### 3.1. Run the Project on MATLAB
 
