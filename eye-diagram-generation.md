@@ -113,9 +113,9 @@ def transmit_bit(a):
 continuous = [[[] for _ in range(1, len(signal[0]))],
               [[] for _ in range(1, len(signal[0]))],
               [[] for _ in range(1, len(signal[0]))]]
-samples_per_1window_int = int(samples_per_window * 3)
-samples_per_2window_int = int(samples_per_window * 4)
-samples_per_3window_int = int(samples_per_window * 5)
+samples_per_1window_int = int(samples_per_window * 2)
+samples_per_2window_int = int(samples_per_window * 3)
+samples_per_3window_int = int(samples_per_window * 4)
 bit_pool = [transmit_bit(a) for a in range(15)]
 bit_num = 0
 while True:
@@ -126,7 +126,7 @@ while True:
     else:
       break
   if same_num == 1:
-    samples_in_window_index_start = int((bit_num - 1) * samples_per_window)
+    samples_in_window_index_start = int((bit_num - 0.5) * samples_per_window)
     if samples_in_window_index_start < 0:
       bit_num += same_num
       continue
@@ -136,7 +136,7 @@ while True:
     for a in range(1, len(signal[0])):
       continuous[0][a-1].append(signal[samples_in_window_index_start:samples_in_window_index_end, a].flatten())
   elif same_num == 2:
-    samples_in_window_index_start = int((bit_num - 1) * samples_per_window)
+    samples_in_window_index_start = int((bit_num - 0.5) * samples_per_window)
     if samples_in_window_index_start < 0:
       bit_num += same_num
       continue
@@ -146,7 +146,7 @@ while True:
     for a in range(1, len(signal[0])):
       continuous[1][a-1].append(signal[samples_in_window_index_start:samples_in_window_index_end, a].flatten())
   elif same_num == 3:
-    samples_in_window_index_start = int((bit_num - 1) * samples_per_window)
+    samples_in_window_index_start = int((bit_num - 0.5) * samples_per_window)
     if samples_in_window_index_start < 0:
       bit_num += same_num
       continue
