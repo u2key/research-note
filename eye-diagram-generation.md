@@ -128,7 +128,7 @@ while True:
   if same_num == 1:
     samples_in_window_index_start = int((bit_num - 1) * samples_per_window)
     if samples_in_window_index_start < 0:
-      samples_in_window_index_start = 0
+      continue
     samples_in_window_index_end = samples_in_window_index_start + samples_per_1window_int
     if samples_in_window_index_end >= len(signal):
       break
@@ -137,7 +137,7 @@ while True:
   elif same_num == 2:
     samples_in_window_index_start = int((bit_num - 1) * samples_per_window)
     if samples_in_window_index_start < 0:
-      samples_in_window_index_start = 0
+      continue
     samples_in_window_index_end = samples_in_window_index_start + samples_per_2window_int
     if samples_in_window_index_end >= len(signal):
       break
@@ -146,7 +146,7 @@ while True:
   elif same_num == 3:
     samples_in_window_index_start = int((bit_num - 1) * samples_per_window)
     if samples_in_window_index_start < 0:
-      samples_in_window_index_start = 0
+      continue
     samples_in_window_index_end = samples_in_window_index_start + samples_per_3window_int
     if samples_in_window_index_end >= len(signal):
       break
