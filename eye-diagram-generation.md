@@ -94,15 +94,15 @@ plt.savefig(f"alpha{alpha}_{name}.jpg")
 
 ## 4. Sample Continuous Bits
 ```python
-def transmit_bit(a):
-  bit_num = a % 12
+def transmit_bit(a, num_bits_per_data=12):
+  bit_num = a % num_bits_per_data
   if bit_num == 0:
     return 0
   elif bit_num >= 1 and bit_num <= 8:
-    data = list(f"{int(a / 11 + 1) % 256:0>8b}")
+    data = list(f"{int(a / num_bits_per_data + 1) % 256:0>8b}")
     return int(data[8-bit_num])
   elif bit_num == 9:
-    data = list(f"{int(a / 11 + 1) % 256:0>8b}")
+    data = list(f"{int(a / num_bits_per_data + 1) % 256:0>8b}")
     parity = 0
     for a in range(8):
       parity += int(data[7-a])
