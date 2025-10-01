@@ -68,6 +68,14 @@ WLANHDLReceiverExample
 ```
 
 ### 2.4. HDL Coder Settings
+- HDL Code Generation
+  - Generate HDL: `wlanhdlReceiver/wlanHDLReceiver`
+  - Target > Work Flow: `Generic ASIC/FPGA`
+  - Synthesis Tool: `Xilinx ISE`
+  - Family: `Spartan6`
+  - Device: `xc6slx150`
+  - Package: `fgg484`
+  - Target Frequency (MHz): `300`
 
 ### 2.5. Generate HDL Code
 
