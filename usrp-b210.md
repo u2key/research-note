@@ -116,16 +116,16 @@ vim ${HOME}/.bashrc
 export PATH="${PATH}:/usr/libexec/uhd/examples/"
 ```
 ```
-sudo mv /usr/share/uhd/images/usrp_b210_fpga.bin /usr/share/uhd/images/usrp_b210_fpga_original.bin
+sudo mv -v /usr/share/uhd/images/usrp_b210_fpga.bin /usr/share/uhd/images/usrp_b210_fpga_original.bin
 ```
 ```
-sudo mv /mnt/c/Users/admin/Documents/VirtualBoxShared/usrp_b210_fpga.bin /usr/share/uhd/images/usrp_b210_fpga.bin
+sudo mv -v /mnt/c/Users/admin/Documents/VirtualBoxShared/usrp_b210_fpga.bin /usr/share/uhd/images/usrp_b210_fpga.bin
 ```
 ```
 benchmark_rate --rx_rate 10e6 --tx_rate 10e6
 ```
 ```
-sudo mv /usr/share/uhd/images/usrp_b210_fpga_original.bin /usr/share/uhd/images/usrp_b210_fpga.bin
+sudo mv -v /usr/share/uhd/images/usrp_b210_fpga_original.bin /usr/share/uhd/images/usrp_b210_fpga.bin
 ```
 
 ## 5. Generate FPGA Configuration Bitstream
