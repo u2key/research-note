@@ -269,8 +269,7 @@ NOTE: Executing Tasks
       - Set `Realtek RTL8192CU/RTL8188CU USB Wireless Network Adapter`: `M`
       - Set `Realtek RTL8192DU USB Wireless Network Adapter`: `M`
   - Set `Realtek 802.11n USB wireless chips support`: `M`
-  - Set `Realtek 802.11ac wireless chips support`: `M`
-  - Set `Realtek 802.11ax wireless chips support`: `M`
+  - Set `Realtek 802.11ac wireless chips support` > `Realtek 8821CU USB wireless network adapter`: `M`
 - `Device Drivers` > `Character devices`
   - Set `Legacy (BSD) PTY support`: `Y`
   - Set `Non-standard serial port support`: `Y`
