@@ -249,51 +249,69 @@ Sstate summary: Wanted 230 Local 0 Mirrors 228 Missed 2 Current 0 (99% match, 0%
 NOTE: Executing Tasks
 ```
 
-- `.config` > `Device Drivers`
-  - Select `Parallel port support` > `PC-style hardware` > `Use FIFO/DMA if available`
-- `.config` > `Device Drivers` > `Character devices`
-  - Select `Legacy (BSD) PTY support`
-  - Select `Non-standard serial port support`
-  - Select `Serial device bus`
-  - Select `Support for user-space parallel port device drivers`
-- `.config` > `Device Drivers` > `Multimedia support` > `Media drivers` > `Media platform devices`
-  - Select `Xilinx Video IP` > `Xilinx CSI-2 Rx Subsystem `
-  - Select `Xilinx Video HLS Core`
-- `.config` > `Device Drivers` > `USB support`
-  - Select `USB announce new devices`
-  - Select `OTG support`
-  - Select `USB 2.0 OTG FSM implementation`
-  - Select `xHCI HCD (USB 3.0) support`
-  - Select `OHCI HCD (USB 1.1) support` > `Generic OHCI driver for a platform device`
-  - Select `USB Modem (CDC, ACM) support`
-  - Select `USB Wireless Device Management support`
-  - Select `DesignWave USB3 DRD Core Support`
-- `.config` > `Device Drivers` > `USB support` > `USB Serial Converter support` 
-  - Select `USB Serial Console device support`
-  - Select `USB Generic Serial Driver`
-  - Select `USB Serial Simple Driver`
-- `.config` > `Device Drivers` > `USB support` > `USB Gadget Support`
-  - Select `Debugging messages`
-  - Select `Debugging information files`
-  - Select `Serial gadget console support`
-- `.config` > `Device Drivers` > `USB support` > `USB Gadget Support` > `USB Gadget functions configurable through configfs` 
-  - Select `Abstract Control Model (CDC ACM)`
-  - Select `RNDIS`
-  - Select `Function filesystem (FunctionFS)`
-  - Select `HID function`
-  - Select `USB Webcam function`
-- `.config` > `Device Drivers` > `USB support` > `USB Gadget Support` > `USB Gadget precomposed configurations` 
-  - Select `Gadget Filesystem`
-  - Select `Function Filesystem` > `Include configuration with RNDIS (Ethernet)`
-  - Select `Mass Storage Gadget`
-  - Select `Serial Gadget (with CDC ACM and CDC OBEX support)`
-  - Select `CDC Composite Device (Ethernet and ACM)`
-  - Select `CDC Composite Device (ACM and mass storage)`
-  - Select `HID Gadget`
-  - Select `USB Webcam Gadget`
-  - Select `USB Raw Gadget`
-- Select `.config` > `Device Drivers` > `PHY Subsystem` > `PHY Core`
-- Select `.config` > `Device Drivers` > `On-Chip Interconnect management support`
+- `Networking support` > `Wireless`
+  - Set `cfg80211  - wireless configuration API` > `cfg80211 wireless extensions compatibility`: `Y`
+  - Set `Generic IEEE 802.11 Networking Stack`: `Y`
+- `Device Drivers`
+  - Set `Parallel port support` > `PC-style hardware` > `Use FIFO/DMA if available`: `Y`
+  - `Network device support` > `Wireless LAN` > `Realtek devices`
+    - Set `Realtek 8180/8185/8187SE PCI support support`: `M`
+    - Set `Realtek 8187 and 8187B USB support`: `M`
+    - `Realtek rtlwifi family of devices`
+      - Set `Realtek RTL8192CE/RTL8188CE Wireless Network Adapter`: `M`
+      - Set `Realtek RTL8192SE/RTL8191SE PCIe Wireless Network Adapter`: `M`
+      - Set `Realtek RTL8192DE/RTL8188DE PCIe Wireless Network Adapter`: `M`
+      - Set `Realtek RTL8723AE PCIe Wireless Network Adapter`: `M`
+      - Set `Realtek RTL8723BE PCIe Wireless Network Adapter`: `M`
+      - Set `Realtek RTL8188EE Wireless Network Adapter`: `M`
+      - Set `Realtek RTL8192EE Wireless Network Adapter`: `M`
+      - Set `Realtek RTL8821AE/RTL8812AE Wireless Network Adapter`: `M`
+      - Set `Realtek RTL8192CU/RTL8188CU USB Wireless Network Adapter`: `M`
+      - Set `Realtek RTL8192DU USB Wireless Network Adapter`: `M`
+  - Set `Realtek 802.11n USB wireless chips support`: `M`
+  - Set `Realtek 802.11ac wireless chips support`: `M`
+  - Set `Realtek 802.11ax wireless chips support`: `M`
+- `Device Drivers` > `Character devices`
+  - Set `Legacy (BSD) PTY support`: `Y`
+  - Set `Non-standard serial port support`: `Y`
+  - Set `Serial device bus`: `Y`
+  - Set `Support for user-space parallel port device drivers`: `Y`
+- `Device Drivers` > `Multimedia support` > `Media drivers` > `Media platform devices`
+  - Set `Xilinx Video IP` > `Xilinx CSI-2 Rx Subsystem `: `M`
+  - Set `Xilinx Video HLS Core`: `M`
+- `Device Drivers` > `USB support`
+  - Set `USB announce new devices`: `Y`
+  - Set `OTG support`: `Y`
+  - Set `USB 2.0 OTG FSM implementation`: `Y`
+  - Set `xHCI HCD (USB 3.0) support`: `Y`
+  - Set `OHCI HCD (USB 1.1) support` > `Generic OHCI driver for a platform device`: `Y`
+  - Set `USB Modem (CDC, ACM) support`: `Y`
+  - Set `USB Wireless Device Management support`: `Y`
+  - Set `DesignWave USB3 DRD Core Support`: `Y`
+  - Set `USB Serial Converter support` > `USB Serial Console device support`: `Y`
+  - Set `USB Serial Converter support` > `USB Generic Serial Driver`: `Y`
+  - Set `USB Serial Converter support` > `USB Serial Simple Driver`: `Y`
+  - `USB Gadget Support`
+    - Set `Debugging messages`: `Y`
+    - Set `Debugging information files`: `Y`
+    - Set `Serial gadget console support`: `Y`
+    - Set `USB Gadget functions configurable through configfs` > `Abstract Control Model (CDC ACM)`: `Y`
+    - Set `USB Gadget functions configurable through configfs` > `RNDIS`: `Y`
+    - Set `USB Gadget functions configurable through configfs` > `Function filesystem (FunctionFS)`: `Y`
+    - Set `USB Gadget functions configurable through configfs` > `HID function`: `Y`
+    - Set `USB Gadget functions configurable through configfs` > `USB Webcam function`: `Y`
+    - `USB Gadget precomposed configurations`
+      - Set `Gadget Filesystem`: `Y`
+      - Set `Function Filesystem` > `Include configuration with RNDIS (Ethernet)`: `Y`
+      - Set `Mass Storage Gadget`: `Y`
+      - Set `Serial Gadget (with CDC ACM and CDC OBEX support)`: `Y`
+      - Set `CDC Composite Device (Ethernet and ACM)`: `Y`
+      - Set `CDC Composite Device (ACM and mass storage)`: `Y`
+      - Set `HID Gadget`: `Y`
+      - Set `USB Webcam Gadget`: `Y`
+      - Set `USB Raw Gadget`: `Y`
+- Set `Device Drivers` > `PHY Subsystem` > `PHY Core`: `Y`
+- Set `Device Drivers` > `On-Chip Interconnect management support`: `Y`
 
 ```
 Changed configuration saved at:
