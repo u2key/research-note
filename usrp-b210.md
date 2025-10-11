@@ -193,7 +193,7 @@ tx_bandwidth = 20e+6
 rx_bandwidth = 20e+6
 
 tx_num_samples = int(1e+6)
-rx_num_samples = int(tx_num_samples * 2)
+rx_num_samples = int(1e+6)
 
 usrp = uhd.usrp.MultiUSRP("type=b200")
 usrp.set_tx_freq(carrier_wave_frequency)
