@@ -317,9 +317,6 @@ def prepare_transmit_signal(num_samples_per_symbol):
   print(f"Transmit Number of Samples: {tx_num_samples}")
   return (tx_num_samples, tx_signal)
 
-time_now = usrp.get_time_now()
-time_start = time_now + uhd.types.TimeSpec(1.0)
-
 def transmit(usrp, tx_ch, tx_signal):
   tx_streamer_args = uhd.usrp.StreamArgs("fc32", "sc16")
   tx_streamer_args.channels = [tx_ch]
@@ -327,8 +324,7 @@ def transmit(usrp, tx_ch, tx_signal):
   tx_meta = uhd.types.TXMetadata()
   tx_meta.start_of_burst = True
   tx_meta.end_of_burst = True
-  tx_meta.has_time_spec = True
-  tx_meta.time_spec = time_start
+  tx_meta.has_time_spec = False
   tx_streamer.send(tx_signal, tx_meta)
   
 def receive(usrp, rx_ch):
@@ -338,7 +334,6 @@ def receive(usrp, rx_ch):
   rx_stream_cmd = uhd.types.StreamCMD(uhd.types.StreamMode.num_done)
   rx_stream_cmd.stream_now = True
   rx_stream_cmd.num_samps = rx_num_samples
-  rx_stream_cmd.time_spec = time_start
   rx_meta = uhd.types.RXMetadata()
   rx_buffer = np.zeros(tx_num_samples, dtype=np.complex64)
   rx_streamer.issue_stream_cmd(rx_stream_cmd)
