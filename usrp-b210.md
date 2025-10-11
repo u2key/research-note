@@ -220,8 +220,9 @@ print(f"Transmitter Sampling Rate: {usrp.get_tx_rate(chan=tx_ch)}")
 usrp.set_rx_rate(sampling_rate, chan=rx_ch)
 print(f"Receiver Sampling Rate: {usrp.get_rx_rate(chan=rx_ch)}")
 
-usrp.set_time_now(uhd.types.TimeSpec(0.0))
-time_spec = uhd.types.TimeSpec(usrp.get_time_now().get_real_secs() + 1.0)
+time_now = usrp.get_time_now().get_real_secs()
+tx_time_spec = uhd.types.TimeSpec(time_now + 1.00)
+rx_time_spec = uhd.types.TimeSpec(time_now + 0.95)
 
 tx_streamer_args = uhd.usrp.StreamArgs("fc32", "sc16")
 tx_streamer_args.channels = [tx_ch]
@@ -231,7 +232,7 @@ tx_meta = uhd.types.TXMetadata()
 tx_meta.start_of_burst = True
 tx_meta.end_of_burst = True
 tx_meta.has_time_spec = True
-tx_meta.time_spec = time_spec
+tx_meta.time_spec = tx_time_spec
 
 rx_streamer_args = uhd.usrp.StreamArgs("fc32", "sc16")
 rx_streamer_args.channels = [1]
@@ -239,7 +240,7 @@ rx_streamer = usrp.get_rx_stream(rx_streamer_args)
 rx_stream_cmd = uhd.types.StreamCMD(uhd.types.StreamMode.num_done)
 rx_stream_cmd.stream_now = False
 rx_stream_cmd.num_samps = num_samples
-rx_stream_cmd.time_spec = time_spec
+rx_stream_cmd.time_spec = rx_time_spec
 rx_meta = uhd.types.RXMetadata()
 
 rx_buffer = np.zeros(num_samples, dtype=np.complex64)
