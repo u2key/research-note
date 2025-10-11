@@ -249,6 +249,7 @@ rx_streamer.issue_stream_cmd(rx_stream_cmd)
 num_received_samples = rx_streamer.recv(rx_buffer, rx_meta)
 if rx_meta.error_code != uhd.types.RXMetadataErrorCode.none:
   print(rx_meta.strerror())
+print(f"Number of Received Samples: {num_received_samples}")
 
 plt.figure(figsize=(12, 6))
 plt.subplot(2, 1, 1)
