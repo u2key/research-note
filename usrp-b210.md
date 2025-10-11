@@ -360,4 +360,5 @@ rx_signal_sampled = (np.real(rx_signal_sampled) > 0).astype(int)
 rx_text = ""
 for a in range(0, len(rx_signal_sampled), 8):
   rx_text += chr(int("".join(str(b) for b in rx_signal_sampled[a:a+8]), 2))
+print(f"Received string: {rx_text}")
 ```
