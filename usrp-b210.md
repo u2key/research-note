@@ -192,7 +192,7 @@ rx_gain = 30 #[dB]
 tx_bandwidth = 20e+6
 rx_bandwidth = 20e+6
 
-num_samples = 1e+6
+num_samples = int(1e+6)
 
 usrp = uhd.usrp.MultiUSRP("type=b200")
 usrp.set_tx_freq(carrier_wave_frequency)
@@ -240,15 +240,15 @@ rx_stream_cmd = uhd.types.StreamCMD(uhd.types.StreamMode.num_done)
 rx_stream_cmd.stream_now = False
 rx_stream_cmd.num_samps = num_samples
 rx_stream_cmd.time_spec = time_spec
-rx_buffer = np.zeros(num_samples, dtype=np.complex64)
 rx_meta = uhd.types.RXMetadata()
 
+rx_buffer = np.zeros(num_samples, dtype=np.complex64)
 tx_streamer.send(tx_signal, tx_meta)
 rx_streamer.issue_stream_cmd(rx_stream_cmd)
 num_received_samples = rx_streamer.recv(rx_buffer, rx_meta)
 if rx_meta.error_code != uhd.types.RXMetadataErrorCode.none:
   print(rx_meta.strerror())
-print(f"Received Total Samples: {received_num_samples_total}\r", end="")
+print(f"Received Total Samples: {received_num_samples_total}")
 
 plt.figure(figsize=(12, 6))
 plt.subplot(2, 1, 1)
