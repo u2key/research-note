@@ -347,7 +347,7 @@ def main():
   num_samples_per_symbol = 100
   usrp = usrp_init(carrier_wave_frequency=2.412e+9,
                    tx_port="TX/RX", rx_port="RX2", tx_ch=0, rx_ch=1, tx_gain=20, rx_gain=30,
-                   tx_bandwidth=20e+6, rx_bandwidth=20e+6, sampling_rate=sampling_rate)
+                   tx_bandwidth=20e+6, rx_bandwidth=20e+6, sampling_rate=1e+6)
   (tx_num_samples, tx_signal) = prepare_transmit_signal(num_samples_per_symbol=num_samples_per_symbol)
   ps_tx = ps(target=transmit, args=(usrp, 0, tx_signal))
   ps_rx = ps(target=receive, args=(usrp, 1, tx_num_samples))
