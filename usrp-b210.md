@@ -281,7 +281,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from multiprocessing import Process as ps
 
-def usrp_init(tx_port, rx_port, tx_ch, rx_ch, tx_gain, rx_gain, tx_bandwidth, rx_bandwidth, sampling_rate):
+def usrp_init(carrier_wave_frequency, tx_port, rx_port, tx_ch, rx_ch, tx_gain, rx_gain, tx_bandwidth, rx_bandwidth, sampling_rate):
   usrp = uhd.usrp.MultiUSRP("type=b200")
   usrp.set_tx_freq(carrier_wave_frequency)
   print(f"Transmitter Carrier Freq.: {usrp.get_tx_freq()}")
@@ -327,7 +327,7 @@ def transmit(usrp, tx_ch, tx_signal):
   tx_meta.has_time_spec = False
   tx_streamer.send(tx_signal, tx_meta)
   
-def receive(usrp, rx_ch):
+def receive(usrp, rx_ch, rx_num_samples):
   rx_streamer_args = uhd.usrp.StreamArgs("fc32", "sc16")  
   rx_streamer_args.channels = [rx_ch]
   rx_streamer = usrp.get_rx_stream(rx_streamer_args)
@@ -335,7 +335,7 @@ def receive(usrp, rx_ch):
   rx_stream_cmd.stream_now = True
   rx_stream_cmd.num_samps = rx_num_samples
   rx_meta = uhd.types.RXMetadata()
-  rx_buffer = np.zeros(tx_num_samples, dtype=np.complex64)
+  rx_buffer = np.zeros(rx_num_samples, dtype=np.complex64)
   rx_streamer.issue_stream_cmd(rx_stream_cmd)
   num_received_samples = rx_streamer.recv(rx_buffer, rx_meta)
   if rx_meta.error_code != uhd.types.RXMetadataErrorCode.none:
@@ -344,14 +344,13 @@ def receive(usrp, rx_ch):
   return rx_buffer
 
 def main():
-  carrier_wave_frequency = 2.412e+9 #[Hz]
-  sampling_rate = 1e+6 #[Hz]
   num_samples_per_symbol = 100
-  usrp = usrp_init(tx_port="TX/RX", rx_port="RX2", tx_ch=0, rx_ch=1, tx_gain=20, rx_gain=30,
+  usrp = usrp_init(carrier_wave_frequency=2.412e+9,
+                   tx_port="TX/RX", rx_port="RX2", tx_ch=0, rx_ch=1, tx_gain=20, rx_gain=30,
                    tx_bandwidth=20e+6, rx_bandwidth=20e+6, sampling_rate=sampling_rate)
   (tx_num_samples, tx_signal) = prepare_transmit_signal(num_samples_per_symbol=num_samples_per_symbol)
   ps_tx = ps(target=transmit, args=(usrp, 0, tx_signal))
-  ps_rx = ps(target=receive, args=(usrp, 1))
+  ps_rx = ps(target=receive, args=(usrp, 1, tx_num_samples))
   ps_tx.start()
   ps_rx.start()
   ps_tx.join()
