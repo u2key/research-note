@@ -322,7 +322,7 @@ print(f"Receiver Sampling Rate: {usrp.get_rx_rate(chan=rx_ch)}")
 tx_text = input("Enter the string to send: ")
 tx_signal = np.array([np.int32(list(a)) * 2 - 1 for a in [f"{ord(b):08b}" for b in tx_text]], dtype=np.complex64).flatten()
 tx_signal = np.repeat(tx_signal, num_samples_per_symbol)
-tx_num_samples = tx_signal.shape(0)
+tx_num_samples = tx_signal.shape
 print(f"Transmit Number of Samples: {tx_num_samples}")
 
 time_now = usrp.get_time_now()
