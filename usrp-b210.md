@@ -172,3 +172,106 @@ Unit: USRP B210 (340E957)
 [INFO] [UHD] linux; GNU C++ version 13.2.0; Boost_108300; UHD_4.6.0.0+ds1-5.1ubuntu0.24.04.1
 [INFO] [B200] Loading FPGA image: /home/ubuntu/uhd/fpga/usrp3/top/b200/build/usrp_b210_fpga.bin...
 ```
+
+## 7. Loop-Back Test using Python UHD API
+```python
+import time
+import uhd
+import numpy as np
+import matplotlib.pyplot as plt
+
+carrier_wave_frequency = 2.412e+9 #[Hz]
+sampling_rate = 1e+6 #[Hz]
+
+tx_port = "TX/RX"
+rx_port = "RX2"
+tx_ch = 0
+rx_ch = 1
+tx_gain = 20 #[dB]
+rx_gain = 30 #[dB]
+tx_bandwidth = 20e+6
+rx_bandwidth = 20e+6
+
+num_samples = 1000
+
+usrp = uhd.usrp.MultiUSRP("type=b200")
+usrp.set_tx_freq(carrier_wave_frequency)
+print(f"Transmitter Carrier Freq.: {usrp.get_tx_freq()}")
+usrp.set_rx_freq(carrier_wave_frequency)
+print(f"Receiver Carrier Freq.: {usrp.get_rx_freq()}")
+
+usrp.set_tx_antenna(ant=tx_port, chan=tx_ch)
+print(f"Transmitter Antenna: {usrp.get_tx_antenna()}")
+usrp.set_rx_antenna(ant=rx_port, chan=rx_ch)
+print(f"Receiver Antenna: {usrp.get_rx_antenna()}")
+
+usrp.set_tx_gain(tx_gain, chan=tx_ch)
+print(f"Transmitter Gain: {usrp.get_tx_gain(chan=0)} dB")
+usrp.set_rx_gain(rx_gain, chan=rx_ch)
+print(f"Receiver Gain: {usrp.get_rx_gain(chan=1)} dB")
+
+usrp.set_tx_bandwidth(tx_bandwidth, chan=tx_ch)
+print(f"Transmitter Bandwidth: {usrp.get_tx_bandwidth(chan=tx_ch)}")
+usrp.set_rx_bandwidth(rx_bandwidth, chan=rx_ch)
+print(f"Receiver Bandwidth: {usrp.get_rx_bandwidth(chan=rx_ch)}")
+
+usrp.set_tx_rate(sampling_rate, chan=tx_ch)
+print(f"Transmitter Sampling Rate: {usrp.get_tx_rate(chan=tx_ch)}")
+usrp.set_rx_rate(sampling_rate, chan=rx_ch)
+print(f"Receiver Sampling Rate: {usrp.get_rx_rate(chan=rx_ch)}")
+
+usrp.set_time_now(uhd.types.TimeSpec(0.0))
+time_spec = uhd.types.TimeSpec(usrp.get_time_now().get_real_secs() + 0.2)
+
+tx_streamer_args = uhd.usrp.StreamArgs("fc32", "sc16")
+tx_streamer_args.channels = [tx_ch]
+tx_streamer = usrp.get_tx_stream(tx_streamer_args)
+tx_signal = 0.5 * np.exp(2j * np.pi * 100000 * np.arange(num_samples) / sampling_rate).astype(np.complex64)
+tx_meta = uhd.types.TXMetadata()
+tx_meta.start_of_burst = True
+tx_meta.end_of_burst = True
+tx_meta.has_time_spec = True
+tx_meta.time_spec = time_spec
+tx_streamer.send(tx_signal, tx_meta)
+
+rx_streamer_args = uhd.usrp.StreamArgs("fc32", "sc16")
+rx_streamer_args.channels = [1]
+rx_streamer = usrp.get_rx_stream(rx_streamer_args)
+rx_stream_cmd = uhd.types.StreamCMD(uhd.types.StreamMode.num_done)
+rx_stream_cmd.stream_now = False
+rx_stream_cmd.num_samps = num_samples
+rx_stream_cmd.time_spec = time_spec
+rx_buffer = np.zeros(num_samples, dtype=np.complex64)
+rx_meta = uhd.types.RXMetadata()
+
+received_num_samples_total = 0
+for _ in range(10):
+  if received_num_samples_total >= num_samples:
+    break
+  rx_streamer.issue_stream_cmd(rx_stream_cmd)
+  received_num_samples = rx_streamer.recv(rx_buffer, rx_meta)
+  received_num_samples_total += received_num_samples
+  print(f"Received Total Samples: {received_num_samples_total}\r", end="")
+  if rx_meta.error_code != uhd.types.RXMetadataErrorCode.none:
+    print(rx_meta.strerror())
+
+plt.figure(figsize=(12, 6))
+plt.subplot(2, 1, 1)
+plt.plot(np.real(rx_buffer), label="Real")
+plt.plot(np.imag(rx_buffer), label="Imag")
+plt.title("Loopback: Time Domain")
+plt.legend()
+plt.grid()
+
+plt.subplot(2, 1, 2)
+spectrum = np.fft.fftshift(np.fft.fft(rx_buffer))
+freqs = np.fft.fftshift(np.fft.fftfreq(len(rx_buffer), 1.0 / sampling_rate))
+plt.plot(freqs / 1e3, 20 * np.log10(np.abs(spectrum)))
+plt.title("Loopback: Frequency Domain")
+plt.xlabel("Frequency (kHz)")
+plt.ylabel("Magnitude (dB)")
+plt.grid()
+
+plt.tight_layout()
+plt.show()
+```
