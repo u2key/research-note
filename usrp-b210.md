@@ -193,7 +193,7 @@ tx_bandwidth = 20e+6
 rx_bandwidth = 20e+6
 
 tx_num_samples = int(1e+6)
-rx_num_samples = int(tx_num_samples * 1.05)
+rx_num_samples = int(tx_num_samples * 2)
 
 usrp = uhd.usrp.MultiUSRP("type=b200")
 usrp.set_tx_freq(carrier_wave_frequency)
@@ -222,8 +222,8 @@ usrp.set_rx_rate(sampling_rate, chan=rx_ch)
 print(f"Receiver Sampling Rate: {usrp.get_rx_rate(chan=rx_ch)}")
 
 time_now = usrp.get_time_now().get_real_secs()
-tx_time_spec = uhd.types.TimeSpec(time_now + 1.00)
-rx_time_spec = uhd.types.TimeSpec(time_now + 0.95)
+tx_time_spec = uhd.types.TimeSpec(time_now + 0.5)
+rx_time_spec = uhd.types.TimeSpec(time_now + 0.45)
 
 tx_streamer_args = uhd.usrp.StreamArgs("fc32", "sc16")
 tx_streamer_args.channels = [tx_ch]
