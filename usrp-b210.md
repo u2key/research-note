@@ -221,7 +221,7 @@ usrp.set_rx_rate(sampling_rate, chan=rx_ch)
 print(f"Receiver Sampling Rate: {usrp.get_rx_rate(chan=rx_ch)}")
 
 usrp.set_time_now(uhd.types.TimeSpec(0.0))
-time_spec = uhd.types.TimeSpec(usrp.get_time_now().get_real_secs() + 0.2)
+time_spec = uhd.types.TimeSpec(usrp.get_time_now().get_real_secs() + 1.0)
 
 tx_streamer_args = uhd.usrp.StreamArgs("fc32", "sc16")
 tx_streamer_args.channels = [tx_ch]
