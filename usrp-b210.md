@@ -233,8 +233,6 @@ tx_meta.start_of_burst = True
 tx_meta.end_of_burst = True
 tx_meta.has_time_spec = True
 tx_meta.time_spec = time_start
-if tx_meta.error_code != uhd.types.TXMetadataErrorCode.none:
-  print(tx_meta.strerror())
 
 rx_streamer_args = uhd.usrp.StreamArgs("fc32", "sc16")
 rx_streamer_args.channels = [1]
