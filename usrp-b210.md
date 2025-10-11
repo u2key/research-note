@@ -192,7 +192,7 @@ rx_gain = 30 #[dB]
 tx_bandwidth = 20e+6
 rx_bandwidth = 20e+6
 
-num_samples = 1000
+num_samples = 1e+6
 
 usrp = uhd.usrp.MultiUSRP("type=b200")
 usrp.set_tx_freq(carrier_wave_frequency)
@@ -232,7 +232,6 @@ tx_meta.start_of_burst = True
 tx_meta.end_of_burst = True
 tx_meta.has_time_spec = True
 tx_meta.time_spec = time_spec
-tx_streamer.send(tx_signal, tx_meta)
 
 rx_streamer_args = uhd.usrp.StreamArgs("fc32", "sc16")
 rx_streamer_args.channels = [1]
@@ -244,16 +243,12 @@ rx_stream_cmd.time_spec = time_spec
 rx_buffer = np.zeros(num_samples, dtype=np.complex64)
 rx_meta = uhd.types.RXMetadata()
 
-received_num_samples_total = 0
-for _ in range(10):
-  if received_num_samples_total >= num_samples:
-    break
-  rx_streamer.issue_stream_cmd(rx_stream_cmd)
-  received_num_samples = rx_streamer.recv(rx_buffer, rx_meta)
-  received_num_samples_total += received_num_samples
-  print(f"Received Total Samples: {received_num_samples_total}\r", end="")
-  if rx_meta.error_code != uhd.types.RXMetadataErrorCode.none:
-    print(rx_meta.strerror())
+tx_streamer.send(tx_signal, tx_meta)
+rx_streamer.issue_stream_cmd(rx_stream_cmd)
+num_received_samples = rx_streamer.recv(rx_buffer, rx_meta)
+if rx_meta.error_code != uhd.types.RXMetadataErrorCode.none:
+  print(rx_meta.strerror())
+print(f"Received Total Samples: {received_num_samples_total}\r", end="")
 
 plt.figure(figsize=(12, 6))
 plt.subplot(2, 1, 1)
