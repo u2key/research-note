@@ -174,6 +174,7 @@ Unit: USRP B210 (340E957)
 ```
 
 ## 7. Loop-Back Test using Python UHD API
+### 7.1. Sine Wave Transmission
 ```python
 import time
 import uhd
@@ -270,4 +271,92 @@ plt.grid()
 
 plt.tight_layout()
 plt.show()
+```
+
+## 7.2. Text Transmission
+```python
+import time
+import uhd
+import numpy as np
+import matplotlib.pyplot as plt
+
+carrier_wave_frequency = 2.412e+9 #[Hz]
+sampling_rate = 1e+6 #[Hz]
+num_samples_per_symbol = 100
+
+tx_port = "TX/RX"
+rx_port = "RX2"
+tx_ch = 0
+rx_ch = 1
+tx_gain = 20 #[dB]
+rx_gain = 30 #[dB]
+tx_bandwidth = 20e+6
+rx_bandwidth = 20e+6
+
+usrp = uhd.usrp.MultiUSRP("type=b200")
+usrp.set_tx_freq(carrier_wave_frequency)
+print(f"Transmitter Carrier Freq.: {usrp.get_tx_freq()}")
+usrp.set_rx_freq(carrier_wave_frequency)
+print(f"Receiver Carrier Freq.: {usrp.get_rx_freq()}")
+
+usrp.set_tx_antenna(ant=tx_port, chan=tx_ch)
+print(f"Transmitter Antenna: {usrp.get_tx_antenna()}")
+usrp.set_rx_antenna(ant=rx_port, chan=rx_ch)
+print(f"Receiver Antenna: {usrp.get_rx_antenna()}")
+
+usrp.set_tx_gain(tx_gain, chan=tx_ch)
+print(f"Transmitter Gain: {usrp.get_tx_gain(chan=0)} dB")
+usrp.set_rx_gain(rx_gain, chan=rx_ch)
+print(f"Receiver Gain: {usrp.get_rx_gain(chan=1)} dB")
+
+usrp.set_tx_bandwidth(tx_bandwidth, chan=tx_ch)
+print(f"Transmitter Bandwidth: {usrp.get_tx_bandwidth(chan=tx_ch)}")
+usrp.set_rx_bandwidth(rx_bandwidth, chan=rx_ch)
+print(f"Receiver Bandwidth: {usrp.get_rx_bandwidth(chan=rx_ch)}")
+
+usrp.set_tx_rate(sampling_rate, chan=tx_ch)
+print(f"Transmitter Sampling Rate: {usrp.get_tx_rate(chan=tx_ch)}")
+usrp.set_rx_rate(sampling_rate, chan=rx_ch)
+print(f"Receiver Sampling Rate: {usrp.get_rx_rate(chan=rx_ch)}")
+
+tx_text = input("Enter the string to send: ")
+tx_signal = np.array([np.int32(list(a)) * 2 - 1 for a in [f"{ord(b):08b}" for b in tx_text]], dtype=np.complex64).flatten()
+tx_signal = np.repeat(tx_signal, num_samples_per_symbol)
+tx_num_samples = tx_signal.shape(0)
+print(f"Transmit Number of Samples: {tx_num_samples}")
+
+time_now = usrp.get_time_now()
+time_start = time_now + uhd.types.TimeSpec(1.0)
+
+tx_streamer_args = uhd.usrp.StreamArgs("fc32", "sc16")
+tx_streamer_args.channels = [tx_ch]
+tx_streamer = usrp.get_tx_stream(tx_streamer_args)
+tx_meta = uhd.types.TXMetadata()
+tx_meta.start_of_burst = True
+tx_meta.end_of_burst = True
+tx_meta.has_time_spec = True
+tx_meta.time_spec = time_start
+
+rx_streamer_args = uhd.usrp.StreamArgs("fc32", "sc16")
+rx_streamer_args.channels = [1]
+rx_streamer = usrp.get_rx_stream(rx_streamer_args)
+rx_stream_cmd = uhd.types.StreamCMD(uhd.types.StreamMode.num_done)
+rx_stream_cmd.stream_now = True
+rx_stream_cmd.num_samps = rx_num_samples
+rx_stream_cmd.time_spec = time_start
+rx_meta = uhd.types.RXMetadata()
+
+rx_buffer = np.zeros(tx_num_samples, dtype=np.complex64)
+tx_streamer.send(tx_signal, tx_meta)
+rx_streamer.issue_stream_cmd(rx_stream_cmd)
+num_received_samples = rx_streamer.recv(rx_buffer, rx_meta)
+if rx_meta.error_code != uhd.types.RXMetadataErrorCode.none:
+  print(rx_meta.strerror())
+print(f"Number of Received Samples: {num_received_samples}")
+
+rx_signal_sampled = rx_buffer[::num_samples_per_symbol] # [start:end:step]
+rx_signal_sampled = (np.real(rx_signal_sampled) > 0).astype(int)
+rx_text = ""
+for a in range(0, len(rx_signal_sampled), 8):
+  rx_text += chr(int("".join(str(b) for b in rx_signal_sampled[a:a+8]), 2))
 ```
