@@ -233,6 +233,8 @@ tx_meta.start_of_burst = True
 tx_meta.end_of_burst = True
 tx_meta.has_time_spec = True
 tx_meta.time_spec = time_start
+if tx_meta.error_code != uhd.types.TXMetadataErrorCode.none:
+  print(tx_meta.strerror())
 
 rx_streamer_args = uhd.usrp.StreamArgs("fc32", "sc16")
 rx_streamer_args.channels = [1]
@@ -244,7 +246,6 @@ rx_stream_cmd.time_spec = time_start
 rx_meta = uhd.types.RXMetadata()
 
 rx_buffer = np.zeros(rx_num_samples, dtype=np.complex64)
-usrp.set_command_time(time_start)
 tx_streamer.send(tx_signal, tx_meta)
 rx_streamer.issue_stream_cmd(rx_stream_cmd)
 num_received_samples = rx_streamer.recv(rx_buffer, rx_meta)
