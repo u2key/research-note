@@ -355,8 +355,13 @@ def main():
   usrp = usrp_init(tx_port="TX/RX", rx_port="RX2", tx_ch=0, rx_ch=1, tx_gain=20, rx_gain=30,
                    tx_bandwidth=20e+6, rx_bandwidth=20e+6, sampling_rate=sampling_rate)
   (tx_num_samples, tx_signal) = prepare_transmit_signal(num_samples_per_symbol=num_samples_per_symbol)
-  transmit(usrp=usrp, tx_ch=0, tx_signal=tx_signal)
-  rx_buffer = receive(usrp=usrp, rx_ch=1)
+  ps_tx = ps(target=transmit, args=(usrp, 0, tx_signal))
+  ps_rx = ps(target=receive, args=(usrp, 1))
+  ps_tx.start()
+  ps_rx.start()
+  ps_tx.join()
+  ps_rx.join()
+  rx_buffer = np.array(ps_rx.dict().values()).flatten()
   rx_signal_sampled = rx_buffer[::num_samples_per_symbol] # [start:end:step]
   rx_signal_sampled = (np.real(rx_signal_sampled) > 0).astype(int)
   rx_text = ""
