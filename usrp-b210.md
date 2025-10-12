@@ -246,17 +246,11 @@ rx_streamer.issue_stream_cmd(rx_stream_cmd)
 rx_meta = uhd.types.RXMetadata()
 rx_buffer = np.zeros(rx_num_samples, dtype=np.complex64)
 
-def tx():
-  tx_streamer.send(tx_signal, tx_meta)
-
-def rx():
-  rx_streamer.recv(rx_buffer, rx_meta)
-
 def main():
   with ThreadPoolExecutor(max_workers=2, thread_name_prefix="thread") as exec:
     futures = []
     futures.append(exec.submit(tx_streamer.send, tx_signal, tx_meta))
-    futures.append(exec.submit(rx_streamer.send, rx_buffer, rx_meta))
+    futures.append(exec.submit(rx_streamer.recv, rx_buffer, rx_meta))
   
   if rx_meta.error_code != uhd.types.RXMetadataErrorCode.none:
     print(rx_meta.strerror())
