@@ -181,6 +181,7 @@ import asyncio
 import uhd
 import numpy as np
 import matplotlib.pyplot as plt
+from concurrent.futures import ThreadPoolExecutor
 
 carrier_wave_frequency = 2.412e+9 #[Hz]
 sampling_rate = 1e+6 #[Hz]
@@ -245,14 +246,18 @@ rx_streamer.issue_stream_cmd(rx_stream_cmd)
 rx_meta = uhd.types.RXMetadata()
 rx_buffer = np.zeros(rx_num_samples, dtype=np.complex64)
 
-async def tx():
+def tx():
   tx_streamer.send(tx_signal, tx_meta)
 
-async def rx():
+def rx():
   rx_streamer.recv(rx_buffer, rx_meta)
 
-async def main(): 
-  await asyncio.gather(tx(), rx())
+def main():
+  with ThreadPoolExecutor(max_workers=2, thread_name_prefix="thread") as exec:
+    futures = []
+    futures.append(exec.submit(tx_streamer.send, tx_signal, tx_meta))
+    futures.append(exec.submit(rx_streamer.send, rx_buffer, rx_meta))
+  
   if rx_meta.error_code != uhd.types.RXMetadataErrorCode.none:
     print(rx_meta.strerror())
   
@@ -277,6 +282,5 @@ async def main():
   plt.show()
   return 0
 
-if __name__ == "__main__":
-  asyncio.run(main())
+if __name__ == "__main__": exit(main())
 ```
