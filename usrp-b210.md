@@ -184,7 +184,7 @@ import matplotlib.pyplot as plt
 
 carrier_wave_frequency = 2.412e+9 #[Hz]
 sampling_rate = 1e+6 #[Hz]
-tx_delay = 0.25
+tx_delay = 0.07
 rx_delay = 0.05
 tx_port = "TX/RX"
 rx_port = "RX2"
