@@ -657,7 +657,7 @@ Retype new password:
 passwd: password updated successfully
 ```
 ```
-apt update && apt upgrade && apt install bash-completion bind9-dnsutils build-essential chrony dkms ethtool fdisk g++ gcc gdb gnupg net-tools network-manager ntpdate parted sudo usbutils vim wireless-tools
+apt update && apt upgrade && apt install bash-completion bind9-dnsutils build-essential chrony dkms ethtool fdisk g++ gcc gdb gnupg lshw net-tools network-manager ntpdate parted sudo usbutils vim wireless-tools
 ```
 ```
 unlink /etc/resolv.conf
