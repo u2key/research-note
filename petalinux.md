@@ -280,7 +280,6 @@ NOTE: Executing Tasks
   - Set `Xilinx Video HLS Core`: `Y`
 - `Device Drivers` > `USB support`
   - Set `USB announce new devices`: `Y`
-  - Set `OTG support`: `Y`
   - Set `USB 2.0 OTG FSM implementation`: `Y`
   - Set `xHCI HCD (USB 3.0) support`: `Y`
   - Set `OHCI HCD (USB 1.1) support` > `Generic OHCI driver for a platform device`: `Y`
