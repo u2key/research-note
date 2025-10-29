@@ -67,18 +67,10 @@ rem %SYSTEMROOT%\system32\windowspowershell\v1.0\powershell.exe -ExecutionPolicy
 > - Configure
 >   - Specify the generator for this project: `Visual Studio 17 2022`
 > - BOOST_ALL_DYN_LINK: Enabled
-> - Boost_DIR: `C:\ProgramFiles\boost_1_89_0`
-> - Boost_INCLUDE_DIR: `C:\ProgramFiles\boost_1_89_0`
-> - Boost_USE_STATIC_LIBS: `ON`
-> - Boost_USE_STATIC_RUNTIME: `OFF`
+> - Boost_DIR: `C:\ProgramFiles\boost_1_72_0`
+> - Boost_INCLUDE_DIR: `C:\ProgramFiles\boost_1_72_0`
 > - LIBUSB_INCLUDE_DIRS: `C:\ProgramFiles\libusb-1.0.29\include`
 > - LIBUSB_LIBRARIES: `C:\ProgramFiles\libusb-1.0.29\VS2022\MS64\dll\libusb-1.0.lib`
-> - ENABLE_PYTHON_API: Enabled
-> - ENABLE_STATIC_LIBS: Enabled
-> - Boost_NO_BOOST_CMAKE: `ON`
-> - CMAKE_POLICY_DEFAULT_CMP0167: `OLD`
-> - CMAKE_POLICY_DEFAULT_CMP0175: `OLD`
-> - CMAKE_POLICY_DEFAULT_CMP0177: `OLD`
 > - Configure
 > - Generate
 
