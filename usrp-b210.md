@@ -322,3 +322,11 @@ def main():
 
 if __name__ == "__main__": exit(main())
 ```
+
+8. Loop-Back Test using C API
+```c
+#include <uhd.h>
+```
+```bash
+cl test.c -I"C:\Users\admin\Documents\uhd\include\" -link "C:\Users\admin\Documenmts\uhd\build\lib\Release\uhd.lib"
+```
