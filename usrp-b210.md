@@ -40,6 +40,47 @@ rem %SYSTEMROOT%\system32\windowspowershell\v1.0\powershell.exe -ExecutionPolicy
 ```
 
 ## 3. USRP Hardware Driver (UHD)
+> ### For Windows 11
+> ### 3.1. Install Microsoft Visual Studio 2022
+> - https://visualstudio.microsoft.com/
+> 
+> ### 3.2. Install CMake 3.25.0
+> - https://cmake.org/files/v3.17/
+>
+> ### 3.3. Install Boost 1.72.0
+> - https://sourceforge.net/projects/boost/files/boost-binaries/1.72.0/
+>
+> ### 3.4. Install LibUSB
+> - https://sourceforge.net/projects/libusb/files/libusb-1.0/libusb-1.0.29/
+>
+> ### 3.5. Install Python
+> - https://www.python.org/downloads/
+>
+> ### 3.6. Install Mako
+> ```
+> python -m pip install Mako
+> ```
+>
+> ### 3.7. Install UHD using CMake GUI
+> - Where is the source code: `C:/Users/admin/Documents/uhd/host`
+> - Where to build the binaries: `C:/Users/admin/Documents/uhd/build`
+> - Configure
+>   - Specify the generator for this project: `Visual Studio 17 2022`
+> - BOOST_ALL_DYN_LINK: Enabled
+> - Boost_DIR: `C:\ProgramFiles\boost_1_89_0`
+> - Boost_INCLUDE_DIR: `C:\ProgramFiles\boost_1_89_0`
+> - Boost_USE_STATIC_LIBS: `ON`
+> - Boost_USE_STATIC_RUNTIME: `OFF`
+> - LIBUSB_INCLUDE_DIRS: `C:\ProgramFiles\libusb-1.0.29\include`
+> - LIBUSB_LIBRARIES: `C:\ProgramFiles\libusb-1.0.29\VS2022\MS64\dll\libusb-1.0.lib`
+> - ENABLE_PYTHON_API: Enabled
+> - ENABLE_STATIC_LIBS: Enabled
+> - Boost_NO_BOOST_CMAKE: `ON`
+> - CMAKE_POLICY_DEFAULT_CMP0167: `OLD`
+> - CMAKE_POLICY_DEFAULT_CMP0175: `OLD`
+> - CMAKE_POLICY_DEFAULT_CMP0177: `OLD`
+> - Configure
+> - Generate
 
 ### 3.1. Install Required Packages
 ```
@@ -174,7 +215,6 @@ Unit: USRP B210 (340E957)
 ```
 
 ## 7. Loop-Back Test using Python UHD API
-### 7.1. Sine Wave Transmission
 ```python
 import time
 import asyncio
@@ -280,13 +320,6 @@ if __name__ == "__main__": exit(main())
 ```
 
 ## 8. Loop-Back Test using C API
-### 8.1. Install Required Softwares
-#### BOOST
-- https://www.boost.org/releases/latest/
-
-### 8.2. Compile C Program
 ```c
 #include <uhd.h>
-```
-```bash
 ```
