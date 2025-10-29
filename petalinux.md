@@ -255,29 +255,29 @@ NOTE: Executing Tasks
 - `Device Drivers`
   - Set `Parallel port support` > `PC-style hardware` > `Use FIFO/DMA if available`: `Y`
   - `Network device support` > `Wireless LAN` > `Realtek devices`
-    - Set `Realtek 8180/8185/8187SE PCI support support`: `M`
-    - Set `Realtek 8187 and 8187B USB support`: `M`
+    - Set `Realtek 8180/8185/8187SE PCI support support`: `Y`
+    - Set `Realtek 8187 and 8187B USB support`: `Y`
     - `Realtek rtlwifi family of devices`
-      - Set `Realtek RTL8192CE/RTL8188CE Wireless Network Adapter`: `M`
-      - Set `Realtek RTL8192SE/RTL8191SE PCIe Wireless Network Adapter`: `M`
-      - Set `Realtek RTL8192DE/RTL8188DE PCIe Wireless Network Adapter`: `M`
-      - Set `Realtek RTL8723AE PCIe Wireless Network Adapter`: `M`
-      - Set `Realtek RTL8723BE PCIe Wireless Network Adapter`: `M`
-      - Set `Realtek RTL8188EE Wireless Network Adapter`: `M`
-      - Set `Realtek RTL8192EE Wireless Network Adapter`: `M`
-      - Set `Realtek RTL8821AE/RTL8812AE Wireless Network Adapter`: `M`
-      - Set `Realtek RTL8192CU/RTL8188CU USB Wireless Network Adapter`: `M`
-      - Set `Realtek RTL8192DU USB Wireless Network Adapter`: `M`
-  - Set `Realtek 802.11n USB wireless chips support`: `M`
-  - Set `Realtek 802.11ac wireless chips support` > `Realtek 8821CU USB wireless network adapter`: `M`
+      - Set `Realtek RTL8192CE/RTL8188CE Wireless Network Adapter`: `Y`
+      - Set `Realtek RTL8192SE/RTL8191SE PCIe Wireless Network Adapter`: `Y`
+      - Set `Realtek RTL8192DE/RTL8188DE PCIe Wireless Network Adapter`: `Y`
+      - Set `Realtek RTL8723AE PCIe Wireless Network Adapter`: `Y`
+      - Set `Realtek RTL8723BE PCIe Wireless Network Adapter`: `Y`
+      - Set `Realtek RTL8188EE Wireless Network Adapter`: `Y`
+      - Set `Realtek RTL8192EE Wireless Network Adapter`: `Y`
+      - Set `Realtek RTL8821AE/RTL8812AE Wireless Network Adapter`: `Y`
+      - Set `Realtek RTL8192CU/RTL8188CU USB Wireless Network Adapter`: `Y`
+      - Set `Realtek RTL8192DU USB Wireless Network Adapter`: `Y`
+  - Set `Realtek 802.11n USB wireless chips support`: `Y`
+  - Set `Realtek 802.11ac wireless chips support` > `Realtek 8821CU USB wireless network adapter`: `Y`
 - `Device Drivers` > `Character devices`
   - Set `Legacy (BSD) PTY support`: `Y`
   - Set `Non-standard serial port support`: `Y`
   - Set `Serial device bus`: `Y`
   - Set `Support for user-space parallel port device drivers`: `Y`
 - `Device Drivers` > `Multimedia support` > `Media drivers` > `Media platform devices`
-  - Set `Xilinx Video IP` > `Xilinx CSI-2 Rx Subsystem `: `M`
-  - Set `Xilinx Video HLS Core`: `M`
+  - Set `Xilinx Video IP` > `Xilinx CSI-2 Rx Subsystem `: `Y`
+  - Set `Xilinx Video HLS Core`: `Y`
 - `Device Drivers` > `USB support`
   - Set `USB announce new devices`: `Y`
   - Set `OTG support`: `Y`
