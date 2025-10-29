@@ -41,50 +41,6 @@ rem %SYSTEMROOT%\system32\windowspowershell\v1.0\powershell.exe -ExecutionPolicy
 
 ## 3. USRP Hardware Driver (UHD)
 
-> ## On Windows 11
-> ### 3.1. Clone Git Repository
-> ```
-> git clone --branch=UHD-4.9 https://github.com/EttusResearch/uhd.git
-> ```
->
-> ### 3.2. Install Required Softwares
-> #### CMAKE
-> - https://cmake.org/download/
->
-> #### BOOST
-> - https://www.boost.org/releases/latest/
->
-> #### Mako
-> ```
-> python -m pip install Mako
-> ```
->
-> #### Requests
-> ```
-> python -m pip install requests
-> ```
-> 
-> #### LibUSB
-> - https://github.com/libusb/libusb
->
-> ### 3.3. Install UHD with CMake GUI
-> - `Where is the source code`: `C:\Users\admin\Documents\uhd\host\`
-> - `Where to build the binaries`: `C:\Users\admin\Documents\uhd\build\`
-> - Enable `Advanced`
-> - `Configure`
->   - `Specify the generator for this project`: `Visual Studio 17 2022`
-> - Once try generation
-> - `Boost_INCLUDE_DIR`: `C:\ProgramFiles\boost_1_89_0\`
-> - `Boost_LIBRARY_DIR`: `C:\ProgramFiles\boost_1_89_0\lib64-msvc-14.3\`
-> - `BOOST_ALL_DYN_LINK`: Enabled
-> - `LIBUSB_LIBRARIES`: `C:\ProgramFiles\libusb-1.0.29\VS2022\MS64\dll\libusb-1.0.lib`
-> - `LIBUSB_INCLUDE_DIRS`: `C:\ProgramFiles\libusb-1.0.29\include\`
-> - `CMAKE_POLICY_DEFAULT_CMP0167`: `OLD`
->
-> ### 3.4. Open the UHD Project with Visual Studio
-> - Change Build Type from Debug to Release
-> - Run ALL_BUILD
-
 ### 3.1. Install Required Packages
 ```
 sudo apt update && sudo apt upgrade && sudo apt install autoconf automake build-essential ccache cmake cpufrequtils doxygen ethtool g++ gcc gir1.2-gtk-3.0 git gobject-introspection inetutils-tools libboost-all-dev libncurses5-dev libuhd-dev libusb-1.0-0 libusb-1.0-0-dev libusb-dev python3-dev python3-gi python3-mako python3-numpy python3-pip python3-requests python3-scipy python3-setuptools python3-ruamel.yaml uhd-host
@@ -323,10 +279,14 @@ def main():
 if __name__ == "__main__": exit(main())
 ```
 
-8. Loop-Back Test using C API
+## 8. Loop-Back Test using C API
+### 8.1. Install Required Softwares
+#### BOOST
+- https://www.boost.org/releases/latest/
+
+### 8.2. Compile C Program
 ```c
 #include <uhd.h>
 ```
 ```bash
-cl test.c -I"C:\Users\admin\Documents\uhd\include\" -link "C:\Users\admin\Documenmts\uhd\build\lib\Release\uhd.lib"
 ```
