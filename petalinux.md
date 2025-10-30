@@ -803,30 +803,7 @@ sudo ntpdate pool.ntp.org
 ```
 
 ## 9. Network Settings
-### 9.1. Ethernet Setings
-```
-sudo vim /etc/init.d/assign-ip-address
-```
-```
-#! /bin/sh
-
-ip addr add 172.23.72.104/24 dev eth0
-ip link set eth0 up
-ip route add default via 172.23.72.1
-ip link set eth0 up
-```
-```
-sudo vim /etc/sysctl.conf
-```
-```
-net.ipv6.conf.all.disable_ipv6 = 1
-net.ipv6.conf.default.disable_ipv6 = 1
-```
-```
-sudo sysctl -p
-```
-
-### 9.2. Wireless Settings
+### 9.1. Wireless Settings
 ```
 wget http://ftp.jp.debian.org/debian/pool/non-free-firmware/f/firmware-nonfree/firmware-realtek_20250917-1_all.deb
 ```
@@ -835,6 +812,32 @@ sudo dpkg -i firmware-realtek_20250917-1_all.deb
 ```
 ```
 sudo systemctl restart NetworkManager
+```
+```
+sudo vim /etc/netplan/99_config.yaml
+```
+```
+network:
+  version: 2
+  renderer: NetworkManager
+  ethernets:
+    eth0:
+      dhcp4: yes
+      dhcp-identifier: mac
+      macaddress: 00:00:00:00:00:00
+      optional: true
+  wifis:
+    wlx6c1ff74a89c9:
+      dhcp4: true
+      dhcp-identifier: mac
+      macaddress: 00:00:00:00:00:00
+      optional: true
+      access-points:
+        SSID:
+          password: "PASSWORD"
+```
+```
+sudo netplan apply
 ```
 ```
 sudo nmcli device wifi connect "SSID" password "PASSWORD"
