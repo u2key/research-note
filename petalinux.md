@@ -803,6 +803,7 @@ sudo ntpdate pool.ntp.org
 ```
 
 ## 9. Network Settings
+### 9.1. Ethernet Setings
 ```
 sudo vim /etc/init.d/assign-ip-address
 ```
@@ -823,6 +824,20 @@ net.ipv6.conf.default.disable_ipv6 = 1
 ```
 ```
 sudo sysctl -p
+```
+
+### 9.2. Wireless Settings
+```
+wget http://ftp.jp.debian.org/debian/pool/non-free-firmware/f/firmware-nonfree/firmware-realtek_20250917-1_all.deb
+```
+```
+sudo dpkg -i firmware-realtek_20250917-1_all.deb
+```
+```
+sudo systemctl restart NetworkManager
+```
+```
+sudo nmcli device wifi connect "SSID" password "PASSWORD"
 ```
 
 ## References
