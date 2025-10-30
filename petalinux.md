@@ -814,7 +814,7 @@ sudo dpkg -i firmware-realtek_20250917-1_all.deb
 sudo systemctl restart NetworkManager
 ```
 ```
-sudo vim /etc/netplan/99_config.yaml
+sudo vim /etc/netplan/99_custom_config.yaml
 ```
 ```
 network:
