@@ -41,38 +41,47 @@ rem %SYSTEMROOT%\system32\windowspowershell\v1.0\powershell.exe -ExecutionPolicy
 
 ## 3. USRP Hardware Driver (UHD)
 > ### For Windows 11
-> ### 3.1. Install Microsoft Visual Studio 2022
+> ### 3.1. Download UHD Sources
+> - https://codeload.github.com/EttusResearch/uhd/zip/refs/tags/v4.9.0.1
+> 
+> ### 3.2. Install Microsoft Visual Studio 2022
 > - https://visualstudio.microsoft.com/
 > 
-> ### 3.2. Install CMake 3.25.0
+> ### 3.3. Install CMake 3.25.0
 > - https://cmake.org/files/v3.17/
 >
-> ### 3.3. Install Boost 1.72.0
-> - https://www.boost.org/releases/1.72.0/
+> ### 3.4. Install Boost 1.89.0
+> - https://www.boost.org/releases/1.89.0/
 >
-> ### 3.4. Install LibUSB
+> ### 3.5. Install LibUSB
 > - https://sourceforge.net/projects/libusb/files/libusb-1.0/libusb-1.0.29/
 >
-> ### 3.5. Install Python
+> ### 3.6. Install Python
 > - https://www.python.org/downloads/
 >
-> ### 3.6. Install Mako
+> ### 3.7. Install Mako
 > ```
 > python -m pip install Mako
 > ```
 >
-> ### 3.7. Install UHD using CMake GUI
-> - Where is the source code: `C:/Users/admin/Documents/uhd/host`
-> - Where to build the binaries: `C:/Users/admin/Documents/uhd/build`
+> ### 3.8. Create UHD Visual Studio Project using CMake GUI
+> - Where is the source code: `C:\Users\admin\Documents\uhd-4.9.0.1\host`
+> - Where to build the binaries: `C:\Users\admin\Documents\uhd-4.9.0.1\host\build`
 > - Configure
 >   - Specify the generator for this project: `Visual Studio 17 2022`
+> - CMAKE_INSTALL_PREFIX: `C:\Users\admin\Documents\uhd-4.9.0.1\host\build\bin`
 > - BOOST_ALL_DYN_LINK: Enabled
-> - Boost_DIR: `C:\ProgramFiles\boost_1_72_0`
-> - Boost_INCLUDE_DIR: `C:\ProgramFiles\boost_1_72_0`
+> - Boost_DIR: `C:\ProgramFiles\boost_1_89_0`
+> - Boost_INCLUDE_DIR: `C:\ProgramFiles\boost_1_89_0`
 > - LIBUSB_INCLUDE_DIRS: `C:\ProgramFiles\libusb-1.0.29\include`
 > - LIBUSB_LIBRARIES: `C:\ProgramFiles\libusb-1.0.29\VS2022\MS64\dll\libusb-1.0.lib`
 > - Configure
 > - Generate
+>
+> ### 3.9. Build UHD Project Using Visual Studio
+> - Set Build Action to `Release`
+> - Build `ALL_BUILD`
+> - Build `INSTALL`
 
 ### 3.1. Install Required Packages
 ```
