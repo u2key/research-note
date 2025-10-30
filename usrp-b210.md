@@ -48,7 +48,7 @@ rem %SYSTEMROOT%\system32\windowspowershell\v1.0\powershell.exe -ExecutionPolicy
 > - https://cmake.org/files/v3.17/
 >
 > ### 3.3. Install Boost 1.72.0
-> - https://sourceforge.net/projects/boost/files/boost-binaries/1.72.0/
+> - https://www.boost.org/releases/1.72.0/
 >
 > ### 3.4. Install LibUSB
 > - https://sourceforge.net/projects/libusb/files/libusb-1.0/libusb-1.0.29/
