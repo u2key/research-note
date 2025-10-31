@@ -198,7 +198,7 @@ Unit: USRP B210 (340E957)
 [INFO] [B200] Loading FPGA image: /usr/share/uhd/images/usrp_b210_fpga.bin...
 ```
 ```
-uhd_image_loader --args="type=b200" --fpga-path="C:\Users\admin\Documents\VirtualBoxShared\rh-wireless\build\usrp_b210_fpga.bin"
+uhd_image_loader --args="type=b200" --fpga-path="C:\Users\admin\Documents\VirtualBoxShared\rh-wireless\build\usrp_b210_fpga.bit"
 ```
 ```
 Unit: USRP B210 (340E957)
