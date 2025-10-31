@@ -158,7 +158,7 @@ vim ${HOME}/.bashrc
 export PATH="${PATH}:/usr/libexec/uhd/examples/"
 ```
 ```
-mv /mnt/c/Users/admin/Documents/VirtualBoxShared/rh-wireless/build/usrp_b210_fpga.bit /mnt/c/Program\ Files/UHD/share/uhd/images/usrp_b210_custom_fpga.bit
+copy C:\Users\admin\Documents\VirtualBoxShared\rh-wireless\build\usrp_b210_fpga.bit "C:\Program Files\UHD\share\uhd\images\usrp_b210_custom_fpga.bit"
 ```
 ```
 benchmark_rate --args "fpga=usrp_b210_custom_fpga.bit" --tx_channels 0 --rx_channels 1 --tx_rate 1e6 --rx_rate 1e6
