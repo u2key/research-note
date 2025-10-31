@@ -158,16 +158,7 @@ vim ${HOME}/.bashrc
 export PATH="${PATH}:/usr/libexec/uhd/examples/"
 ```
 ```
-sudo cp -v /usr/share/uhd/images/usrp_b210_fpga.bin /usr/share/uhd/images/usrp_b210_fpga_original.bin
-```
-```
-sudo cp -v /mnt/c/Users/admin/Documents/VirtualBoxShared/usrp_b210_fpga.bin /usr/share/uhd/images/usrp_b210_fpga.bin
-```
-```
 benchmark_rate --tx_channels 0 --rx_channels 1 --tx_rate 10e6 --rx_rate 10e6
-```
-```
-sudo cp -v /usr/share/uhd/images/usrp_b210_fpga_original.bin /usr/share/uhd/images/usrp_b210_fpga.bin
 ```
 
 ## 5. Generate FPGA Configuration Bitstream
@@ -207,7 +198,7 @@ Unit: USRP B210 (340E957)
 [INFO] [B200] Loading FPGA image: /usr/share/uhd/images/usrp_b210_fpga.bin...
 ```
 ```
-uhd_image_loader --args="type=b200" --fpga-path="C:\Users\admin\Documents\VirtualBoxShared\build\usrp_b210_fpga.bin"
+uhd_image_loader --args="type=b200" --fpga-path="C:\Users\admin\Documents\VirtualBoxShared\rh-wireless\build\usrp_b210_fpga.bin"
 ```
 ```
 Unit: USRP B210 (340E957)
