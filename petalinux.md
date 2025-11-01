@@ -435,7 +435,8 @@ Summary: There was 1 WARNING message.
 
 ### 3.20. Generate boot image
 ```
-petalinux-package --boot --force --fsbl images/linux/zynq_fsbl.elf --fpga images/linux/system.bit --u-boot
+petalinux-package --boot --force --fsbl images/linux/zynq_fsbl.elf --fpga /mnt/c/Users/admin/Documents/autonomous-vehicle/Zybo-Z7/A
+utonomousVehicle.runs/impl_1/AutonomousVehicle.bit --u-boot
 ```
 ```
 [INFO] File in BOOT BIN: "/opt/petalinux/SampleProject/images/linux/zynq_fsbl.elf"
