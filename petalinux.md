@@ -367,7 +367,40 @@ Summary: There was 1 WARNING message.
 [INFO] Successfully configured kernel
 ```
 
-### 3.18. Configure Device Tree
+### 3.18. Configure Bootloader
+```
+petalinux-config -c bootloader
+```
+```
+[INFO] Bitbake is not available, some functionality may be reduced.
+[INFO] Using HW file: /opt/petalinux/SampleProject/project-spec/hw-description/system.xsa
+[INFO] Getting Platform info from HW file
+[INFO] Silentconfig project
+[INFO] Silentconfig rootfs
+[INFO] Generating configuration files
+[INFO] Generating workspace directory
+NOTE: Starting bitbake server...
+NOTE: Started PRServer with DBfile: /opt/petalinux/SampleProject/build/cache/prserv.sqlite3, Address: 127.0.0.1:45459, PID: 133782
+INFO: Specified workspace already set up, leaving as-is
+[INFO] Configuring: bootloader
+[INFO] bitbake virtual/fsbl -c configure
+NOTE: Started PRServer with DBfile: /opt/petalinux/SampleProject/build/cache/prserv.sqlite3, Address: 127.0.0.1:38533, PID: 133842
+WARNING: XSCT has been deprecated. It will still be available for several releases. In the future, it's recommended to start new projects with SDT workflow.
+Loading cache: 100% |########################################################################################################################################################| Time: 0:00:06
+Loaded 8816 entries from dependency cache.
+Parsing recipes: 100% |######################################################################################################################################################| Time: 0:00:03
+Parsing of 6138 .bb files complete (6133 cached, 5 parsed). 8821 targets, 1442 skipped, 28 masked, 0 errors.
+NOTE: Resolving any missing task queue dependencies
+Sstate summary: Wanted 76 Local 0 Mirrors 63 Missed 13 Current 72 (82% match, 91% complete)##################################################################                | ETA:  0:00:00
+Initialising tasks: 100% |###################################################################################################################################################| Time: 0:00:04
+NOTE: Executing Tasks
+NOTE: Tasks Summary: Attempted 498 tasks of which 452 didn't need to be rerun and all succeeded.
+
+Summary: There was 1 WARNING message.
+[INFO] Successfully configured bootloader
+```
+
+### 3.19. Configure Device Tree
 ```
 vim project-spec/meta-user/recipes-bsp/device-tree/files/system-user.dtsi
 ```
@@ -396,7 +429,7 @@ vim project-spec/meta-user/recipes-bsp/device-tree/files/system-user.dtsi
 };
 ```
 
-### 3.19. Build the Petalinux project
+### 3.20. Build the Petalinux project
 ```
 petalinux-build
 ```
@@ -430,7 +463,7 @@ Summary: There was 1 WARNING message.
 [INFO] Successfully built project
 ```
 
-### 3.20. Generate boot image
+### 3.21. Generate boot image
 ```
 petalinux-package --boot --force --fsbl images/linux/zynq_fsbl.elf --fpga /mnt/c/Users/admin/Documents/autonomous-vehicle/Zybo-Z7/A
 utonomousVehicle.runs/impl_1/AutonomousVehicle.bit --u-boot
