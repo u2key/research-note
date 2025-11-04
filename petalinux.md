@@ -610,7 +610,7 @@ sudo mount -t ext4 /dev/loop0p2 /mnt/loop0p2
 cd /opt/petalinux/SampleProject/images/linux
 ```
 ```
-sudo cp BOOT.BIN boot.scr image.ub system.bit /mnt/loop0p1
+sudo cp BOOT.BIN boot.scr image.ub /mnt/loop0p1
 ```
 
 ### 4.11. Create Ubuntu Jammy rootfs
