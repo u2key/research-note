@@ -465,7 +465,7 @@ Summary: There was 1 WARNING message.
 
 ### 3.21. Generate boot image
 ```
-petalinux-package --boot --force --fsbl images/linux/zynq_fsbl.elf --fpga images/linux/system.bit --u-boot
+petalinux-package boot --force --fsbl images/linux/zynq_fsbl.elf --fpga images/linux/system.bit --u-boot
 ```
 ```
 [INFO] File in BOOT BIN: "/opt/petalinux/SampleProject/images/linux/zynq_fsbl.elf"
@@ -486,8 +486,6 @@ petalinux-package --boot --force --fsbl images/linux/zynq_fsbl.elf --fpga images
 
 [INFO] Binary is ready.
 [INFO] Successfully Generated BIN File
-[WARNING] Unable to access the TFTPBOOT folder /tftpboot!!!
-[WARNING] Skip file copy to TFTPBOOT folder!!!
 ```
 
 ## 4. Create bootable microSD
