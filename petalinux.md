@@ -465,9 +465,10 @@ Summary: There was 1 WARNING message.
 
 ### 3.21. Generate boot image
 ```
-petalinux-package boot --force --fsbl images/linux/zynq_fsbl.elf --fpga images/linux/system.bit --u-boot
+petalinux-package boot --fsbl --fpga --u-boot --force
 ```
 ```
+[INFO] Getting Default bit file
 [INFO] File in BOOT BIN: "/opt/petalinux/SampleProject/images/linux/zynq_fsbl.elf"
 [INFO] File in BOOT BIN: "/opt/petalinux/SampleProject/images/linux/system.bit"
 [INFO] File in BOOT BIN: "/opt/petalinux/SampleProject/images/linux/u-boot.elf"
