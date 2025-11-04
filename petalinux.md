@@ -465,9 +465,6 @@ Summary: There was 1 WARNING message.
 
 ### 3.21. Generate boot image
 ```
-cp /mnt/c/Users/admin/Documents/autonomous-vehicle/Zybo-Z7/AutonomousVehicle.runs/impl_1/AutonomousVehicle.bit images/linux/system.bit
-```
-```
 petalinux-package --boot --force --fsbl images/linux/zynq_fsbl.elf --fpga images/linux/system.bit --u-boot
 ```
 ```
