@@ -148,11 +148,9 @@ PetaLinux environment set to '/opt/petalinux/build'
 
 ### 3.13. Create Petalinux project
 ```
-petalinux-create --type project --template zynq --name SampleProject
+petalinux-create project --template zynq --name SampleProject
 ```
 ```
-[NOTE] Argument: "--type project" has been deprecated. It is recommended to start using new python command line Argument.
-[NOTE] Use: petalinux-create project [OPTIONS]
 [INFO] Create project: SampleProject
 [INFO] New project successfully created in /opt/petalinux/SampleProject
 ```
