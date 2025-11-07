@@ -896,6 +896,9 @@ sudo vim /usr/local/bin/user-customized.sh
 #! /bin/bash
 mount -o rw,remount /
 ```
+```
+sudo systemctl enable --now user-customized.service
+```
 
 ## References
 
