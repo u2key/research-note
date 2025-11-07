@@ -872,6 +872,31 @@ sudo netplan apply
 sudo nmcli device wifi connect "SSID" password "PASSWORD"
 ```
 
+## 10. Auto Remount RootFS
+```
+sudo vim /etc/systemd/system/user-customized.service
+```
+```
+[Unit]
+Description=User-customized services that run after boot completes.
+After=default.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/user-customized.sh
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target
+```
+```
+sudo vim /usr/local/bin/user-customized.sh
+```
+```
+#! /bin/bash
+mount -o rw,remount /
+```
+
 ## References
 
 - https://qiita.com/iwatake2222/items/ece0cdf83e6e1908fad8
