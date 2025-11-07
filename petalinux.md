@@ -879,7 +879,7 @@ sudo vim /etc/systemd/system/user-customized.service
 ```
 [Unit]
 Description=User-customized services that run after boot completes.
-After=multi-user.target 
+After=multi-user.target network.target ssh.service
 
 [Service]
 Type=oneshot
