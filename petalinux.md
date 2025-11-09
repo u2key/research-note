@@ -183,8 +183,9 @@ petalinux-config --get-hw-description=../system.xsa
   - Set `Ethernet MAC address` manually
 - `FPGA Manager`
   - Select `FPGA Manager`
-- `Image Packaging Configuration` > `Root filesystem type`
-  - Select `EXT4 (SD/eMMC/SATA/USB)`
+- `Image Packaging Configuration`
+  - Select `Root filesystem type` > `EXT4 (SD/eMMC/SATA/USB)`
+  - Unselect `Copy final images to tftpboot`
 
 ```
 [INFO] Generating kconfig for rootfs
