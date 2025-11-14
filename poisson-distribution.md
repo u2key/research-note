@@ -9,7 +9,7 @@ P(k) &=& \lim_{n \to \infty} {}_n C_k \left ( \dfrac{N}{n} \right )^{k} \left ( 
 &=& \lim_{n \to \infty} \dfrac{n \cdot \left ( n - 1 \right ) \cdots \left (n - \left ( k - 1\right ) \right)}{k !} \left ( \dfrac{N}{n} \right ) ^{k} \left ( 1 - \dfrac{N}{n} \right ) ^{n - k} \\
 &=& \lim_{n \to \infty} \prod ^{k - 1} _{i = 0} \left ( \dfrac{n - i}{n} \right ) \dfrac{N^{k}}{k !} \left ( 1 - \dfrac{N}{n} \right ) ^{n - k} \\
 &=& \lim_{n \to \infty} \prod ^{k - 1} _{i = 0} \left ( 1 - \dfrac{i}{n} \right ) \dfrac{N^{k}}{k !} \left ( 1 - \dfrac{N}{n} \right ) ^{n} \left ( 1 - \dfrac{N}{n} \right ) ^{- k} \\
-&=& \lim_{n \to \infty} \prod ^{k - 1} _{i = 0} 1 \cdot \dfrac{N^{k}}{k !} \cdot e^{- N} \cdot 1 \\
+&=& 1 \cdot \dfrac{N^{k}}{k !} \cdot e^{- N} \cdot 1 \\
 &=& \dfrac{N^{k}}{k !} \cdot e^{- N} \\
 \end{align}
 }
