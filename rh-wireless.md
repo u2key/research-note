@@ -35,6 +35,7 @@ WLANHDLTransmitterExample
   - Target > Project Folder: `hdl`
   - Synthesis Tool: `No synthesis tool specified`
   - Target Frequency (MHz): `300`
+  - Global Settings > Module nam prefix: `WLANHDLTX_`
 
 ### 1.5. Generate HDL Code
 
@@ -72,6 +73,7 @@ WLANHDLReceiverExample
   - Target > Project Folder: `hdl`
   - Synthesis Tool: `No synthesis tool specified`
   - Target Frequency (MHz): `295`
+  - Global Settings > Module nam prefix: `WLANHDLRX_`
 
 ### 2.5. Generate HDL Code
 
