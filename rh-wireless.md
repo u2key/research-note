@@ -43,7 +43,7 @@ WLANHDLTransmitterExample
 ## 2. Receiver Side
 ### 2.1. Open a Sample Project
 ```matlab
-openExample('whdl/WLANHDLTransmitterExample', 'workDir', 'Y:\rh-wireless\WLANHDLReceiver')
+openExample('whdl/WLANHDLReceiverExample', 'workDir', 'Y:\rh-wireless\WLANHDLReceiver')
 ```
 
 ### 2.2. Modify `WLANHDLReceiverExample.m`
