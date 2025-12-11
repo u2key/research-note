@@ -71,7 +71,7 @@ WLANHDLReceiverExample
   - Target > Work Flow: `Generic ASIC/FPGA`
   - Target > Project Folder: `hdl`
   - Synthesis Tool: `No synthesis tool specified`
-  - Target Frequency (MHz): `300`
+  - Target Frequency (MHz): `295`
 
 ### 2.5. Generate HDL Code
 
