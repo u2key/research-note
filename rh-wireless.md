@@ -32,10 +32,8 @@ WLANHDLTransmitterExample
 - HDL Code Generation
   - Generate HDL: `wlanhdlTransmitter/wlanHDLTx`
   - Target > Work Flow: `Generic ASIC/FPGA`
-  - Synthesis Tool: `Xilinx ISE`
-  - Family: `Spartan6`
-  - Device: `xc6slx150`
-  - Package: `fgg484`
+  - Target > Project Folder: `hdl`
+  - Synthesis Tool: `No synthesis tool specified`
   - Target Frequency (MHz): `300`
 
 ### 1.5. Generate HDL Code
@@ -71,10 +69,8 @@ WLANHDLReceiverExample
 - HDL Code Generation
   - Generate HDL: `wlanhdlReceiver/wlanHDLReceiver`
   - Target > Work Flow: `Generic ASIC/FPGA`
-  - Synthesis Tool: `Xilinx ISE`
-  - Family: `Spartan6`
-  - Device: `xc6slx150`
-  - Package: `fgg484`
+  - Target > Project Folder: `hdl`
+  - Synthesis Tool: `No synthesis tool specified`
   - Target Frequency (MHz): `300`
 
 ### 2.5. Generate HDL Code
