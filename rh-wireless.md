@@ -3,7 +3,7 @@
 ## 1. Generate Transmitter Hardware Description Language (HDL)
 ### 1.1. Open a Sample Project
 ```matlab
-openExample('whdl/WLANHDLTransmitterExample', 'workDir', 'C:\Users\admin\Documents\VirtualBoxShared\WLANHDLTransmitter')
+openExample('whdl/WLANHDLTransmitterExample', 'workDir', 'Y:\rh-wireless\WLANHDLTransmitter')
 ```
 
 ### 1.2. Modify `runWLANTransmitter.m`
@@ -45,7 +45,7 @@ WLANHDLTransmitterExample
 ## 2. Receiver Side
 ### 2.1. Open a Sample Project
 ```matlab
-openExample('whdl/WLANHDLTransmitterExample', 'workDir', 'C:\Users\admin\Documents\VirtualBoxShared\WLANHDLReceiver')
+openExample('whdl/WLANHDLTransmitterExample', 'workDir', 'Y:\rh-wireless\WLANHDLReceiver')
 ```
 
 ### 2.2. Modify `WLANHDLReceiverExample.m`
