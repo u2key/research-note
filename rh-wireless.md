@@ -36,6 +36,9 @@ WLANHDLTransmitterExample
   - Optimization > General > Map pipeline delays into RAM: Enabled
     - RAM mapping threshold: 100000
   - Optimization > Pipeline > Allow design delay distribution: Disabled
+  - Global Settings > Coding style > Initialize all RAM blocks: Disabled
+  - Global Settings > Coding style > RAM architecture: Generic RAM without clock enable
+  - Global Settings > Coding style > No-reset registers initialization: Do not initialize
   - Synthesis Tool: `No synthesis tool specified`
   - Target Frequency (MHz): `300`
   - Global Settings > Module nam prefix: `WLANHDLTX_`
