@@ -33,6 +33,9 @@ WLANHDLTransmitterExample
   - Generate HDL: `wlanhdlTransmitter/wlanHDLTx`
   - Target > Work Flow: `Generic ASIC/FPGA`
   - Target > Project Folder: `hdl`
+  - Optimization > General > Map pipeline delays into RAM: Enabled
+    - RAM mapping threshold: 100000
+  - Optimization > Pipeline > Allow design delay distribution: Disabled
   - Synthesis Tool: `No synthesis tool specified`
   - Target Frequency (MHz): `300`
   - Global Settings > Module nam prefix: `WLANHDLTX_`
