@@ -33,7 +33,6 @@ WLANHDLTransmitterExample
   - Generate HDL: `wlanhdlTransmitter/wlanHDLTx`
   - Target > Work Flow: `Generic ASIC/FPGA`
   - Target > Project Folder: `hdl`
-  - Global Settings > Coding style > RAM architecture: Generic RAM without clock enable
   - Synthesis Tool: `No synthesis tool specified`
   - Target Frequency (MHz): `300`
   - Global Settings > Module nam prefix: `WLANHDLTX_`
@@ -72,6 +71,7 @@ WLANHDLReceiverExample
   - Generate HDL: `wlanhdlReceiver/wlanHDLReceiver`
   - Target > Work Flow: `Generic ASIC/FPGA`
   - Target > Project Folder: `hdl`
+  - Global Settings > Coding style > RAM architecture: Generic RAM without clock enable
   - Synthesis Tool: `No synthesis tool specified`
   - Target Frequency (MHz): `295`
   - Global Settings > Module nam prefix: `WLANHDLRX_`
