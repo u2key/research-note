@@ -51,8 +51,19 @@ with open("poisson.csv", "w") as f:
 ```math
 {\Large
 \begin{align}
-Error \ Probability &=& \dfrac{Scrubbing \ Interval}{Average \ of \ Error \ Interval} \\
-Average \ of \ Error \ Interval &=& \dfrac{Scrubbing \ Interval}{Error \ Probability} \\
+\rm{Error \ Probability} &=& \dfrac{\rm{Scrubbing \ Interval}}{\rm{Average \ of \ Error \ Interval}} \\
+\rm{Average \ of \ Error \ Interval} &=& \dfrac{\rm{Scrubbing \ Interval}}{\rm{Error \ Probability}} \\
+\end{align}
+}
+```
+```math
+{\Large
+\begin{align}
+{P}_{\rm{TMR \ ALIVE}} \left ( m \right ) &= \begin{cases}
+1 & (m = 0) \\
+{}_{3} C {}_{1} \left ( \dfrac{1}{3} \right ) ^ {m - 1} \left ( \dfrac{{N}^{m}}{m!} \right ) {e}^{-N} & (m \ge 1) \\
+\end{cases} \\
+{P}_{\rm{TMR \ ALIVE}} &= \left ( 1 + \sum ^{\infty} _{m = 1} \left ( \dfrac{1}{3} \right ) ^{m - 1} \left ( \dfrac{{N}^{m}}{m!} \right ) \right ) {e}^{-N} \\
 \end{align}
 }
 ```
