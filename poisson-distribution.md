@@ -60,7 +60,7 @@ with open("poisson.csv", "w") as f:
 {\Large
 \begin{align}
 {P}_{\rm{TMR \ ALIVE}} \left ( m \right ) &= \begin{cases}
-1 & (m = 0) \\
+1 \cdot {e}^{-N} & (m = 0) \\
 {}_{3} C {}_{1} \left ( \dfrac{1}{3} \right ) ^ {m - 1} \left ( \dfrac{{N}^{m}}{m!} \right ) {e}^{-N} & (m \ge 1) \\
 \end{cases} \\
 {P}_{\rm{TMR \ ALIVE}} &= \left ( 1 + \sum ^{\infty} _{m = 1} \left ( \dfrac{1}{3} \right ) ^{m - 1} \left ( \dfrac{{N}^{m}}{m!} \right ) \right ) {e}^{-N} \\
