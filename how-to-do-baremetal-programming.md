@@ -3,7 +3,7 @@
 ## 1. Setup WSL2
 
 ```
-sudo apt install make
+sudo apt install make u-boot-tools
 ```
 
 ## 2. Install Arm GNU Toolchain
@@ -26,34 +26,22 @@ sudo apt install make
       - ODT Rtt normal value: `RZQ/4`
       - Memory write CAS latency setting: `8`
 
-## 4. Get Pre-Loader
+## 4. Open `Ashling RiscFree IDE for Altera 25.1std`
 
-```
-wget https://download.terasic.com/downloads/cd-rom/de10-standard/Linux/DE10-Standard_Linux_Console.zip
-```
-```
-unzip DE10-Standard_Linux_Console.zip
-```
-```
-
-```
-
-## 5. Open `Ashling RiscFree IDE for Altera 25.1std`
-
-## 6. Set Workspace
+## 5. Set Workspace
 
 ```
 C:\Users\admin\Documents\AshlingWorkspace\
 ```
 
-## 7. Create a New Project
+## 6. Create a New Project
 
 - File > New > C/C++ Project > C Project
   - Project name: `DE10_Standard_Beremetal`
   - Project type: `Empty Project`
     - Toolchains: `Arm Cross GCC`
 
-## 8. Edit Settings
+## 7. Edit Settings
 
 - File > Properties > C/C++ Build > Settings
   - Target Processor
@@ -65,7 +53,7 @@ C:\Users\admin\Documents\AshlingWorkspace\
   - GNU Arm C Compiler > Miscellaneous
     - Other compiler flags: `--specs=nosys.specs --static`
 
-## 9. Create C Source File
+## 8. Create C Source File
 
 - File > New > Source File
   - Source folder: `DE10_Standard_Beremetal`
@@ -104,56 +92,82 @@ int main(void) {
 }
 ```
 
-## 10. Build Project to Generate DE10_Standard_Baremetal.bin
+## 9. Build Project to Generate DE10_Standard_Baremetal.bin
 
 - Project > Build Project
 
-## 11. Create Disk Image
+## 10. Create Disk Image
 
 ```
-sudo truncate -s 512M de10_sdcard.img
+wget https://download.terasic.com/downloads/cd-rom/de10-standard/Linux/DE10-Standard_LXDE.zip
+```
+```
+unzip DE10-Standard_LXDE.zip
+```
+```
+fdisk -l DE10_Standard_LXDE.img
+```
+```
+Disk DE10_Standard_LXDE.img: 3.52 GiB, 3776970752 bytes, 7376896 sectors
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Disklabel type: dos
+Disk identifier: 0x55f3145b
+
+Device                  Boot   Start     End Sectors  Size Id Type
+DE10_Standard_LXDE.img1         4096 1028095 1024000  500M  b W95 FAT32
+DE10_Standard_LXDE.img2      1028096 7376895 6348800    3G 83 Linux
+DE10_Standard_LXDE.img3         2048    4095    2048    1M a2 unknown
+
+Partition table entries are not in disk order.
+```
+```
+mv DE10_Standard_LXDE.img de10_sdcard.img
 ```
 ```
 sudo losetup -P -f --show de10_sdcard.img
 ```
 ```
-sudo parted -s /dev/loop0 mklabel msdos
+mkdir -p mnt
 ```
 ```
-sudo parted -s /dev/loop0 mkpart primary fat32 1MiB 101MiB
+sudo mount /dev/loop0p1 mnt
 ```
 ```
-sudo parted -s /dev/loop0 mkpart primary 101MiB 102MiB
+cp /mnt/c/Users/admin/Documents/AshlingWorkspace/DE10_Standard_Baremetal/Debug/DE10_Standard_Baremetal.bin mnt/
 ```
 ```
-sudo sfdisk --part-type /dev/loop0 2 <<< "type=a2"
+vim u-boot.txt
 ```
 ```
-sudo losetup -d /dev/loop0
+fatload mmc 0:1 $fpgadata soc_system.rbf;
+fpga load 0 $fpgadata $filesize;
+setenv fdtimage soc_system.dtb;
+run bridge_enable_handoff;
+fatload mmc 0:1 0x01000000 DE10_Standard_Baremetal.bin;
+go 0x01000000;
+#run mmcload;
+#run mmcboot;
 ```
 ```
-sudo losetup -P -f --show de10_sdcard.img
+mkimage -A arm -O u-boot -T script -C none -a 0 -e 0 -n "Baremetal Boot Script" -d u-boot.txt u-boot.scr
 ```
 ```
-sudo mkfs.vfat /dev/loop0p1
+Image Name:   Baremetal Boot Script
+Created:      Mon Feb 23 17:07:52 2026
+Image Type:   ARM U-Boot Script (uncompressed)
+Data Size:    241 Bytes = 0.24 KiB = 0.00 MiB
+Load Address: 00000000
+Entry Point:  00000000
+Contents:
+   Image 0: 233 Bytes = 0.23 KiB = 0.00 MiB
 ```
 ```
-mkdir -p mnt_fat
+cp u-boot.scr mnt/
 ```
 ```
-sudo mount /dev/loop0p1 mnt_fat
-```
-```
-sudo cp DE10_Standard_Baremetal.bin mnt_fat
-```
-```
-sudo umount mnt_fat
-```
-```
-sudo dd if=preloader-mkimage.bin of=/dev/loop0p3 bs=64k status=progress
-```
-```
-sudo sync
+sudo umount mnt
 ```
 ```
 sudo losetup -d /dev/loop0
