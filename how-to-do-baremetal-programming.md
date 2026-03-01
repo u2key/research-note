@@ -11,7 +11,7 @@ sudo apt install make u-boot-tools
 - https://developer.arm.com/downloads/-/gnu-rm
   - arm-gnu-toolchain-15.2.rel1-mingw-w64-x86_64-arm-none-eabi.msi
 
-## 3. Create Project Using Quartus
+## 3. Co-Design Using Quartus
 
 - Incluge HPS with Qsys
 - Configure Parameters on SDRAM
@@ -29,6 +29,13 @@ sudo apt install make u-boot-tools
   - `h2f_loan_io` and `hps_io` created
   - `h2f_loan_io` is connected FPGA internal logic
   - `hps_io` is connected external pin 
+- Generate RBF file
+  - File > Convert Programming Files...
+    - Programming file type: `Raw Binary File (.rbf)`
+    - Configuration device: `EPCE16`
+    - Mode: `Passive Parallel x16`
+    - File name: `soc_system.rbf`
+    - Input files to convert > SOF Data: `CoDesign.sof`
 
 ## 4. Open `Ashling RiscFree IDE for Altera 25.1std`
 
