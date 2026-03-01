@@ -160,6 +160,9 @@ sudo mount /dev/loop0p1 mnt
 cp /mnt/c/Users/admin/Documents/AshlingWorkspace/DE10_Standard_Baremetal/Debug/DE10_Standard_Baremetal.bin mnt/
 ```
 ```
+cp /mnt/c/Users/admin/Documents/CoDesign/soc_system.rbf mnt/
+```
+```
 vim u-boot.txt
 ```
 ```
