@@ -157,15 +157,17 @@ C:\Users\admin\Documents\AshlingWorkspace\
 #include <stdio.h>
 #include <stdint.h>
 
-#define SYSMGR_FRZCTRL_VIOCTRL    0xFFD08040
-#define SYSMGR_PINMUX_HPS_UART_RX 0xFFD084C4
-#define SYSMGR_PINMUX_HPS_UART_TX 0xFFD084C8
-#define SYSMGR_PINMUX_HPS_LED     0xFFD084D4
-#define SYSMGR_PINMUX_HPS_KEY     0xFFD084D8
-#define SYSMGR_SCANMGR_LOANIO1    0xFFD080E4 // LOANIO1: pin 29 - pin 57
+#define SYSMGR_FREEZECTRL  0xFFD08040
+#define SYSMGR_PINMUX_GPIO 0xFFD08400
+#define SYSMGR_LOANIO0_EN  0xFFD080E0 // LOANIO0: pin  0 - pin 28
+#define SYSMGR_LOANIO1_EN  0xFFD080E4 // LOANIO1: pin 29 - pin 57
+#define SYSMGR_LOANIO2_EN  0xFFD080E8 // LOANIO2: pin 58 - pin 66
+#define GPIOCTRL_GPIO0_DIR 0xFF708004
+#define GPIOCTRL_GPIO1_DIR 0xFF709004
+#define GPIOCTRL_GPIO2_DIR 0xFF70A004
 
 void _exit(int status) {
-  while (1);
+  while (1);
 }
 void _close(void) {
 }
@@ -177,17 +179,18 @@ void _write(void) {
 }
 
 int main(void) {
-  *(volatile uint32_t *)SYSMGR_FRZCTRL_VIOCTRL    = 0;
-  *(volatile uint32_t *)SYSMGR_PINMUX_HPS_UART_RX = 0;
-  *(volatile uint32_t *)SYSMGR_PINMUX_HPS_UART_TX = 0;
-  *(volatile uint32_t *)SYSMGR_PINMUX_HPS_LED     = 0;
-  *(volatile uint32_t *)SYSMGR_PINMUX_HPS_KEY     = 0;
-  *(volatile uint32_t *)SYSMGR_SCANMGR_LOANIO1 |= (1 << (49 - 29));
-  *(volatile uint32_t *)SYSMGR_SCANMGR_LOANIO1 |= (1 << (50 - 29));
-  *(volatile uint32_t *)SYSMGR_SCANMGR_LOANIO1 |= (1 << (53 - 29));
-  *(volatile uint32_t *)SYSMGR_SCANMGR_LOANIO1 |= (1 << (54 - 29));
-  while (1);
-  return 0;
+  *(volatile uint32_t *)SYSMGR_FREEZECTRL  = 0;
+  *(volatile uint32_t *)SYSMGR_LOANIO0_EN  = 0x1fffffff;
+  *(volatile uint32_t *)SYSMGR_LOANIO1_EN  = 0x1fffffff;
+  *(volatile uint32_t *)SYSMGR_LOANIO2_EN  = 0x000001ff;
+  *(volatile uint32_t *)GPIOCTRL_GPIO0_DIR = 0x00000000;
+  *(volatile uint32_t *)GPIOCTRL_GPIO1_DIR = (1 << (53 - 29)); // Set HPS_LED as output
+  *(volatile uint32_t *)GPIOCTRL_GPIO2_DIR = 0x00000000;
+  for (int a = 0; a < 67; a++) {
+    *(volatile uint32_t *)(SYSMGR_PINMUX_GPIO + (a * 4)) = 0; // GPIO[66:0] = 0;
+  }
+  while (1);
+  return 0;
 }
 ```
 
