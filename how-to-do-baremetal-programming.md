@@ -25,6 +25,10 @@ sudo apt install make u-boot-tools
       - Output drive strength setting: `RZQ/7`
       - ODT Rtt normal value: `RZQ/4`
       - Memory write CAS latency setting: `8`
+- Configure LOANIO
+  - `h2f_loan_io` and `hps_io` created
+  - `h2f_loan_io` is connected FPGA internal logic
+  - `hps_io` is connected external pin 
 
 ## 4. Open `Ashling RiscFree IDE for Altera 25.1std`
 
