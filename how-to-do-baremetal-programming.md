@@ -45,6 +45,93 @@ chmod 700 SoCEDSSetup-20.1.0.711-linux.run
     - File name: `soc_system.rbf`
     - Input files to convert > SOF Data: `CoDesign.sof`
 
+```verilog
+module CoDesign
+  (
+    input         CLOCK_50,
+    input  [ 9:0] SW,
+    input  [ 3:0] KEY,
+    output [ 9:0] LEDR,
+    output [14:0] HPS_DDR3_A,
+    output [ 2:0] HPS_DDR3_BA,
+    output        HPS_DDR3_CAS_n,
+    output        HPS_DDR3_CKE,
+    output        HPS_DDR3_CK_n,
+    output        HPS_DDR3_CK_p,
+    output        HPS_DDR3_CS_n,
+    output [ 3:0] HPS_DDR3_DM,
+    inout  [31:0] HPS_DDR3_DQ,
+    inout  [ 3:0] HPS_DDR3_DQS_N,
+    inout  [ 3:0] HPS_DDR3_DQS_P,
+    output        HPS_DDR3_ODT,
+    output        HPS_DDR3_RAS_n,
+    output        HPS_DDR3_RESET_n,
+    output        HPS_DDR3_WE_n,
+    input         HPS_DDR3_RZQ,
+    inout         HPS_UART_RX,
+    inout         HPS_UART_TX,
+    inout         HPS_LED,
+    inout         HPS_KEY,
+  );
+
+  wire [66:0] h2f;
+  wire [66:0] f2h;
+  assign f2h[66:55] = 12'h000;
+  assign f2h[   54] = 1'h0;   // HPS_KEY
+  assign f2h[   53] = KEY[0]; // HPS_LED
+  assign f2h[   52] = 1'h0;   //
+  assign f2h[   51] = 1'h0;   //
+  assign f2h[   50] = KEY[0]; // HPS_UART_TX
+  assign f2h[   49] = 1'h0;   // HPS_UART_RX
+  assign f2h[48: 0] = 49'h0000000000000;
+
+  wire [66:0] f2h_en;
+  assign f2h_en[66:55] = 12'h000;
+  assign f2h_en[   54] = 1'h0; // HPS_KEY
+  assign f2h_en[   53] = 1'h1; // HPS_LED
+  assign f2h_en[   52] = 1'h0; //
+  assign f2h_en[   51] = 1'h0; //
+  assign f2h_en[   50] = 1'h1; // HPS_UART_TX
+  assign f2h_en[   49] = 1'h0; // HPS_UART_RX
+  assign f2h_en[48: 0] = 49'h0000000000000;
+
+  assign LEDR[0] = h2f[49];
+  assign LEDR[1] = KEY[0];
+  assign LEDR[9] = h2f[54];
+
+  hps hps0 (
+    .clk_clk(CLOCK_50),
+    .reset_reset_n(1'b1),
+    .hps_io_hps_io_gpio_inst_LOANIO49(HPS_UART_RX),
+    .hps_io_hps_io_gpio_inst_LOANIO50(HPS_UART_TX),
+    .hps_io_hps_io_gpio_inst_LOANIO53(HPS_LED),
+    .hps_io_hps_io_gpio_inst_LOANIO54(HPS_KEY),
+    .loan_io_in(h2f),
+    .loan_io_out(f2h),
+    .loan_io_oe(f2h_en),
+    .memory_mem_a(HPS_DDR3_A),
+    .memory_mem_ba(HPS_DDR3_BA),
+    .memory_mem_ck(HPS_DDR3_CK_p),
+    .memory_mem_ck_n(HPS_DDR3_CK_n),
+    .memory_mem_cke(HPS_DDR3_CKE),
+    .memory_mem_cs_n(HPS_DDR3_CS_n),
+    .memory_mem_ras_n(HPS_DDR3_RAS_n),
+    .memory_mem_cas_n(HPS_DDR3_CAS_n),
+    .memory_mem_we_n(HPS_DDR3_WE_n),
+    .memory_mem_reset_n(HPS_DDR3_RESET_n),
+    .memory_mem_dq(HPS_DDR3_DQ),
+    .memory_mem_dqs(HPS_DDR3_DQS_P),
+    .memory_mem_dqs_n(HPS_DDR3_DQS_N),
+    .memory_mem_odt(HPS_DDR3_ODT),
+    .memory_mem_dm(HPS_DDR3_DM),
+    .memory_oct_rzqin(HPS_DDR3_RZQ),
+    //.uart_rx_export(uart_rx),
+    //.uart_tx_export(uart_tx)
+  );
+
+endmodule
+```
+
 ## 4. Open `Ashling RiscFree IDE for Altera 25.1std`
 
 ## 5. Set Workspace
