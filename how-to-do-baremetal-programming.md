@@ -71,7 +71,7 @@ module CoDesign
     inout         HPS_UART_RX,
     inout         HPS_UART_TX,
     inout         HPS_LED,
-    inout         HPS_KEY,
+    inout         HPS_KEY
   );
 
   wire [66:0] h2f;
