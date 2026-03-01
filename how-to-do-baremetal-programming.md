@@ -41,19 +41,7 @@ C:\Users\admin\Documents\AshlingWorkspace\
   - Project type: `Empty Project`
     - Toolchains: `Arm Cross GCC`
 
-## 7. Edit Settings
-
-- File > Properties > C/C++ Build > Settings
-  - Target Processor
-    - Arm family (-mcpu): `cortex-a9`
-    - Architecture (-march): `armv7-a`
-    - Instruction set: `Arm (-marm)`
-  - GNU Arm Cross Create Flush Image > General
-    - Output file format (-O): `Raw binary`
-  - GNU Arm C Compiler > Miscellaneous
-    - Other compiler flags: `--specs=nosys.specs --static`
-
-## 8. Create C Source File
+## 7. Source Files
 
 - File > New > Source File
   - Source folder: `DE10_Standard_Beremetal`
@@ -91,6 +79,29 @@ int main(void) {
   return 0;
 }
 ```
+
+- File > New > Source File
+  - Source folder: `DE10_Standard_Beremetal`
+  - Source file: `main.ld`
+
+```ld
+```
+
+## 8. Edit Settings
+
+- Select `DE10_Standard_baremetal`
+  - File > Properties > C/C++ Build > Settings
+    - Target Processor
+      - Arm family (-mcpu): `cortex-a9`
+      - Architecture (-march): `armv7-a`
+      - Instruction set: `Arm (-marm)`
+    - GNU Arm Cross Create Flush Image > General
+      - Output file format (-O): `Raw binary`
+    - GNU Arm C Linker > General
+      - Add `C:\Users\admin\Documents\AshlingWorkspace\DE10_Standard_Baremetal\main.ld`
+    - GNU Arm C Linker > Miscellaneous
+      - Confirm `Do not use syscalls (--specs=nosys.specs)` checked  
+      - Other linker flags: `--static`
 
 ## 9. Build Project to Generate DE10_Standard_Baremetal.bin
 
