@@ -6,10 +6,18 @@
 sudo apt install make u-boot-tools
 ```
 
-## 2. Install Arm GNU Toolchain
+## 2. Install Required Software
 
 - https://developer.arm.com/downloads/-/gnu-rm
   - arm-gnu-toolchain-15.2.rel1-mingw-w64-x86_64-arm-none-eabi.msi
+ 
+- https://www.altera.com/download-center/license-agreement/78071/c9e1235c7f979a37d79eb57eee37596b030d209e?filename=SoCEDSSetup-20.1.0.711-linux.run
+```
+chmod 700 SoCEDSSetup-20.1.0.711-linux.run
+```
+```
+./SoCEDSSetup-20.1.0.711-linux.run`
+```
 
 ## 3. Co-Design Using Quartus
 
