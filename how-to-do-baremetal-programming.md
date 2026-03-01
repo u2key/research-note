@@ -154,35 +154,40 @@ C:\Users\admin\Documents\AshlingWorkspace\
   - Source file: `main.c`
 
 ```c
-/*
- * main.c
- *
- *  Created on: 2026/02/23
- *      Author: u2key
- */
-
+#include <stdio.h>
 #include <stdint.h>
 
-#define ADDRESS_HPS_UART_RX  0xFF708000 + 0x00000310
-#define ADDRESS_HPS_UART_TX  0xFF708000 + 0x00000320
-
-#define ADDRESS_FPGA_UART_RX 0xFF200000 + 0x00000000
-#define ADDRESS_FPGA_UART_TX 0xFF200000 + 0x00000010
+#define SYSMGR_FRZCTRL_VIOCTRL    0xFFD08040
+#define SYSMGR_PINMUX_HPS_UART_RX 0xFFD084C4
+#define SYSMGR_PINMUX_HPS_UART_TX 0xFFD084C8
+#define SYSMGR_PINMUX_HPS_LED     0xFFD084D4
+#define SYSMGR_PINMUX_HPS_KEY     0xFFD084D8
+#define SYSMGR_SCANMGR_LOANIO1    0xFFD080E4 // LOANIO1: pin 29 - pin 57
 
 void _exit(int status) {
-  while (1);
+  while (1);
+}
+void _close(void) {
+}
+void _lseek(void) {
+}
+void _read(void) {
+}
+void _write(void) {
 }
 
 int main(void) {
-  void *hps_uart_rx = (void *)(ADDRESS_HPS_UART_RX);
-  void *hps_uart_tx = (void *)(ADDRESS_HPS_UART_TX);
-  void *fpga_uart_rx = (void *)(ADDRESS_FPGA_UART_RX);
-  void *fpga_uart_tx = (void *)(ADDRESS_FPGA_UART_TX);
-  while (1) {
-    *(char *)fpga_uart_rx = *(char *)hps_uart_rx;
-    *(char *)hps_uart_tx = *(char *)fpga_uart_tx;
-  }
-  return 0;
+  *(volatile uint32_t *)SYSMGR_FRZCTRL_VIOCTRL    = 0;
+  *(volatile uint32_t *)SYSMGR_PINMUX_HPS_UART_RX = 0;
+  *(volatile uint32_t *)SYSMGR_PINMUX_HPS_UART_TX = 0;
+  *(volatile uint32_t *)SYSMGR_PINMUX_HPS_LED     = 0;
+  *(volatile uint32_t *)SYSMGR_PINMUX_HPS_KEY     = 0;
+  *(volatile uint32_t *)SYSMGR_SCANMGR_LOANIO1 |= (1 << (49 - 29));
+  *(volatile uint32_t *)SYSMGR_SCANMGR_LOANIO1 |= (1 << (50 - 29));
+  *(volatile uint32_t *)SYSMGR_SCANMGR_LOANIO1 |= (1 << (53 - 29));
+  *(volatile uint32_t *)SYSMGR_SCANMGR_LOANIO1 |= (1 << (54 - 29));
+  while (1);
+  return 0;
 }
 ```
 
@@ -191,6 +196,31 @@ int main(void) {
   - Source file: `main.ld`
 
 ```ld
+ENTRY(main)
+
+MEMORY
+{
+    ram (rwx) : ORIGIN = 0x01000000, LENGTH = 64M
+}
+
+SECTIONS
+{
+    .text : {
+        KEEP(*(.text.main))
+        *(.text*)
+        *(.rodata*)
+    } > ram
+
+    .data : {
+        *(.data*)
+    } > ram
+
+    .bss : {
+        *(.bss*)
+    } > ram
+
+    _stack_top = ORIGIN(ram) + LENGTH(ram);
+}
 ```
 
 ## 8. Edit Settings
