@@ -180,8 +180,6 @@ setenv fdtimage soc_system.dtb;
 run bridge_enable_handoff;
 fatload mmc 0:1 0x01000000 DE10_Standard_Baremetal.bin;
 go 0x01000000;
-#run mmcload;
-#run mmcboot;
 ```
 ```
 mkimage -A arm -O u-boot -T script -C none -a 0 -e 0 -n "Baremetal Boot Script" -d u-boot.txt u-boot.scr
