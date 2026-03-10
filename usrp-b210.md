@@ -47,8 +47,8 @@ rem %SYSTEMROOT%\system32\windowspowershell\v1.0\powershell.exe -ExecutionPolicy
 > ### 3.2. Install Microsoft Visual Studio 2022
 > - https://visualstudio.microsoft.com/
 > 
-> ### 3.3. Install CMake 3.25.0
-> - https://cmake.org/files/v3.17/
+> ### 3.3. Install CMake 3.25.3
+> - https://cmake.org/files/v3.25/
 >
 > ### 3.4. Install Boost 1.89.0
 > - https://www.boost.org/releases/1.89.0/
