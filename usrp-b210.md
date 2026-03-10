@@ -44,11 +44,11 @@ rem %SYSTEMROOT%\system32\windowspowershell\v1.0\powershell.exe -ExecutionPolicy
 > ### 3.1. Download UHD Sources
 > - https://codeload.github.com/EttusResearch/uhd/zip/refs/tags/v4.9.0.1
 > 
-> ### 3.2. Install Microsoft Visual Studio 2022
+> ### 3.2. Install Microsoft Visual Studio 2026
 > - https://visualstudio.microsoft.com/
 > 
-> ### 3.3. Install CMake 3.25.3
-> - https://cmake.org/files/v3.25/
+> ### 3.3. Install CMake 4.3.0
+> - https://cmake.org/files/v4.3/cmake-4.3.0-rc2-windows-x86_64.msi
 >
 > ### 3.4. Install Boost 1.89.0
 > - https://www.boost.org/releases/1.89.0/
@@ -65,11 +65,11 @@ rem %SYSTEMROOT%\system32\windowspowershell\v1.0\powershell.exe -ExecutionPolicy
 > ```
 >
 > ### 3.8. Create UHD Visual Studio Project using CMake GUI
-> - Where is the source code: `C:\Users\admin\Documents\uhd-4.9.0.1\host`
-> - Where to build the binaries: `C:\Users\admin\Documents\uhd-4.9.0.1\host\build`
+> - Where is the source code: `C:\Users\admin\Documents\uhd\host`
+> - Where to build the binaries: `C:\Users\admin\Documents\uhd\host\build`
 > - Configure
->   - Specify the generator for this project: `Visual Studio 17 2022`
-> - CMAKE_INSTALL_PREFIX: `C:\Users\admin\Documents\uhd-4.9.0.1\host\build\bin`
+>   - Specify the generator for this project: `Visual Studio 18 2026`
+> - CMAKE_INSTALL_PREFIX: `C:\Users\admin\Documents\uhd\host\build\bin`
 > - BOOST_ALL_DYN_LINK: Enabled
 > - Boost_DIR: `C:\Users\admin\Documents\boost_1_90_0`
 > - Boost_INCLUDE_DIR: `C:\Users\admin\Documents\boost_1_90_0`
