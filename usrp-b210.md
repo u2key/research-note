@@ -54,7 +54,7 @@ rem %SYSTEMROOT%\system32\windowspowershell\v1.0\powershell.exe -ExecutionPolicy
 > - https://www.boost.org/releases/1.89.0/
 >
 > ### 3.5. Install LibUSB
-> - https://sourceforge.net/projects/libusb/files/libusb-1.0/libusb-1.0.29/
+> - https://github.com/libusb/libusb/releases/download/v1.0.29/libusb-1.0.29.7z
 >
 > ### 3.6. Install Python
 > - https://www.python.org/downloads/
@@ -71,10 +71,10 @@ rem %SYSTEMROOT%\system32\windowspowershell\v1.0\powershell.exe -ExecutionPolicy
 >   - Specify the generator for this project: `Visual Studio 17 2022`
 > - CMAKE_INSTALL_PREFIX: `C:\Users\admin\Documents\uhd-4.9.0.1\host\build\bin`
 > - BOOST_ALL_DYN_LINK: Enabled
-> - Boost_DIR: `C:\ProgramFiles\boost_1_89_0`
-> - Boost_INCLUDE_DIR: `C:\ProgramFiles\boost_1_89_0`
-> - LIBUSB_INCLUDE_DIRS: `C:\ProgramFiles\libusb-1.0.29\include`
-> - LIBUSB_LIBRARIES: `C:\ProgramFiles\libusb-1.0.29\VS2022\MS64\dll\libusb-1.0.lib`
+> - Boost_DIR: `C:\Users\admin\Documents\boost_1_90_0`
+> - Boost_INCLUDE_DIR: `C:\Users\admin\Documents\boost_1_90_0`
+> - LIBUSB_INCLUDE_DIRS: `C:\Users\admin\Documents\libusb-1.0.29\include`
+> - LIBUSB_LIBRARIES: `C:\Users\admin\Documents\libusb-1.0.29\VS2022\MS64\dll\libusb-1.0.lib`
 > - Configure
 > - Generate
 >
