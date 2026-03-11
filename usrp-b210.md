@@ -50,8 +50,8 @@ rem %SYSTEMROOT%\system32\windowspowershell\v1.0\powershell.exe -ExecutionPolicy
 > ### 3.3. Install CMake 4.3.0
 > - https://cmake.org/files/v4.3/cmake-4.3.0-rc2-windows-x86_64.msi
 >
-> ### 3.4. Install Boost 1.89.0
-> - https://www.boost.org/releases/1.89.0/
+> ### 3.4. Install Boost 1.90.0
+> - https://www.boost.org/releases/1.90.0/
 >
 > ### 3.5. Install LibUSB
 > - https://github.com/libusb/libusb/releases/download/v1.0.29/libusb-1.0.29.7z
@@ -71,10 +71,10 @@ rem %SYSTEMROOT%\system32\windowspowershell\v1.0\powershell.exe -ExecutionPolicy
 >   - Specify the generator for this project: `Visual Studio 18 2026`
 > - CMAKE_INSTALL_PREFIX: `C:\Users\admin\Documents\uhd\host\build\bin`
 > - BOOST_ALL_DYN_LINK: Enabled
-> - Boost_DIR: `C:\Users\admin\Documents\boost_1_90_0`
-> - Boost_INCLUDE_DIR: `C:\Users\admin\Documents\boost_1_90_0`
-> - LIBUSB_INCLUDE_DIRS: `C:\Users\admin\Documents\libusb-1.0.29\include`
-> - LIBUSB_LIBRARIES: `C:\Users\admin\Documents\libusb-1.0.29\VS2022\MS64\dll\libusb-1.0.lib`
+> - Boost_DIR: `C:\ProgramFiles\boost_1_90_0`
+> - Boost_INCLUDE_DIR: `C:\ProgramFiles\boost_1_90_0`
+> - LIBUSB_INCLUDE_DIRS: `C:\\Users\\admin\\Documents\\libusb-1.0.29\\include`
+> - LIBUSB_LIBRARIES: `C:\\Users\\admin\\Documents\\libusb-1.0.29\\VS2022\\MS64\\dll\\libusb-1.0.lib`
 > - Configure
 > - Generate
 >
