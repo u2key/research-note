@@ -82,6 +82,26 @@ rem %SYSTEMROOT%\system32\windowspowershell\v1.0\powershell.exe -ExecutionPolicy
 > - Set Build Action to `Release`
 > - Build `ALL_BUILD`
 > - Build `INSTALL`
+>
+> ### 3.10. Copy DLL files
+> ```
+> cp -v /mnt/c/Users/admin/Documents/uhd/host/build/{lib,examples}/Release/uhd.dll
+> ```
+> ```
+> cp -v /mnt/c/{ProgramFiles/boost_1_90_0/lib64-msvc-14.3,Users/admin/Documents/uhd/host/build/examples/Release}/boost_filesystem-vc143-mt-x64-1_90.dll
+> ```
+> ```
+> cp -v /mnt/c/{ProgramFiles/boost_1_90_0/lib64-msvc-14.3,Users/admin/Documents/uhd/host/build/examples/Release}/boost_program_options-vc143-mt-x64-1_90.dll
+> ```
+> ```
+> cp -v /mnt/c/{ProgramFiles/boost_1_90_0/lib64-msvc-14.3,Users/admin/Documents/uhd/host/build/examples/Release}/boost_serialization-vc143-mt-x64-1_90.dll
+> ```
+> ```
+> cp -v /mnt/c/{ProgramFiles/boost_1_90_0/lib64-msvc-14.3,Users/admin/Documents/uhd/host/build/examples/Release}/boost_thread-vc143-mt-x64-1_90.dll
+> ```
+> ```
+> cp -v /mnt/c/Users/admin/Documents/{libusb-1.0.29/VS2022/MS64/dll,uhd/host/build/examples/Release}/libusb-1.0.dll
+> ```
 
 ### 3.1. Install Required Packages
 ```
