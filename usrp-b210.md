@@ -65,11 +65,11 @@ rem %SYSTEMROOT%\system32\windowspowershell\v1.0\powershell.exe -ExecutionPolicy
 > ```
 >
 > ### 3.8. Create UHD Visual Studio Project using CMake GUI
-> - Where is the source code: `C:\Users\admin\Documents\uhd\host`
-> - Where to build the binaries: `C:\Users\admin\Documents\uhd\host\build`
+> - Where is the source code: `U:\home\ubuntu\uhd\host`
+> - Where to build the binaries: `U:\home\ubuntu\uhd\host\build`
 > - Configure
 >   - Specify the generator for this project: `Visual Studio 18 2026`
-> - CMAKE_INSTALL_PREFIX: `C:\Users\admin\Documents\uhd\host\build\bin`
+> - CMAKE_INSTALL_PREFIX: `U:\home\ubuntu\uhd\host\build\bin`
 > - BOOST_ALL_DYN_LINK: Enabled
 > - Boost_DIR: `C:\ProgramFiles\boost_1_90_0`
 > - Boost_INCLUDE_DIR: `C:\ProgramFiles\boost_1_90_0`
@@ -85,22 +85,22 @@ rem %SYSTEMROOT%\system32\windowspowershell\v1.0\powershell.exe -ExecutionPolicy
 >
 > ### 3.10. Copy DLL files
 > ```
-> cp -v /mnt/c/Users/admin/Documents/uhd/host/build/{lib,examples}/Release/uhd.dll
+> cp -v /root/uhd/host/build/{lib,examples}/Release/uhd.dll
 > ```
 > ```
-> cp -v /mnt/c/{ProgramFiles/boost_1_90_0/lib64-msvc-14.3,Users/admin/Documents/uhd/host/build/examples/Release}/boost_filesystem-vc143-mt-x64-1_90.dll
+> cp -v {/mnt/c/ProgramFiles/boost_1_90_0/lib64-msvc-14.3,/root/uhd/host/build/examples/Release}/boost_filesystem-vc143-mt-x64-1_90.dll
 > ```
 > ```
-> cp -v /mnt/c/{ProgramFiles/boost_1_90_0/lib64-msvc-14.3,Users/admin/Documents/uhd/host/build/examples/Release}/boost_program_options-vc143-mt-x64-1_90.dll
+> cp -v {/mnt/c/ProgramFiles/boost_1_90_0/lib64-msvc-14.3,/root/uhd/host/build/examples/Release}/boost_program_options-vc143-mt-x64-1_90.dll
 > ```
 > ```
-> cp -v /mnt/c/{ProgramFiles/boost_1_90_0/lib64-msvc-14.3,Users/admin/Documents/uhd/host/build/examples/Release}/boost_serialization-vc143-mt-x64-1_90.dll
+> cp -v {/mnt/c/ProgramFiles/boost_1_90_0/lib64-msvc-14.3,/root/uhd/host/build/examples/Release}/boost_serialization-vc143-mt-x64-1_90.dll
 > ```
 > ```
-> cp -v /mnt/c/{ProgramFiles/boost_1_90_0/lib64-msvc-14.3,Users/admin/Documents/uhd/host/build/examples/Release}/boost_thread-vc143-mt-x64-1_90.dll
+> cp -v {/mnt/c/ProgramFiles/boost_1_90_0/lib64-msvc-14.3,/root/uhd/host/build/examples/Release}/boost_thread-vc143-mt-x64-1_90.dll
 > ```
 > ```
-> cp -v /mnt/c/Users/admin/Documents/{libusb-1.0.29/VS2022/MS64/dll,uhd/host/build/examples/Release}/libusb-1.0.dll
+> cp -v {/mnt/c/Users/admin/Documents/libusb-1.0.29/VS2022/MS64/dll,/root/uhd/host/build/examples/Release}/libusb-1.0.dll
 > ```
 
 ### 3.1. Install Required Packages
