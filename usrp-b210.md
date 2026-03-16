@@ -85,22 +85,22 @@ rem %SYSTEMROOT%\system32\windowspowershell\v1.0\powershell.exe -ExecutionPolicy
 >
 > ### 3.10. Copy DLL files
 > ```
-> cp -v /root/uhd/host/build/{lib,examples}/Release/uhd.dll
+> cp -v /home/ubuntu/uhd/host/build/{lib,examples}/Release/uhd.dll
 > ```
 > ```
-> cp -v {/mnt/c/ProgramFiles/boost_1_90_0/lib64-msvc-14.3,/root/uhd/host/build/examples/Release}/boost_filesystem-vc143-mt-x64-1_90.dll
+> cp -v {/mnt/c/ProgramFiles/boost_1_90_0/lib64-msvc-14.3,/home/ubuntu/uhd/host/build/examples/Release}/boost_filesystem-vc143-mt-x64-1_90.dll
 > ```
 > ```
-> cp -v {/mnt/c/ProgramFiles/boost_1_90_0/lib64-msvc-14.3,/root/uhd/host/build/examples/Release}/boost_program_options-vc143-mt-x64-1_90.dll
+> cp -v {/mnt/c/ProgramFiles/boost_1_90_0/lib64-msvc-14.3,/home/ubuntu/uhd/host/build/examples/Release}/boost_program_options-vc143-mt-x64-1_90.dll
 > ```
 > ```
-> cp -v {/mnt/c/ProgramFiles/boost_1_90_0/lib64-msvc-14.3,/root/uhd/host/build/examples/Release}/boost_serialization-vc143-mt-x64-1_90.dll
+> cp -v {/mnt/c/ProgramFiles/boost_1_90_0/lib64-msvc-14.3,/home/ubuntu/uhd/host/build/examples/Release}/boost_serialization-vc143-mt-x64-1_90.dll
 > ```
 > ```
-> cp -v {/mnt/c/ProgramFiles/boost_1_90_0/lib64-msvc-14.3,/root/uhd/host/build/examples/Release}/boost_thread-vc143-mt-x64-1_90.dll
+> cp -v {/mnt/c/ProgramFiles/boost_1_90_0/lib64-msvc-14.3,/home/ubuntu/uhd/host/build/examples/Release}/boost_thread-vc143-mt-x64-1_90.dll
 > ```
 > ```
-> cp -v {/mnt/c/Users/admin/Documents/libusb-1.0.29/VS2022/MS64/dll,/root/uhd/host/build/examples/Release}/libusb-1.0.dll
+> cp -v {/mnt/c/Users/admin/Documents/libusb-1.0.29/VS2022/MS64/dll,/home/ubuntu/uhd/host/build/examples/Release}/libusb-1.0.dll
 > ```
 
 ### 3.1. Install Required Packages
