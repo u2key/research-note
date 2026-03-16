@@ -91,6 +91,9 @@ rem %SYSTEMROOT%\system32\windowspowershell\v1.0\powershell.exe -ExecutionPolicy
 > cp -v {/mnt/c/ProgramFiles/boost_1_90_0/lib64-msvc-14.3,/home/ubuntu/uhd/host/build/examples/Release}/boost_filesystem-vc143-mt-x64-1_90.dll
 > ```
 > ```
+> cp -v {/mnt/c/ProgramFiles/boost_1_90_0/lib64-msvc-14.3,/home/ubuntu/uhd/host/build/examples/Release}/boost_filesystem-vc143-mt-gd-x64-1_90.dll
+> ```
+> ```
 > cp -v {/mnt/c/ProgramFiles/boost_1_90_0/lib64-msvc-14.3,/home/ubuntu/uhd/host/build/examples/Release}/boost_program_options-vc143-mt-x64-1_90.dll
 > ```
 > ```
