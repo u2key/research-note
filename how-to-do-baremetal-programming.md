@@ -238,6 +238,9 @@ SECTIONS
       - Output file format (-O): `Raw binary`
     - GNU Arm C Linker > General
       - Add `C:\Users\admin\Documents\AshlingWorkspace\DE10_Standard_Baremetal\main.ld`
+      - Confirm `Do not use standard start files (-nostartfiles)` checked
+      - Confirm `No startup or default libs (-nostdlib)` checked
+      - Confirm `Remove unused sections (-Xlinker --gc-sections)` checked
     - GNU Arm C Linker > Miscellaneous
       - Confirm `Do not use syscalls (--specs=nosys.specs)` checked  
       - Other linker flags: `--static`
